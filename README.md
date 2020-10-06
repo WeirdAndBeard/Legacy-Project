@@ -5,24 +5,13 @@
 npm install
 ```
 
-### Compiles and hot-reloads for development
+### Start the build for developement
 ```
-npm run serve
+npm run build-dev
 ```
-
-### Compiles and minifies for production
+### Start the server for developement
 ```
-npm run build
-```
-
-### Run your unit tests
-```
-npm run test:unit
-```
-
-### Lints and fixes files
-```
-npm run lint
+npm run server-dev
 ```
 
 ### Customize configuration
