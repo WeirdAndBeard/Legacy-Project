@@ -113,9 +113,14 @@
 <script>
 export default {
   name: "HelloWorld",
+  data() {
+    return {
+      counter: 1,
+    };
+  },
   props: {
-    msg: String
-  }
+    msg: String,
+  },
 };
 </script>
 

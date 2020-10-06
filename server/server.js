@@ -7,11 +7,14 @@ const Chat = require("../database/chatschema.js");
 const bcrypt = require("bcryptjs");
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
+
+//app.use("/api/",Auth);
+/***** old code */
 const path = require("path");
 const { update } = require("../database/name.js");
 const { dirname } = require("path");
-
+/**old code */
 app.use(express.static(__dirname + "/../dist"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
