@@ -86,8 +86,9 @@
 </template>
 
 <script>
-import axios from "axios";
-import logIn from "./logIn.vue";
+// import axios from "axios";
+// import LogIn from "./LogIn.vue"
+// import router from 'vue-router'
 export default {
   name: "SignUp",
   props: {
@@ -109,20 +110,21 @@ export default {
   },
   methods: {
     async register() {
+
       console.log("this.userSignUp", this.userSignUp);
 
       if (this.userSignUp.Password !== this.userSignUp.RepeatPassword) {
         alert("Check Your Password");
       } else {
         this.check = !this.check;
-
         try {
           let res = await axios.post("/register", {
             userSignUp: this.userSignUp,
           });
           this.output = res.data;
           if (this.check === true) {
-            window.location.href = logIn;
+          this.$router.push('logIn') 
+
           }
         } catch (e) {
           this.output = e;

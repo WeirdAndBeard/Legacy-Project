@@ -1,16 +1,20 @@
 <template>
   <div id="app">
     <SignUp />
+    <!-- <LogIn/> -->
   </div>
 </template>
 
 <script>
 import SignUp from "./components/SignUp"
+// import LogIn from "./components/LogIn"
 
 export default {
   name: 'App',
   components: {
-    SignUp
+    SignUp,
+    // LogIn
+    
   }
 }
 </script>
