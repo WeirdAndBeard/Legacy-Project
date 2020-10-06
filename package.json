@@ -12,15 +12,16 @@
     "db-setup": "node database/seed.js"
   },
   "dependencies": {
-    "core-js": "^3.6.5",
-    "vue": "^2.6.11",
-    "vue-router": "^3.2.0",
-    "vuex": "^3.4.0",
-    "express": "^4.15.4",
-    "body-parser": "^1.17.2",
     "bcryptjs": "^2.4.3",
+    "body-parser": "^1.17.2",
+    "core-js": "^3.6.5",
+    "express": "^4.15.4",
     "mongoose": "^5.10.5",
-    "underscore": "^1.8.3"
+    "underscore": "^1.8.3",
+    "vue": "^2.6.11",
+    "vue-material": "^1.0.0-beta-15",
+    "vue-router": "^3.2.0",
+    "vuex": "^3.4.0"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",
