@@ -74,7 +74,7 @@
         </p>
 
         <div class="clearfix">
-          <span> {{ output }}</span>
+          <span> {{ output }} </span>
           <button type="button" class="cancelbtn">Cancel</button>
           <button type="submit" @click="register" class="signupbtn">
             Sign Up
@@ -86,10 +86,12 @@
 </template>
 
 <script>
+// import ''
 import axios from "axios";
-import logIn from "./logIn.vue";
+// import LogIn from "./LogIn.vue"
+// import router from 'vue-router'
 export default {
-  name: "SignUp",
+  name: "signUp",
   props: {
     msg: String,
   },
@@ -110,19 +112,17 @@ export default {
   methods: {
     async register() {
       console.log("this.userSignUp", this.userSignUp);
-
       if (this.userSignUp.Password !== this.userSignUp.RepeatPassword) {
         alert("Check Your Password");
       } else {
         this.check = !this.check;
-
         try {
           let res = await axios.post("/register", {
             userSignUp: this.userSignUp,
           });
           this.output = res.data;
           if (this.check === true) {
-            window.location.href = logIn;
+          this.$router.push('logIn') 
           }
         } catch (e) {
           this.output = e;
@@ -139,54 +139,56 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
+
 <style scoped>
 .modal {
-  background-image: url("https://www.wallpaperflare.com/static/547/541/191/mountains-sunset-landscape-mount-hood-wallpaper.jpg");
-  border-radius: 13px;
-  height: 50pc;
-  width: 20%;
-  margin: 10px auto;
-  padding: 5%;
-}
-input[type="text"],
-input[type="password"] {
-  width: 100%;
-  padding: 15px;
-  margin: 5px 0 22px 0;
-  display: inline-block;
-  border: none;
-  background: #f1f1f1;
-}
-input[type="text"]:focus,
-input[type="password"]:focus {
-  background-color: #ddd;
-  outline: none;
-}
-button {
-  background-color: #a0349a;
-  color: white;
-  padding: 14px 20px;
-  margin: 8px 0;
-  border: none;
-  cursor: pointer;
-  width: 100%;
-  opacity: 0.9;
-}
-button:hover {
-  opacity: 1;
-}
-.cancelbtn {
-  padding: 14px 20px;
-  background-color: #f44336;
-}
-.cancelbtn,
-.signupbtn {
-  float: left;
-  width: 50%;
-}
+    background-image: url("https://www.wallpaperflare.com/static/547/541/191/mountains-sunset-landscape-mount-hood-wallpaper.jpg");
+    border-radius: 13px;
+    height: 50pc;
+    width: 20%;
+    margin: 10px auto;
+    padding: 5%;
+  }
+  input[type="text"],
+  input[type="password"] {
+    width: 100%;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    display: inline-block;
+    border: none;
+    background: #f1f1f1;
+  }
+  input[type="text"]:focus,
+  input[type="password"]:focus {
+    background-color: #ddd;
+    outline: none;
+  }
+  button {
+    background-color: #a0349a;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    opacity: 0.9;
+  }
+  button:hover {
+    opacity: 1;
+  }
+  .cancelbtn {
+    padding: 14px 20px;
+    background-color: #f44336;
+  }
+  .cancelbtn,
+  .signupbtn {
+    float: left;
+    width: 50%;
+  }
+  
+  hr {
+    border: 1px solid #f1f1f1;
+    margin-bottom: 25px;
+  }
 
-hr {
-  border: 1px solid #f1f1f1;
-  margin-bottom: 25px;
-}
 </style>

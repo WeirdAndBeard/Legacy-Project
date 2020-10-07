@@ -27,11 +27,11 @@
         <div class="clearfix">
           <span> {{ outputLogIn }} </span>
           <button type="button" class="cancelbtn">Cancel</button>
-          <button type="submit" @click="register()" class="signupbtn">Sign Up</button>
+          <button type="submit" @click="register" class="signupbtn">Sign Up</button>
         </div>
       </div>
     </div>
-  </div>
+  </div> 
 </template>
 
 <script>
@@ -51,6 +51,7 @@ export default {
   },
   methods: {
     register() {
+      console.log("test", this.userLogIn)
       this.axios.post('/logIn', {userLogIn : this.userLogIn})
       .then(res => this.outputLogIn = res.data)
       .catch(err => this.outputLogIn = err)
@@ -64,7 +65,7 @@ export default {
 .modal {
   background-image: url("https://www.wallpaperflare.com/static/547/541/191/mountains-sunset-landscape-mount-hood-wallpaper.jpg");
   border-radius: 13px;
-  height: 50pc;
+  height: 30pc;
   width: 20%;
   margin: 10px auto;
   padding: 5%;
