@@ -1,12 +1,20 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view />
+    <Dashboard />
   </div>
 </template>
+
+<script>
+// @ is an alias to /src
+import Dashboard from "@/components/Dashboard.vue";
+
+export default {
+  name: "App",
+  components: {
+    Dashboard,
+  },
+};
+</script>
 
 <style>
 #app {
