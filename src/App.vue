@@ -1,17 +1,17 @@
 <template>
   <div id="app">
-    <Dashboard />
+    <EmployeeProfile />
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import Dashboard from "@/components/Dashboard.vue";
+import EmployeeProfile from "./components/employees/EmployeeProfile";
 
 export default {
   name: "App",
   components: {
-    Dashboard
+    EmployeeProfile
   }
 };
 </script>
