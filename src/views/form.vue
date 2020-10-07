@@ -13,6 +13,7 @@
           placeholder="Enter Last-Name"
         ></b-form-input>
       </b-form-group>
+     
 
       <b-form-group
         id="input-group-2"
@@ -26,11 +27,25 @@
           placeholder="Enter First-Name"
         ></b-form-input>
       </b-form-group>
+       <b-form-group
+        id="input-group-1"
+        label="Your Age:"
+        label-for="input-1"
+      >
+        <b-form-input
+          id="input-1"
+          v-model="form.age"
+          type="number"
+          required
+          placeholder="Enter Age"
+        ></b-form-input>
+      </b-form-group>
       <b-form-group
         id="input-group-1"
         label="Email address:"
         label-for="input-1"
       >
+    
         <b-form-input
           id="input-1"
           v-model="form.email"
@@ -53,31 +68,29 @@
         ></b-form-select>
       </b-form-group>
 
+      <b-form-group id="input-group-4">
+        <b-form-checkbox-group v-model="form.gender" id="checkboxes-4">
+          <b-form-checkbox value="Male">Male</b-form-checkbox>
+          <b-form-checkbox value="Female">Female</b-form-checkbox>
+        </b-form-checkbox-group>
+      </b-form-group>
+      <label for="example-datepicker">Choose a date</label>
+      <b-form-datepicker
+        id="example-datepicker"
+        v-model="form.date"
+        class="mb-2"
+      ></b-form-datepicker>
 
-
-    <b-form-group id="input-group-4">
-      <b-form-checkbox-group v-model="form.checked" id="checkboxes-4">
-        <b-form-checkbox value="Male">Male</b-form-checkbox>
-        <b-form-checkbox value="Female">Female</b-form-checkbox>
-      </b-form-checkbox-group>
-    </b-form-group>
-    <label for="example-datepicker">Choose a date</label>
-    <b-form-datepicker
-      id="example-datepicker"
-      v-model="form.date"
-      class="mb-2"
-    ></b-form-datepicker>
-
-    <b-button type="submit" variant="primary">Submit</b-button>
-    <b-button type="reset" variant="primary">Reset</b-button>
+      <b-button type="submit" variant="primary">Submit</b-button>
+      <b-button type="reset" variant="primary">Reset</b-button>
     </b-form>
 
-
-    <pre class="m-0">{{ form }}</pre>
+    <!-- <pre class="m-0">{{ form }}</pre> -->
   </div>
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   data() {
     return {
@@ -86,8 +99,10 @@ export default {
         FirstName: "",
         LastName: "",
         position: null,
-        checked: [],
+        gender: [],
         date: "",
+        age:""
+
       },
 
       positions: [
@@ -101,9 +116,17 @@ export default {
     };
   },
   methods: {
-    onSubmit(evt) {
+    async onSubmit(evt) {
       evt.preventDefault();
       alert(JSON.stringify(this.form));
+      try{
+          const data= await axios.post('/api/employees/add',this.form)
+          console.log(data.data)
+      }catch (error) {
+  console.error(error);
+      }
+      this.$router.push('/employees')
+      
     },
     onReset(evt) {
       evt.preventDefault();
