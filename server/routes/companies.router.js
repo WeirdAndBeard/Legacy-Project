@@ -15,7 +15,7 @@ companyRouter.get("/", async (req, res) => {
   }
 });
 /**
- * Create new company a
+ * Create new company 
  */
 companyRouter.post("/add", async (req, res) => {
   try {
