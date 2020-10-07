@@ -1,20 +1,14 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-const User = require("../database/user.js");
-const Company = require("../database/company.js");
-const Name = require("../database/name.js");
-const Chat = require("../database/chatschema.js");
-const bcrypt = require("bcryptjs");
-
 const app = express();
-const PORT = 3000;
-const path = require("path");
-const { update } = require("../database/name.js");
-const { dirname } = require("path");
+const PORT = process.env.PORT || 3000;
+const companyRouter = require("./routes/companies.router.js");
 
 app.use(express.static(__dirname + "/../dist"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use("/api/companies", companyRouter);
+
 
 app.get("/api/users/getMessages", function(req, res) {
   Chat.find({}, function(error, result) {
@@ -22,6 +16,10 @@ app.get("/api/users/getMessages", function(req, res) {
     res.send(result);
   });
 });
+// i'm adding this to test it and it's working //
+app.post("/api/employees/add",(req,res)=>{
+  res.send(req.body)
+})
 
 app.post("/api/users/sendMessage", (req, res) => {
   console.log(req.body.msg);
@@ -277,6 +275,7 @@ app.post("/signup/company", async (req, res) => {
     res.status(404).send("UNAUTHORIZED");
   }
 });
+
 
 app.listen(PORT, () => {
   console.log(`listening on port ${PORT}`);
