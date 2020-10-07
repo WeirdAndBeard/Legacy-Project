@@ -5,7 +5,6 @@
      <!-- <ProfileOfTheEmployee /> -->
   </div>
 </template>
-
 <script>
 // import ProfileOfTheEmployee from './components/ProfileOfTheEmployee'
 import LogIn from './components/LogIn'
@@ -17,7 +16,6 @@ export default {
 
   }
 }
-
 </script>
 
 <style scoped>

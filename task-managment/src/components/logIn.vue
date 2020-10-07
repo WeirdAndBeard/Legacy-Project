@@ -27,7 +27,7 @@
         <div class="clearfix">
           <span> {{ outputLogIn }} </span>
           <button type="button" class="cancelbtn">Cancel</button>
-          <button type="submit" @click="register()" class="signupbtn">Sign Up</button>
+          <button type="submit" @click="register" class="signupbtn">Sign Up</button>
         </div>
       </div>
     </div>
@@ -51,6 +51,7 @@ export default {
   },
   methods: {
     register() {
+      console.log("test", this.userLogIn)
       this.axios.post('/logIn', {userLogIn : this.userLogIn})
       .then(res => this.outputLogIn = res.data)
       .catch(err => this.outputLogIn = err)
