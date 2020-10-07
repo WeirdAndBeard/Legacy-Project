@@ -13,7 +13,6 @@
           placeholder="Enter Last-Name"
         ></b-form-input>
       </b-form-group>
-     
 
       <b-form-group
         id="input-group-2"
@@ -27,11 +26,7 @@
           placeholder="Enter First-Name"
         ></b-form-input>
       </b-form-group>
-       <b-form-group
-        id="input-group-1"
-        label="Your Age:"
-        label-for="input-1"
-      >
+      <b-form-group id="input-group-1" label="Your Age:" label-for="input-1">
         <b-form-input
           id="input-1"
           v-model="form.age"
@@ -45,7 +40,6 @@
         label="Email address:"
         label-for="input-1"
       >
-    
         <b-form-input
           id="input-1"
           v-model="form.email"
@@ -90,7 +84,7 @@
 </template>
 
 <script>
-import axios from 'axios'
+import axios from "axios";
 export default {
   data() {
     return {
@@ -101,8 +95,7 @@ export default {
         position: null,
         gender: [],
         date: "",
-        age:""
-
+        age: "",
       },
 
       positions: [
@@ -119,14 +112,13 @@ export default {
     async onSubmit(evt) {
       evt.preventDefault();
       // alert(JSON.stringify(this.form));
-      try{
-          const data= await axios.post('/api/employees/add',this.form)
-          console.log(data.data)
-      }catch (error) {
-  console.error(error);
+      try {
+        const data = await axios.post("/api/employees/add", this.form);
+        console.log(data.data);
+      } catch (error) {
+        console.error(error);
       }
-      this.$router.push('/')
-      
+      this.$router.push("/employees");
     },
     onReset(evt) {
       evt.preventDefault();

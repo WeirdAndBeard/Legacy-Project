@@ -1,5 +1,8 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
-const db = mongoose.connect('mongodb://localhost/whwh', {useNewUrlParser: true,useUnifiedTopology: true});
+const db = mongoose.connect("mongodb://localhost/legacy_project", {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+});
 
 module.exports = db;
