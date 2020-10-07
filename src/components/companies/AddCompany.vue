@@ -62,14 +62,12 @@
 
       <b-form-group id="input-group-4">
         <b-form-checkbox-group v-model="form.gender" id="checkboxes-4">
-          <b-form-checkbox value="Male">Male</b-form-checkbox>
-          <b-form-checkbox value="Female">Female</b-form-checkbox>
         </b-form-checkbox-group>
       </b-form-group>
-      <label for="example-datepicker">Choose a date</label>
+      <label for="example-datepicker">Choose a </label>
       <b-form-datepicker
         id="example-datepicker"
-        v-model="form.date"
+        v-model="form.location"
         class="mb-2"
       ></b-form-datepicker>
 
@@ -99,8 +97,6 @@ export default {
         { text: "Select One", value: null },
         "Project_Manager",
         "SCRUM Master",
-        "Developper",
-        "Designer"
       ],
       show: true
     };
@@ -119,11 +115,11 @@ export default {
     onReset(evt) {
       evt.preventDefault();
       // Reset our form values
-      this.form.email = "";
-      this.form.name = "";
-      this.form.food = null;
-      this.form.checked = [];
-      this.form.date = "";
+      this.form.CompanyName = "";
+      this.form.Industry = "";
+      this.form.Description = "";
+      this.form.Location = "";
+      this.form.Website = "";
       // Trick to reset/clear native browser form validation state
       this.show = false;
       this.$nextTick(() => {
