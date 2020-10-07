@@ -4,12 +4,29 @@
     <div id="nav">
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link> |
-      <router-link to="/form">form</router-link>
+      <router-link to="/form">form</router-link> |
+       <router-link to="/Tasks">tasks</router-link> 
       <router-link to="/employees"></router-link>
+      <TasksList/>
+      <AddEmployee/>
+      <EmployeeList/>
     </div>
     <router-view />
   </div>
 </template>
+<script>
+import TasksList from './TasksList.vue'
+import AddEmployee from './AddEmployee.vue'
+import EmployeeList from './EmployeeList.vue'
+export default {
+  name:"App",
+  components:{
+    EmployeeList,
+    TasksList,
+    AddEmployee,
+  }
+}
+</script>
 
 <style>
 #app {
