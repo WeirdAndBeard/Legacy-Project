@@ -3,6 +3,8 @@ import VueRouter from "vue-router";
 import Dashboard from "@/components/Dashboard.vue";
 import CompaniesList from "@/components/companies/CompaniesList.vue";
 import Tasksboard from "@/components/Tasksboard.vue";
+import EmployeesList from "@/components/employees/EmployeesList.vue";
+import AddEmployee from "@/components/employees/AddEmployee.vue";
 
 Vue.use(VueRouter);
 
@@ -17,6 +19,17 @@ const routes = [
     name: "CompaniesList",
     component: CompaniesList,
   },
+  {
+    path: "/employees",
+    name: "EmployeesList",
+    component: EmployeesList,
+  },
+  {
+    path: "/employees/add",
+    name: "AddEmployee",
+    component: AddEmployee,
+  },
+    
   {
     path: "/tasksboard",
     name: "Tasksboard",
