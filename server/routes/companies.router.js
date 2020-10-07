@@ -1,5 +1,4 @@
 const companyRouter = require("express").Router();
-const db = require("../../database/connect.js");
 const Company = require("../models/companies.js");
 
 /**

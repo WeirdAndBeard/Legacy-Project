@@ -19,7 +19,12 @@ export default {
   name: "Dashboard",
   components: {
     Sidebar,
-    Navbar
-  }
+    Navbar,
+  },
 };
 </script>
+<style scoped>
+.container-fluid {
+  padding: 20px;
+}
+</style>

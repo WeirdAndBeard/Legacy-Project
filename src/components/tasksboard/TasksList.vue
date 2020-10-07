@@ -1,37 +1,41 @@
 <template>
-  <b-card-group deck>
-    <b-card header="Card with list group">
+  <b-card-group deck class="taskslist-container">
+    <b-card :header="list.title">
       <b-list-group>
-        <Task v-for="task in tasks" :key="task.id" :task="task"  />
+        <Task v-for="task in listOfTasks" :key="task._id" :task="task" />
       </b-list-group>
     </b-card>
   </b-card-group>
 </template>
 <script>
 import Task from "./Task.vue";
+
 export default {
   name: "TasksList",
-  data(){
+  props: ["tasksList"],
+  data() {
     return {
-     
-      tasks:[
-        {
-          description:"task1",
-          id:1
-        },
-        {
-          description:"task2",
-          id:2
-        },
-        {
-          description:"task3",
-          id:3
-        }
-      ]
-    }
+      listOfTasks: this.tasksList,
+      tasks: [],
+    };
   },
   components: {
     Task,
   },
+  mounted: async function() {
+    console.log(this.tasksList);
+    try {
+      this.tasks = await this.$axios.get(
+        `/api/tasks_list/${this.listOfTasks._id}/tasks`
+      );
+    } catch (err) {
+      console.log(err);
+    }
+  },
 };
 </script>
+<style scoped>
+.taskslist-container {
+  min-width: 300px;
+}
+</style>
