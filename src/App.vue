@@ -1,17 +1,17 @@
 <template>
   <div id="app">
-    <EmployeeProfile />
+    <SignUp />
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import EmployeeProfile from "./components/employees/EmployeeProfile";
+import SignUp from "./components/auth/SignUp";
 
 export default {
   name: "App",
   components: {
-    EmployeeProfile
+    SignUp
   }
 };
 </script>
