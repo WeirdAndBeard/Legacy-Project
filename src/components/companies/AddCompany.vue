@@ -1,4 +1,5 @@
 <template>
+<div class="body"> 
   <div class="container">
 
     <b-form @submit="onSubmit" @reset="onReset" v-if="show">
@@ -15,12 +16,12 @@
         ></b-form-input>
       </b-form-group>
 
-      <b-form-group id="input-group-2" label="Your Sector:" label-for="input-2">
+      <b-form-group id="input-group-2" label="Your Industry Sector:" label-for="input-2">
         <b-form-input
           id="input-2"
           v-model="form.Industry"
           required
-          placeholder="Enter Industry"
+          placeholder="Enter Your Industry Sector"
         ></b-form-input>
       </b-form-group>
       <b-form-group id="input-group-1" label="Your Official Company Link:" label-for="input-1">
@@ -28,7 +29,7 @@
           id="input-1"
           v-model="form.Website"
           required
-          placeholder="Enter Your Company Link"
+          placeholder="Enter Your Official Company Link"
         ></b-form-input>
       </b-form-group>
       <b-form-group
@@ -73,6 +74,7 @@
 
     <!-- <pre class="m-0">{{ form }}</pre> -->
   </div>
+  </div>
 </template>
 
 <script>
@@ -86,7 +88,7 @@ export default {
         Website: "",
         Location: "",
         Description: "",
-        Company_Size: ""
+        date: ""
       },
 
       show: true
@@ -109,7 +111,7 @@ export default {
       this.form.Industry = "";
       this.form.Website = "";
       this.form.Location = "";
-      this.form.Company_Size = "";
+      this.form.Description = "";
       this.form.date = "";
       // Trick to reset/clear native browser form validation state
       this.show = false;
@@ -122,8 +124,14 @@ export default {
 </script>
 <style scoped>
 .container {
-  background-color: #8080808c;
+  background-color: grey;
   width: 50%;
   margin-top: 50px;
+}
+
+.body {
+    background-image: url("https://clinicea.com/App_Themes/Default/images/walk1.png");
+    background-repeat: no-repeat;
+
 }
 </style>

@@ -22,7 +22,12 @@ app.post("/api/employees/add",(req,res)=>{
 })
 
 // i'm adding this to test it and it's working //
-app.post("api/companies",(req,res)=> {
+app.post("/api/companies/add",(req,res)=>{
+  res.send(req.body)
+})
+
+// i'm adding this to test it and it's working //
+app.post("/api/messages/add",(req,res)=>{
   res.send(req.body)
 })
 
