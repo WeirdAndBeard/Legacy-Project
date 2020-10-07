@@ -1,5 +1,5 @@
 <template>
-  <div id="id01" class="modal">
+  <div id="id01"  class="test">
     <div class="modal-content">
       <div class="container">
         <h1>Sign Up</h1>
@@ -91,7 +91,7 @@ import axios from "axios";
 // import LogIn from "./LogIn.vue"
 // import router from 'vue-router'
 export default {
-  name: "signUp",
+  name: "SignUp",
   props: {
     msg: String
   },
@@ -140,20 +140,28 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 
-<style scoped>
-.modal {
+<style>
+.modal-content {
+  height: 50pc;
+}
+.test {
+  margin: auto;
+  height: 20pc;
+  width: 20%;
+}
+.container {
   background-image: url("https://www.wallpaperflare.com/static/547/541/191/mountains-sunset-landscape-mount-hood-wallpaper.jpg");
   border-radius: 13px;
-  height: 50pc;
-  width: 20%;
+  height: 50.9pc;
+  width: 40%;
   margin: 10px auto;
   padding: 5%;
 }
 input[type="text"],
 input[type="password"] {
   width: 100%;
-  padding: 15px;
-  margin: 5px 0 22px 0;
+  padding: 7.5px;
+  margin: 2.5px 0 11px 0;
   display: inline-block;
   border: none;
   background: #f1f1f1;
