@@ -21,6 +21,11 @@ app.post("/api/employees/add",(req,res)=>{
   res.send(req.body)
 })
 
+// i'm adding this to test it and it's working //
+app.post("api/companies",(req,res)=> {
+  res.send(req.body)
+})
+
 app.post("/api/users/sendMessage", (req, res) => {
   console.log(req.body.msg);
   var obj = { msg: req.body.msg };
