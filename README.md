@@ -13,6 +13,5 @@ npm run build-dev
 ```
 npm run server-dev
 ```
-
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
