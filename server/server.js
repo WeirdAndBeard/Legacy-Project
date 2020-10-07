@@ -1,15 +1,28 @@
 const express = require("express");
 const bodyParser = require("body-parser");
+const path = require('path');
 const app = express();
 const PORT = process.env.PORT || 3000;
 const companyRouter = require("./routes/companies.router.js");
+<<<<<<< HEAD
 const userRouter = require("./routes/auth/signup.router.js");
 
+=======
+const taskRouter=require("./routes/tasks.router.js")
+const tasksListRouter=require("./routes/tasksList.router.js");
+const messagesRouter=require("./routes/messages.router.js")
+>>>>>>> 1d5e786e3bead3c4019a8e392044e23f32ada028
 app.use(express.static(__dirname + "/../dist"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use("/api/companies", companyRouter);
+<<<<<<< HEAD
 app.use("/api/users", userRouter);
+=======
+app.use("/api/tasks",taskRouter);
+app.use("/api/tasks_list",tasksListRouter);
+app.use("/api/messages",messagesRouter);
+>>>>>>> 1d5e786e3bead3c4019a8e392044e23f32ada028
 
 app.get("/api/users/getMessages", function(req, res) {
   Chat.find({}, function(error, result) {
@@ -277,6 +290,13 @@ app.post("/signup/company", async (req, res) => {
   }
 });
 
+<<<<<<< HEAD
+=======
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "/../dist/index.html"));
+});
+
+>>>>>>> 1d5e786e3bead3c4019a8e392044e23f32ada028
 app.listen(PORT, () => {
   console.log(`listening on port ${PORT}`);
 });

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 const userRouter = require("express").Router();
 const User = require("../../models/users.js");
 const db = require("../../../database/connect.js");
@@ -44,3 +45,7 @@ userRouter.put("/register/:id", async (req, res) => {
 
 module.exports = userRouter;
 // to delete user's data
+=======
+const signUpRouter = require("express").Router();
+const User = require("./../../models/users.js");
+>>>>>>> 1d5e786e3bead3c4019a8e392044e23f32ada028
