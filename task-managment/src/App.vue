@@ -1,25 +1,26 @@
 <template>
   <div id="app">
-    <SignUp />
-    <!-- <LogIn/> -->
+     <span>test</span>
+     <LogIn />
+     <!-- <ProfileOfTheEmployee /> -->
   </div>
 </template>
 
 <script>
-import SignUp from "./components/SignUp"
-// import LogIn from "./components/LogIn"
-
+// import ProfileOfTheEmployee from './components/ProfileOfTheEmployee'
+import LogIn from './components/LogIn'
 export default {
   name: 'App',
   components: {
-    SignUp,
-    // LogIn
-    
+    // ProfileOfTheEmployee,
+    LogIn
+
   }
 }
+
 </script>
 
-<style>
+<style scoped>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

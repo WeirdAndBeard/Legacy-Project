@@ -64,7 +64,7 @@ export default {
 .modal {
   background-image: url("https://www.wallpaperflare.com/static/547/541/191/mountains-sunset-landscape-mount-hood-wallpaper.jpg");
   border-radius: 13px;
-  height: 50pc;
+  height: 30pc;
   width: 20%;
   margin: 10px auto;
   padding: 5%;
