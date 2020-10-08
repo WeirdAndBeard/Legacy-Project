@@ -2,12 +2,12 @@ const mongoose = require("mongoose");
 const db = require("../../database/connect.js");
 mongoose.Promise = global.Promise;
 
-const MSGSchema = new mongoose.Schema({
+const MessageSchema = new mongoose.Schema({
   text:String,
   senderId:String,
   RoomId:Number
 });
 
-const MSG = mongoose.model("MSG", MSGSchema);
+const Message = mongoose.model("Message", MessageSchema);
 
-module.exports = MSG;
+module.exports = Message;
