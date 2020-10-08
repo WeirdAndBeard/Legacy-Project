@@ -1,26 +1,24 @@
-<template v-for="employee in employees" :key="employee.sender">
-  <div class="container">
-    <b-form @submit="onSubmit">
-      <b-form-group
-        id="input-group-1"
-        label="Your message here:"
-        label-for="input-1"
-      >
-        <b-form-input
-          id="input-1"
-          v-model="employees.message"
-          required
-          placeholder="Type your message here"
-        ></b-form-input>
-      </b-form-group>
-
-      <b-button type="submit" variant="primary">Send Message</b-button>
+<template v-for="employee in employees" :key="employee.employee_full_name">
+  <div>
+    <b-form-group
+      id="input-group-1"
+      label="Type Your Post Here:"
+      label-for="input-1"
+    >
+      <b-form-input
+        id="input-1"
+        required
+        placeholder="Type Your Post Here"
+      ></b-form-input>
+    </b-form-group>
+    <b-button @click="Message">Post Message</b-button>
+    <b-table striped hover :items="employees">
       <img
         class="card-img-top"
-        src="http://www.onlygoodmovies.com/blog/wp-content/uploads/2010/09/woody-allen.jpg"
+        src=""
         alt="Card image cap"
       />
-    </b-form>
+    </b-table>
   </div>
 </template>
 
@@ -31,16 +29,16 @@ export default {
     return {
       employees: [
         {
-          sender: "",
-          reciever: "",
-          message:"",
-        },
-        
+            // the schema should confront here
+          employee_image: "",
+          employee_full_name: "",
+          post: ""
+        }
       ]
     };
   },
   methods: {
-    async onSubmit(evt) {
+    async Message(evt) {
       evt.preventDefault();
       try {
         const data = await axios.post("/api/chat/add", this.employees);
@@ -48,8 +46,12 @@ export default {
       } catch (error) {
         console.error(error);
       }
-      this.$router.push("/chats");
-    }
+        this.$router.push("/rooms/chat");
+    },
+    
+    getUsersData(){
+        // get the users data image name and the current post
+    },
   }
 };
 </script>

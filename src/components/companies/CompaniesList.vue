@@ -43,7 +43,6 @@ export default {
 .body {
     background-image: url("https://th.bing.com/th/id/OIP.bt7kwisAC81jQEBiuNUNWgHaIq?pid=Api&w=500&h=585&rs=1");
     background-repeat: no-repeat;
-
 }
 
 </style>
