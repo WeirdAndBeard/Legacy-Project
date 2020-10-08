@@ -1,64 +1,76 @@
-<template v-for="employee in employees" :key="employee.employee_full_name">
-  <div>
-    <b-form-group
-      id="input-group-1"
-      label="Type Your Post Here:"
-      label-for="input-1"
-    >
-      <b-form-input
-        id="input-1"
-        required
-        placeholder="Type Your Post Here"
-      ></b-form-input>
-    </b-form-group>
-    <b-button @click="Message">Post Message</b-button>
-    <b-table striped hover :items="employees">
-      <img
-        class="card-img-top"
-        src=""
-        alt="Card image cap"
-      />
-    </b-table>
+<template>
+  <div class="d-flex" id="wrapper">
+    <SideBar msg="Welcome to Your Vue.js App" />
+    <div v-for="employee in employees" :key="employee.id" id="page-content-wrapper">
+      <b-card bg-variant="dark" text-variant="white" title="Employee Name : ">
+        <b-card-text>
+          <h5>Text Message : </h5>
+          <img
+            class="card-img-top"
+            src="https://i.ytimg.com/vi/USEfl0-r6iE/maxresdefault.jpg"
+            alt="Card image cap"
+          />
+        </b-card-text>
+      </b-card>
+      <b-form-group
+        id="input-group-1"
+        label="Your Post:"
+        label-for="input-1"
+      >
+        <b-form-input
+          id="input-1"
+          required
+          placeholder="Enter your Post Here"
+        ></b-form-input>
+      </b-form-group>
+      <div class="container-fluid">
+        <router-view />
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-import axios from "axios";
+// @ is an alias to /src
+import SideBar from "@/components/sidebar/SideBar.vue";
+
 export default {
+  name: "Dashboard",
+  components: {
+    SideBar
+  },
   data() {
     return {
       employees: [
         {
-            // the schema should confront here
+          employee_name: "",
           employee_image: "",
-          employee_full_name: "",
-          post: ""
+          employee_message: "",
         }
       ]
     };
   },
   methods: {
-    async Message(evt) {
-      evt.preventDefault();
-      try {
-        const data = await axios.post("/api/chat/add", this.employees);
-        console.log(data.data);
-      } catch (error) {
-        console.error(error);
-      }
-        this.$router.push("/rooms/chat");
-    },
-    
-    getUsersData(){
-        // get the users data image name and the current post
-    },
+    getEmployees() {
+      this.axios
+        .get("/employees")
+        .then(res => this.employees.push(res.data))
+        .catch(err => console.log(err));
+    }
   }
 };
 </script>
 <style scoped>
-.container {
-  background-color: #8080808c;
-  width: 30%;
-  margin-top: 50px;
+.container-fluid {
+  padding: 20px;
+}
+
+#sidebar-wrapper {
+  background-color: grey;
+  text-align: left;
+}
+
+.card-img-top {
+  width: 100px;
 }
 </style>
