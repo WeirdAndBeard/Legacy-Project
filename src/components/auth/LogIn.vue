@@ -3,60 +3,62 @@
     <div class="modal-content">
       <div class="container">
         <h1>Log In</h1>
-        <p>Please fill in this form to Log In  To Your account.</p>
+        <p>Please fill in this form to Log In To Your account.</p>
         <hr />
-       
-        <label><b>Email</b></label>
+
+        <label><b>email</b></label>
         <input
           type="text"
-          placeholder="Enter Your Email"
-          name="Email"
-          v-model="userLogIn.Email"
+          placeholder="Enter Your email"
+          name="email"
+          v-model="userLogIn.email"
           required
         />
 
-        <label ><b>Password</b></label>
+        <label><b>Password</b></label>
         <input
           type="password"
           placeholder="Password"
           name="repeat"
-          v-model="userLogIn.Password"
+          v-model="userLogIn.password"
           required
         />
 
         <div class="clearfix">
           <span> {{ outputLogIn }} </span>
           <button type="button" class="cancelbtn">Cancel</button>
-          <button type="submit" @click="register" class="signupbtn">Sign Up</button>
+          <button type="submit" @click="login" class="signupbtn">
+            Sign Up
+          </button>
         </div>
       </div>
     </div>
-  </div> 
+  </div>
 </template>
 
 <script>
 export default {
   name: "logIn",
   props: {
-    msg: String,
+    msg: String
   },
   data() {
     return {
       userLogIn: {
-        Email: "",
-        Password: ""
+        email: "",
+        password: ""
       },
-      outputLogIn : ''
+      outputLogIn: ""
     };
   },
   methods: {
-    register() {
-      console.log("test", this.userLogIn)
-      this.axios.post('/logIn', {userLogIn : this.userLogIn})
-      .then(res => this.outputLogIn = res.data)
-      .catch(err => this.outputLogIn = err)
+    login() {
+      this.$store.dispatch("retrieveToken", {
+        email: this.userLogIn.email,
+        password: this.userLogIn.password
+      });
     }
-  },
+  }
 };
 </script>
 

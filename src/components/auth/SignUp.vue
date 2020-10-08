@@ -1,5 +1,5 @@
 <template>
-  <div id="id01"  class="test">
+  <div id="id01">
     <div class="modal-content">
       <div class="container">
         <h1>Sign Up</h1>
@@ -10,7 +10,7 @@
           type="text"
           placeholder="Enter Your  First Name"
           name="First Name"
-          v-model="userSignUp.FirstName"
+          v-model="userSignUp.first_name"
           required
         />
 
@@ -19,24 +19,24 @@
           type="text"
           placeholder="Enter Your Last Name"
           name="Last Name"
-          v-model="userSignUp.LastName"
+          v-model="userSignUp.last_name"
           required
         />
 
         <label><b>User Name</b></label>
         <input
           type="text"
-          placeholder="Choose a UserName"
+          placeholder="Choose a user_name"
           name="User Name"
-          v-model="userSignUp.UserName"
+          v-model="userSignUp.user_name"
           required
         />
-        <label><b>Email</b></label>
+        <label><b>email</b></label>
         <input
           type="text"
           placeholder="Enter Your Email"
           name="Email"
-          v-model="userSignUp.Email"
+          v-model="userSignUp.email"
           required
         />
 
@@ -45,7 +45,7 @@
           type="password"
           placeholder="Password"
           name="repeat"
-          v-model="userSignUp.Password"
+          v-model="userSignUp.password"
           required
         />
 
@@ -98,11 +98,11 @@ export default {
   data() {
     return {
       userSignUp: {
-        FirstName: "",
-        LastName: "",
-        UserName: "",
-        Email: "",
-        Password: ""
+        first_name: "",
+        last_name: "",
+        user_name: "",
+        email: "",
+        password: ""
       },
       RepeatPassword: "",
       output: "",
@@ -112,14 +112,12 @@ export default {
   methods: {
     async register() {
       console.log("this.userSignUp", this.userSignUp);
-      if (this.userSignUp.Password !== this.RepeatPassword) {
+      if (this.userSignUp.password !== this.RepeatPassword) {
         alert("Check Your Password");
       } else {
         this.check = !this.check;
         try {
-          let res = await axios.post("/register", {
-            userSignUp: this.userSignUp
-          });
+          let res = await axios.post("/api/users/add", this.userSignUp);
           this.output = res.data;
           if (this.check === true) {
             this.$router.push("logIn");
@@ -153,7 +151,7 @@ export default {
   background-image: url("https://www.wallpaperflare.com/static/547/541/191/mountains-sunset-landscape-mount-hood-wallpaper.jpg");
   border-radius: 13px;
   height: 50.9pc;
-  width: 40%;
+  width: 20%;
   margin: 10px auto;
   padding: 5%;
 }
