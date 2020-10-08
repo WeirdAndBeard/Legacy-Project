@@ -68,6 +68,6 @@ export default {
 }
 
 #input-1 {
-  height: 80px;
+  height: 50px;
 }
 </style>
