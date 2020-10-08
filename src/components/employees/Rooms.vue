@@ -1,12 +1,12 @@
 <template>
   <div class="container">
     <b-form @submit="onSubmit" >
-      <h1>{{ room.room_name }}</h1>
-      <p>{{room.room_id}}</p>
+      <h1>Room Name : {{ room.room_name }}</h1>
+      <p>Room ID : {{room.room_id}}</p>
       <b-button type="submit" variant="primary">Access Room</b-button>
       <img
         class="card-img-top"
-        src="http://www.onlygoodmovies.com/blog/wp-content/uploads/2010/09/woody-allen.jpg"
+        src="https://newhouse.house.gov/sites/newhouse.house.gov/files/styles/congress_featured_image/public/featured_image/office_location/Office-Door-1Small.jpg?itok=rl8G7ONg"
         alt="Card image cap"
       />
     </b-form>
