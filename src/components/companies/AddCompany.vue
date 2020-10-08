@@ -132,6 +132,7 @@ export default {
 .body {
     background-image: url("https://clinicea.com/App_Themes/Default/images/walk1.png");
     background-repeat: no-repeat;
+    background-color: black
 
 }
 </style>
