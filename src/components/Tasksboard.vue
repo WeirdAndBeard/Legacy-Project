@@ -1,10 +1,6 @@
 <template>
   <div class="tasksboard-container">
-    <TasksList
-      v-for="tasksList in tasksLists"
-      :key="tasksList._id"
-      :tasksList="tasksList"
-    />
+    <TasksList v-for="list in lists" :key="list._id" :tasksList="list" />
     <div>
       <a
         class="btn btn-outline-primary new-taskslist"
@@ -19,8 +15,8 @@
           <input
             type="text"
             class="form-control"
-            id="listTitle"
-            v-model="listTitle"
+            id="newlistTitle"
+            v-model="newlistTitle"
           />
         </div>
         <button class="btn btn-success" type="submit" @click="addNewTasksList">
@@ -43,18 +39,33 @@ export default {
   data() {
     return {
       addNewListPressed: false,
-      listTitle: "",
-      tasksLists: [],
+      newlistTitle: "",
+      lists: [],
     };
   },
+  mounted: function() {
+    this.getAllLists();
+  },
   methods: {
+    getAllLists: async function() {
+      try {
+        let res = await axios("/api/tasks_list");
+        this.lists = res.data;
+        console.log("lists ====>", this.lists);
+      } catch (err) {
+        console.log(err);
+      }
+    },
     addNewTasksList: async function(e) {
       e.preventDefault();
       try {
-        this.tasksLists = await axios.post("/api/tasks_list/add", {
-          title: this.listTitle,
-          adminId: "3213213211"
-        });
+        this.lists = await axios.post("/api/tasks_list/add", {
+          title: this.newlistTitle,
+          adminId: "3213213211",
+        }).data;
+        this.addNewListPressed = !this.addNewListPressed;
+        this.newlistTitle = "";
+        this.getAllLists();
       } catch (err) {
         console.log(err);
       }

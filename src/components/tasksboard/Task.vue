@@ -1,6 +1,6 @@
 <template>
-  <b-list-group-item href="#" :key="task._id">{{
-    task.description
+  <b-list-group-item href="#" :key="this_task._id">{{
+    this_task.description
   }}</b-list-group-item>
 </template>
 <script>
@@ -9,7 +9,7 @@ export default {
   props: ["task"],
   data() {
     return {
-      task: this.task,
+      this_task: this.task,
     };
   },
 };
