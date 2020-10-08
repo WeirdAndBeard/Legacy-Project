@@ -21,6 +21,7 @@
     "core-js": "^3.6.5",
     "express": "^4.15.4",
     "mongoose": "^5.10.5",
+    "nodemon": "^2.0.4",
     "underscore": "^1.8.3",
     "vue": "^2.6.12",
     "vue-router": "^3.2.0",
