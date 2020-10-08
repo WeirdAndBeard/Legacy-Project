@@ -33,6 +33,7 @@
 
 <script>
 import TasksList from "@/components/tasksboard/TasksList.vue";
+import axios from "axios";
 
 export default {
   name: "TasksBoard",
@@ -49,12 +50,8 @@ export default {
   methods: {
     addNewTasksList: async function(e) {
       e.preventDefault();
-      // this.tasksLists.push({
-      //   _id: 798,
-      //   title: "planned",
-      // });
       try {
-        this.tasksLists = await this.$axios.post("/api/tasks_list/add", {
+        this.tasksLists = await axios.post("/api/tasks_list/add", {
           title: this.listTitle,
           adminId: "3213213211"
         });

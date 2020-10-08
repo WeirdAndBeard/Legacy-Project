@@ -46,6 +46,19 @@
         ></b-form-input>
       </b-form-group>
 
+         <b-form-group
+        id="input-group-1"
+        label="Your id:"
+        label-for="input-1"
+      >
+        <b-form-input
+          id="input-1"
+          v-model="form.adminId"
+          required
+          placeholder="Enter your Company-id"
+        ></b-form-input>
+      </b-form-group>
+
       <b-form-group
         id="input-group-1"
         label="Your Company-Description:"
@@ -60,7 +73,6 @@
       </b-form-group>
 
       
-
       <label for="example-datepicker">Choose a date</label>
       <b-form-datepicker
         id="example-datepicker"
@@ -87,10 +99,11 @@ export default {
         Industry: "",
         Website: "",
         Location: "",
+        adminId:"",
         Description: "",
-        date: ""
+        date: "",
+        employee:[],
       },
-
       show: true
     };
   },
@@ -105,12 +118,14 @@ export default {
       }
       this.$router.push("/companies");
     },
+
     onReset(evt) {
       evt.preventDefault();
       this.form.Company_Name = "";
       this.form.Industry = "";
       this.form.Website = "";
       this.form.Location = "";
+      this.form.adminId = "";
       this.form.Description = "";
       this.form.date = "";
       // Trick to reset/clear native browser form validation state

@@ -9,6 +9,7 @@
 </template>
 <script>
 import Task from "./Task.vue";
+import axios from "axios";
 
 export default {
   name: "TasksList",
@@ -25,9 +26,11 @@ export default {
   mounted: async function() {
     console.log(this.tasksList);
     try {
-      this.tasks = await this.$axios.get(
+      this.tasks = await axios.get(
         `/api/tasks_list/${this.listOfTasks._id}/tasks`
       );
+
+      console.log(this.tasks);
     } catch (err) {
       console.log(err);
     }
