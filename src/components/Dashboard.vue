@@ -19,7 +19,15 @@ export default {
   name: "Dashboard",
   components: {
     Sidebar,
-    Navbar
+    Navbar,
+  },
+  mounted: function(){
+    
   }
 };
 </script>
+<style scoped>
+.container-fluid {
+  padding: 20px;
+}
+</style>
