@@ -1,6 +1,6 @@
 const messagesRouter = require("express").Router();
 const db = require("../../database/connect.js");
-const MSG = require("../models/companies.js");
+const MSG = require("../models/messages.js");
 
 /**
  * Get all messages
