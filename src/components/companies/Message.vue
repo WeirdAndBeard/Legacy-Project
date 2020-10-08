@@ -66,4 +66,8 @@ export default {
   width: 50%;
   margin-top: 50px;
 }
+
+#input-1 {
+  height: 80px;
+}
 </style>

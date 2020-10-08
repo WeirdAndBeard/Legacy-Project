@@ -10,26 +10,30 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use("/api/companies", companyRouter);
 
 
-app.get("/api/users/getMessages", function(req, res) {
-  Chat.find({}, function(error, result) {
+app.get("/api/users/getMessages", function (req, res) {
+  Chat.find({}, function (error, result) {
     if (error) console.log("this is error ====>", error);
     res.send(result);
   });
 });
 // i'm adding this to test it and it's working //
-app.post("/api/employees/add",(req,res)=>{
+app.post("/api/employees/add", (req, res) => {
   res.send(req.body)
 })
 
 // i'm adding this to test it and it's working //
-app.post("/api/companies/add",(req,res)=>{
+app.post("/api/companies/add", (req, res) => {
   res.send(req.body)
 })
 
 // i'm adding this to test it and it's working //
-app.post("/api/messages/add",(req,res)=>{
+app.post("/api/messages/add", (req, res) => {
   res.send(req.body)
 })
+
+app.get("/api/companies", (req,res) => {
+  res.send(req.body)
+  })
 
 app.post("/api/users/sendMessage", (req, res) => {
   console.log(req.body.msg);
@@ -42,11 +46,11 @@ app.post("/api/users/sendMessage", (req, res) => {
 
 app.post("/api/user/add", (req, res) => {
   console.log(req.body);
-  Name.findOne({ key: "abc" }, function(err, data) {
+  Name.findOne({ key: "abc" }, function (err, data) {
     Company.updateOne(
       { name: data.hashem },
       { $push: { employee: req.body.newE } },
-      function(err, result) {
+      function (err, result) {
         if (err) console.log(err);
         res.send(req.body.newE);
       }
@@ -59,12 +63,12 @@ app.post("/api/users/giveOrder", (req, res) => {
   User.updateOne(
     { name: req.body.nameOfEmloyee },
     { $push: { companyToDoList: req.body.taskForEmployee } },
-    function(err, result) {
+    function (err, result) {
       if (err) console.log(err);
       res.send("check");
     }
   );
-  Name.findOne({ key: "abc" }, function(err, result) {
+  Name.findOne({ key: "abc" }, function (err, result) {
     Company.updateOne(
       { name: result.hashem },
       {
@@ -75,7 +79,7 @@ app.post("/api/users/giveOrder", (req, res) => {
           },
         },
       },
-      function(err, result) {
+      function (err, result) {
         if (err) console.log(err);
       }
     );
@@ -83,20 +87,20 @@ app.post("/api/users/giveOrder", (req, res) => {
 });
 
 app.get("/api/users/archive", (req, res) => {
-  Name.findOne({ key: "abc" }, function(err, data) {
-    Company.findOne({ name: data.hashem }, function(err, result) {
+  Name.findOne({ key: "abc" }, function (err, data) {
+    Company.findOne({ name: data.hashem }, function (err, result) {
       res.send(result.todos);
     });
   });
 });
 
 app.get("/api/users/getAll", (req, res) => {
-  Name.find({}, function(err, result) {
-    User.find({ name: result[0].hashem }, function(err, result) {
+  Name.find({}, function (err, result) {
+    User.find({ name: result[0].hashem }, function (err, result) {
       if (result[0].type) {
         res.send(result[0].type);
       } else
-        Company.find({ name: result[0].hashem }, function(err, result) {
+        Company.find({ name: result[0].hashem }, function (err, result) {
           if (result[0].type) {
             res.send(result[0].type);
           }
@@ -114,7 +118,7 @@ app.get("/api/users/getAll", (req, res) => {
 
 app.post("/api/user/update", (req, res) => {
   var newName = Object.keys(req.body)[0];
-  Name.updateOne({ key: "abc" }, { $set: { hashem: newName } }, function(
+  Name.updateOne({ key: "abc" }, { $set: { hashem: newName } }, function (
     err,
     result
   ) {
@@ -124,12 +128,12 @@ app.post("/api/user/update", (req, res) => {
 
 app.post("/api/users/pushTodo", (req, res) => {
   console.log(req.body.todo);
-  Name.find({}, function(err, result) {
+  Name.find({}, function (err, result) {
     // console.log('this is === > ', result[0].hashem)
     User.updateOne(
       { name: result[0].hashem },
       { $push: { myToDoList: req.body.todo } },
-      function(err, result) {
+      function (err, result) {
         if (err) console.log(err);
         res.send(true);
       }
@@ -137,7 +141,7 @@ app.post("/api/users/pushTodo", (req, res) => {
   });
 });
 app.post("/api/getinfo", (req, res) => {
-  User.findOne({ name: req.body.Speciffic }, function(err, result) {
+  User.findOne({ name: req.body.Speciffic }, function (err, result) {
     res.send({
       myToDoList: result.myToDoList,
       companyToDoList: result.companyToDoList,
@@ -146,27 +150,27 @@ app.post("/api/getinfo", (req, res) => {
 });
 
 app.get("/api/users/getCompany", (req, res) => {
-  Name.find({ key: "abc" }, function(err, data) {
-    User.findOne({ name: data[0].hashem }, function(err, result) {
+  Name.find({ key: "abc" }, function (err, data) {
+    User.findOne({ name: data[0].hashem }, function (err, result) {
       res.send(result.companyToDoList);
     });
   });
 });
 
 app.post("/api/user/changeKey", (req, res) => {
-  Name.findOne({ key: "abc" }, function(err, data) {
+  Name.findOne({ key: "abc" }, function (err, data) {
     User.updateOne(
       { name: data.hashem },
       { $set: { key: req.body.newKey } },
-      function(err, result) {
+      function (err, result) {
         if (err) console.log(err);
       }
     );
   });
 });
 app.post("/api/user/fire", (req, res) => {
-  Name.findOne({ key: "abc" }, function(err, data) {
-    Company.findOne({ name: data.hashem }, function(err, result) {
+  Name.findOne({ key: "abc" }, function (err, data) {
+    Company.findOne({ name: data.hashem }, function (err, result) {
       var arrayOfEmployees = result.employee;
       var rest = [];
       for (var i = 0; i < arrayOfEmployees.length; i++) {
@@ -177,7 +181,7 @@ app.post("/api/user/fire", (req, res) => {
       Company.updateOne(
         { name: data.hashem },
         { $set: { employee: rest } },
-        function(err, result) {
+        function (err, result) {
           if (err) console.log(err);
         }
       );
@@ -192,7 +196,7 @@ app.post("/api/delete", (req, res) => {
     User.updateOne(
       { name: result[0].hashem },
       { $set: { myToDoList: [] } },
-      function(err, data) {
+      function (err, data) {
         console.log(data);
         err ? console.log(err) : res.send(data);
       }
@@ -200,17 +204,17 @@ app.post("/api/delete", (req, res) => {
   });
 });
 app.get("/api/users/employee", (req, res) => {
-  Name.findOne({ key: "abc" }, function(err, result) {
-    Company.find({ name: result.hashem }, function(err, data) {
+  Name.findOne({ key: "abc" }, function (err, result) {
+    Company.find({ name: result.hashem }, function (err, data) {
       res.send(data[0].employee);
     });
   });
 });
 
 app.get("/api/users/getFriends", (req, res) => {
-  Name.find({ key: "abc" }, function(err, data) {
-    User.find({ name: data[0].hashem }, function(err, result) {
-      User.find({ key: result[0].key }, function(err, ndata) {
+  Name.find({ key: "abc" }, function (err, data) {
+    User.find({ name: data[0].hashem }, function (err, result) {
+      User.find({ key: result[0].key }, function (err, ndata) {
         res.send(ndata);
       });
     });
@@ -223,22 +227,22 @@ app.post("/api/users/sendTodo", (req, res) => {
   User.updateOne(
     { name: req.body.friend },
     { $push: { myToDoList: iSend } },
-    function(err, result) {
+    function (err, result) {
       if (err) console.log(err);
     }
   );
 });
 
 app.get("/api/users/getuser", (req, res) => {
-  Name.find({ key: "abc" }, function(err, data) {
-    User.find({ name: data[0].hashem }, function(err, result) {
+  Name.find({ key: "abc" }, function (err, data) {
+    User.find({ name: data[0].hashem }, function (err, result) {
       res.send(result);
     });
   });
 });
 
 app.get("/api/users/getConnected", (req, res) => {
-  Name.findOne({ key: "abc" }, function(err, result) {
+  Name.findOne({ key: "abc" }, function (err, result) {
     res.send(result.hashem);
   });
 });

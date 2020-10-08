@@ -7,7 +7,7 @@
   <div class="card-body">
     <h5 class="card-title">{{company.Company_name}}</h5>
     <p class="card-text">{{company.Company_description}}</p>
-    <a href="#" @click="Message" class="btn btn-primary">Send Message</a>
+    <a href="#" @click="Message" class="btn btn-primary">Private Message</a>
   </div>
 </div>
     </div>
@@ -37,14 +37,13 @@ export default {
 <style scoped>
 .card {
   width: 40rem;
-  margin-left: 250px;
+  margin-left: 500px;
 }
 
 .body {
-    background-color: indianred;
+    background-image: url("https://th.bing.com/th/id/OIP.bt7kwisAC81jQEBiuNUNWgHaIq?pid=Api&w=500&h=585&rs=1");
+    background-repeat: no-repeat;
 
 }
-
-
 
 </style>
