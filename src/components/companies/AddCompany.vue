@@ -1,0 +1,141 @@
+<template>
+  <div class="container">
+    <b-form @submit="onSubmit" @reset="onReset" v-if="show">
+      <b-form-group
+        id="input-group-1"
+        label="Your Company-Name:"
+        label-for="input-1"
+      >
+        <b-form-input
+          id="input-1"
+          v-model="form.Company_Name"
+          required
+          placeholder="Enter your Company-Name"
+        ></b-form-input>
+      </b-form-group>
+
+      <b-form-group id="input-group-2" label="Your Sector:" label-for="input-2">
+        <b-form-input
+          id="input-2"
+          v-model="form.Industry"
+          required
+          placeholder="Enter Industry"
+        ></b-form-input>
+      </b-form-group>
+      <b-form-group id="input-group-1" label="Your Official Company Link:" label-for="input-1">
+        <b-form-input
+          id="input-1"
+          v-model="form.Website"
+          type="number"
+          required
+          placeholder="Enter Your Company Link"
+        ></b-form-input>
+      </b-form-group>
+      <b-form-group
+        id="input-group-1"
+        label="Company address:"
+        label-for="input-1"
+      >
+        <b-form-input
+          id="input-1"
+          v-model="form.Location"
+          type="text"
+          required
+          placeholder="Enter Your Company Location"
+        ></b-form-input>
+      </b-form-group>
+
+      <b-form-group
+        id="input-group-1"
+        label="Your Company-Description:"
+        label-for="input-1"
+      >
+        <b-form-input
+          id="input-1"
+          v-model="form.Company_Name"
+          required
+          placeholder="Enter Company-Name"
+        ></b-form-input>
+      </b-form-group>
+
+      
+
+      <b-form-group id="input-group-4">
+        <b-form-checkbox-group v-model="form.gender" id="checkboxes-4">
+          <b-form-checkbox value="Male">Male</b-form-checkbox>
+          <b-form-checkbox value="Female">Female</b-form-checkbox>
+        </b-form-checkbox-group>
+      </b-form-group>
+      <label for="example-datepicker">Choose a date</label>
+      <b-form-datepicker
+        id="example-datepicker"
+        v-model="form.date"
+        class="mb-2"
+      ></b-form-datepicker>
+
+      <b-button type="submit" variant="primary">Submit</b-button>
+      <b-button type="reset" variant="primary">Reset</b-button>
+    </b-form>
+
+    <!-- <pre class="m-0">{{ form }}</pre> -->
+  </div>
+</template>
+
+<script>
+import axios from "axios";
+export default {
+  data() {
+    return {
+      form: {
+        Company_Name: "",
+        Industry: "",
+        Website: "",
+        Location: null,
+        Description: "",
+        Company_Size: ""
+      },
+
+      positions: [
+        { text: "Select One", value: null },
+        "Project_Manager",
+        "SCRUM Master",
+        "Developper",
+        "Designer"
+      ],
+      show: true
+    };
+  },
+  methods: {
+    async onSubmit(evt) {
+      evt.preventDefault();
+      try {
+        const data = await axios.post("/api/company/add", this.form);
+        console.log(data.data);
+      } catch (error) {
+        console.error(error);
+      }
+      this.$router.push("/companies");
+    },
+    onReset(evt) {
+      evt.preventDefault();
+      // Reset our form values
+      this.form.email = "";
+      this.form.name = "";
+      this.form.food = null;
+      this.form.checked = [];
+      this.form.date = "";
+      // Trick to reset/clear native browser form validation state
+      this.show = false;
+      this.$nextTick(() => {
+        this.show = true;
+      });
+    }
+  }
+};
+</script>
+<style scoped>
+.container {
+  background-color: #8080808c;
+  width: 50%;
+}
+</style>
