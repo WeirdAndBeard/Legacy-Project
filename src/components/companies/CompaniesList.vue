@@ -2,15 +2,15 @@
   <div class="body">
     <div class="container">
       <b-button @click="Add">Add Company</b-button>
-      <div v-for="company in companies" :key="company.id" class="card">
+      <div v-for="company in companies" :key="company.adminId" class="card">
         <img
           class="card-img-top"
-          src="https://i.ytimg.com/vi/USEfl0-r6iE/maxresdefault.jpg"
+          :src="company.urlImage"
           alt="Card image cap"
         />
         <div class="card-body">
           <h5 class="card-title">{{ company.Company_name }}</h5>
-          <p class="card-text">{{ company.Company_description }}</p>
+          <p class="card-text">{{ company.Description }}</p>
           <a href="#" @click="Message" class="btn btn-primary"
             >Private Message</a
           >
@@ -26,12 +26,12 @@ export default {
     return {
       companies: [
         {
-          id: 1,
-          Company_name: "asteelflash",
-          Company_description: "electronics",
-          urlImage: "",
-        },
-      ],
+          adminId: "",
+          Company_Name: "",
+          Description: "",
+          urlImage: ""
+        }
+      ]
     };
   },
   methods: {
@@ -42,8 +42,16 @@ export default {
     Message() {
       this.$router.push("/messages");
     },
-  },
+
+    getCompany() {
+      this.axios
+        .get("/companies")
+        .then(res => this.companies.push(res.data))
+        .catch(err => console.log(err));
+    }
+  }
 };
+
 </script>
 <style scoped>
 .card {

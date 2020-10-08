@@ -1,14 +1,10 @@
 <template>
   <div class="container">
-    <b-form @submit="onSubmit" >
+    <b-form @submit="onSubmit">
       <h1>Room Name : {{ room.room_name }}</h1>
-      <p>Room ID : {{room.room_id}}</p>
+      <p>Room ID : {{ room.room_id }}</p>
       <b-button type="submit" variant="primary">Access Room</b-button>
-      <img
-        class="card-img-top"
-        src="https://newhouse.house.gov/sites/newhouse.house.gov/files/styles/congress_featured_image/public/featured_image/office_location/Office-Door-1Small.jpg?itok=rl8G7ONg"
-        alt="Card image cap"
-      />
+      <img class="card-img-top" :src="room.room_image" alt="Card image cap" />
     </b-form>
   </div>
 </template>
@@ -18,21 +14,22 @@ import axios from "axios";
 export default {
   data() {
     return {
-       room: {
-          room_id: "",
-          room_name: "",
-        }
+      room: {
+        room_id: "",
+        room_name: "",
+        room_image: ""
+      }
     };
   },
   methods: {
-    getRooms () {
-    console.log('getData')
-    this.axios.get('/rooms')
-    .then(res => this.room.push(res.data))
-    .catch(err => console.log('[client side error Room component]',err))
- },
+    getRooms() {
+      this.axios
+        .get("/rooms")
+        .then(res => this.room.push(res.data))
+        .catch(err => console.log("[client side error Room component]", err));
+    },
 
-// needs to be fixed 
+    // needs to be fixed wrong but i can't delete it no reason
     async onSubmit(evt) {
       evt.preventDefault();
       try {
@@ -42,7 +39,7 @@ export default {
         console.error(error);
       }
       this.$router.push("/rooms/chat");
-    },
+    }
   }
 };
 </script>
