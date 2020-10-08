@@ -1,10 +1,13 @@
 <template>
-  <div id="id01" class="modal">
-    <div class="modal-content">
+  <div id="id01">
+    <div class="test-content">
       <div class="container">
         <h1>Log In</h1>
         <p>Please fill in this form to Log In To Your account.</p>
         <hr />
+        <v-alert color="error" :value="error" icon="close">
+          test
+        </v-alert>
 
         <label><b>email</b></label>
         <input
@@ -37,37 +40,61 @@
 </template>
 
 <script>
+import axios from "axios";
 export default {
   name: "logIn",
   props: {
-    msg: String
+    msg: String,
   },
   data() {
     return {
       userLogIn: {
         email: "",
-        password: ""
+        password: "",
       },
-      outputLogIn: ""
+      outputLogIn: "",
+      error: false,
     };
   },
   methods: {
     login() {
-      this.$store.dispatch("retrieveToken", {
-        email: this.userLogIn.email,
-        password: this.userLogIn.password
-      });
-    }
-  }
+      axios
+        .post("/api/users/login", this.userLogIn)
+        .then(res => {
+          if (res.status === 200) {
+            console.log("still cooking jwt", res);
+          }
+          localStorage.setItem("token", res.data.token);
+          this.$router.push("/")
+        })
+        .catch(err => {
+          console.log(err.response);
+          this.outputLogIn = err;
+        });
+
+      // this.$store
+      //   .dispatch("retrieveToken", {
+      //     email: this.userLogIn.email,
+      //     password: this.userLogIn.password
+      //   })
+      //   .then(success => {
+      //     console.log(success);
+      //   })
+      //   .catch(error => {
+      //     console.log(error);
+      //     this.error = true;
+      //   });
+    },
+  },
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.modal {
+.container {
   background-image: url("https://www.wallpaperflare.com/static/547/541/191/mountains-sunset-landscape-mount-hood-wallpaper.jpg");
   border-radius: 13px;
-  height: 30pc;
+  height: 40pc;
   width: 20%;
   margin: 10px auto;
   padding: 5%;

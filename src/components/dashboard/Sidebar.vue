@@ -38,6 +38,13 @@
       >
         LogIn
       </router-link>
+      <router-link
+        to="/SignUp"
+        @click="logout"
+        class="list-group-item list-group-item-action bg-light"
+      >
+        Logout
+      </router-link>
     </div>
   </div>
 </template>
@@ -52,6 +59,10 @@ export default {
   },
   props: {
     msg: String
+  },
+  logout() {
+    localStorage.clear();
+    this.$router.push({ name: "logout" });
   }
 };
 </script>

@@ -74,7 +74,7 @@
         </p>
 
         <div class="clearfix">
-          <span> {{ output }} </span>
+          <span> {{ this.output }} </span>
           <button type="button" class="cancelbtn">Cancel</button>
           <button type="submit" @click="register" class="signupbtn">
             Sign Up
@@ -111,7 +111,7 @@ export default {
   },
   methods: {
     async register() {
-      console.log("this.userSignUp", this.userSignUp);
+      console.log("this.userSignUp", this.userSignUp.first_name);
       if (this.userSignUp.password !== this.RepeatPassword) {
         alert("Check Your Password");
       } else {
@@ -119,11 +119,12 @@ export default {
         try {
           let res = await axios.post("/api/users/add", this.userSignUp);
           this.output = res.data;
-          if (this.check === true) {
-            this.$router.push("logIn");
-          }
-        } catch (e) {
-          this.output = e;
+          // if (this.check === true) {
+          //   this.$router.push("/logIn");
+          // }
+        } catch (error) {
+          console.log("errrooror");
+          this.output = error;
         }
       }
     }

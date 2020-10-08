@@ -17,6 +17,11 @@ import Navbar from "@/components/dashboard/Navbar.vue";
 
 export default {
   name: "Dashboard",
+  created() {
+    if (localStorage.getItem("token") === null) {
+      this.$router.push("/login");
+    }
+  },
   components: {
     Sidebar,
     Navbar
