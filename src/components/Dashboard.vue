@@ -21,6 +21,9 @@ export default {
     Sidebar,
     Navbar,
   },
+  mounted: function(){
+    
+  }
 };
 </script>
 <style scoped>

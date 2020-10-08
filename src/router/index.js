@@ -41,19 +41,11 @@ const routes = [
     name: "AddEmployee",
     component: AddEmployee,
   },
-<<<<<<< HEAD
-=======
-
->>>>>>> 096bf3a0c89648e9135a59c048ad43af7c4eaa9e
   {
     path: "/companies/add",
     name: "AddCompany",
     component: AddCompany,
   },
-<<<<<<< HEAD
-=======
-    
->>>>>>> 096bf3a0c89648e9135a59c048ad43af7c4eaa9e
   {
     path: "/tasksboard",
     name: "Tasksboard",
