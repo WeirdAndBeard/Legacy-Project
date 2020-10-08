@@ -50,10 +50,6 @@ export default {
   methods: {
     addNewTasksList: async function(e) {
       e.preventDefault();
-      // this.tasksLists.push({
-      //   _id: 798,
-      //   title: "planned",
-      // });
       try {
         this.tasksLists = await axios.post("/api/tasks_list/add", {
           title: this.listTitle,
