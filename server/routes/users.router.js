@@ -14,6 +14,4 @@ usersRouter.post("/add", async (req, res) => {
 })
 
 
-
-
 module.exports = usersRouter;

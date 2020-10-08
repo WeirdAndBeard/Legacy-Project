@@ -1,91 +1,93 @@
 <template>
-<div class="body"> 
-  <div class="container">
+  <div class="body">
+    <div class="container">
+      <b-form @submit="onSubmit" @reset="onReset" v-if="show">
+        <b-form-group
+          id="input-group-1"
+          label="Your Company-Name:"
+          label-for="input-1"
+        >
+          <b-form-input
+            id="input-1"
+            v-model="form.Company_Name"
+            required
+            placeholder="Enter your Company-Name"
+          ></b-form-input>
+        </b-form-group>
 
-    <b-form @submit="onSubmit" @reset="onReset" v-if="show">
-      <b-form-group
-        id="input-group-1"
-        label="Your Company-Name:"
-        label-for="input-1"
-      >
-        <b-form-input
-          id="input-1"
-          v-model="form.Company_Name"
-          required
-          placeholder="Enter your Company-Name"
-        ></b-form-input>
-      </b-form-group>
+        <b-form-group
+          id="input-group-2"
+          label="Your Industry Sector:"
+          label-for="input-2"
+        >
+          <b-form-input
+            id="input-2"
+            v-model="form.Industry"
+            required
+            placeholder="Enter Your Industry Sector"
+          ></b-form-input>
+        </b-form-group>
+        <b-form-group
+          id="input-group-1"
+          label="Your Official Company Link:"
+          label-for="input-1"
+        >
+          <b-form-input
+            id="input-1"
+            v-model="form.Website"
+            required
+            placeholder="Enter Your Official Company Link"
+          ></b-form-input>
+        </b-form-group>
+        <b-form-group
+          id="input-group-1"
+          label="Company address:"
+          label-for="input-1"
+        >
+          <b-form-input
+            id="input-1"
+            v-model="form.Location"
+            type="text"
+            required
+            placeholder="Enter Your Company Location"
+          ></b-form-input>
+        </b-form-group>
 
-      <b-form-group id="input-group-2" label="Your Industry Sector:" label-for="input-2">
-        <b-form-input
-          id="input-2"
-          v-model="form.Industry"
-          required
-          placeholder="Enter Your Industry Sector"
-        ></b-form-input>
-      </b-form-group>
-      <b-form-group id="input-group-1" label="Your Official Company Link:" label-for="input-1">
-        <b-form-input
-          id="input-1"
-          v-model="form.Website"
-          required
-          placeholder="Enter Your Official Company Link"
-        ></b-form-input>
-      </b-form-group>
-      <b-form-group
-        id="input-group-1"
-        label="Company address:"
-        label-for="input-1"
-      >
-        <b-form-input
-          id="input-1"
-          v-model="form.Location"
-          type="text"
-          required
-          placeholder="Enter Your Company Location"
-        ></b-form-input>
-      </b-form-group>
+        <b-form-group id="input-group-1" label="Your id:" label-for="input-1">
+          <b-form-input
+            id="input-1"
+            v-model="form.adminId"
+            required
+            placeholder="Enter your Company-id"
+          ></b-form-input>
+        </b-form-group>
 
-         <b-form-group
-        id="input-group-1"
-        label="Your id:"
-        label-for="input-1"
-      >
-        <b-form-input
-          id="input-1"
-          v-model="form.adminId"
-          required
-          placeholder="Enter your Company-id"
-        ></b-form-input>
-      </b-form-group>
+        <b-form-group
+          id="input-group-1"
+          label="Your Company-Description:"
+          label-for="input-1"
+        >
+          <b-form-input
+            id="input-1"
+            v-model="form.Description"
+            required
+            placeholder="Enter Description"
+          ></b-form-input>
+        </b-form-group>
 
-      <b-form-group
-        id="input-group-1"
-        label="Your Company-Description:"
-        label-for="input-1"
-      >
-        <b-form-input
-          id="input-1"
-          v-model="form.Description"
-          required
-          placeholder="Enter Description"
-        ></b-form-input>
-      </b-form-group>
+        <label for="example-datepicker">Choose a date</label>
+        <b-form-datepicker
+          id="example-datepicker"
+          v-model="form.date"
+          class="mb-2"
+        ></b-form-datepicker>
 
-      
-      <label for="example-datepicker">Choose a date</label>
-      <b-form-datepicker
-        id="example-datepicker"
-        v-model="form.date"
-        class="mb-2"
-      ></b-form-datepicker>
+        <b-button type="submit" variant="primary">Submit</b-button>
+        <b-button type="reset" variant="primary">Reset</b-button>
+      </b-form>
 
-      <b-button type="submit" variant="primary">Submit</b-button>
-      <b-button type="reset" variant="primary">Reset</b-button>
-    </b-form>
-
-    <!-- <pre class="m-0">{{ form }}</pre> -->
-  </div>
+      <!-- <pre class="m-0">{{ form }}</pre> -->
+    </div>
   </div>
 </template>
 
@@ -99,10 +101,10 @@ export default {
         Industry: "",
         Website: "",
         Location: "",
-        adminId:"",
+        adminId: "",
         Description: "",
         date: "",
-        employee:[],
+        employee: []
       },
       show: true
     };
@@ -145,9 +147,8 @@ export default {
 }
 
 .body {
-    background-image: url("https://clinicea.com/App_Themes/Default/images/walk1.png");
-    background-repeat: no-repeat;
-    background-color: black
-
+  background-image: url("https://clinicea.com/App_Themes/Default/images/walk1.png");
+  background-repeat: no-repeat;
+  background-color: black;
 }
 </style>

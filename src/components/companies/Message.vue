@@ -16,8 +16,11 @@
       </b-form-group>
 
       <b-button type="submit" variant="primary">Submit</b-button>
+      
       <b-button type="reset" variant="primary">Reset</b-button>
-        <img class="card-img-top" src="http://www.onlygoodmovies.com/blog/wp-content/uploads/2010/09/woody-allen.jpg" alt="Card image cap">
+        <img 
+        class="card-img-top" 
+        :src="form.imageUrl" alt="Card image cap">
 
     </b-form>
 
@@ -31,6 +34,8 @@ export default {
     return {
       form: {
         message: "",
+        adminId:"",
+        imageUrl:"",
       },
 
       show: true
