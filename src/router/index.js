@@ -6,6 +6,12 @@ import Tasksboard from "@/components/Tasksboard.vue";
 import EmployeesList from "@/components/employees/EmployeesList.vue";
 import AddEmployee from "@/components/employees/AddEmployee.vue";
 import AddCompany from "@/components/companies/AddCompany.vue";
+import Message from "@/components/companies/Message.vue";
+import Chat from "@/components/employees/Chat.vue";
+import Rooms from "@/components/employees/Rooms.vue";
+
+
+
 
 Vue.use(VueRouter);
 
@@ -14,6 +20,11 @@ const routes = [
     path: "/dashboard",
     name: "Dashboard",
     component: Dashboard,
+  },
+  {
+    path: "/messages",
+    name: "Message",
+    component: Message,
   },
   {
     path: "/companies",
@@ -30,15 +41,35 @@ const routes = [
     name: "AddEmployee",
     component: AddEmployee,
   },
+<<<<<<< HEAD
+=======
+
+>>>>>>> 096bf3a0c89648e9135a59c048ad43af7c4eaa9e
   {
     path: "/companies/add",
     name: "AddCompany",
     component: AddCompany,
   },
+<<<<<<< HEAD
+=======
+    
+>>>>>>> 096bf3a0c89648e9135a59c048ad43af7c4eaa9e
   {
     path: "/tasksboard",
     name: "Tasksboard",
     component: Tasksboard,
+  },
+
+  {
+    path: "/chat",
+    name: "Rooms",
+    component: Rooms,
+  },
+
+  {
+    path: "/rooms/chat",
+    name: "Chat",
+    component: Chat,
   },
 ];
 

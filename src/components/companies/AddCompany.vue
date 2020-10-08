@@ -1,5 +1,7 @@
 <template>
+<div class="body"> 
   <div class="container">
+
     <b-form @submit="onSubmit" @reset="onReset" v-if="show">
       <b-form-group
         id="input-group-1"
@@ -14,21 +16,20 @@
         ></b-form-input>
       </b-form-group>
 
-      <b-form-group id="input-group-2" label="Your Sector:" label-for="input-2">
+      <b-form-group id="input-group-2" label="Your Industry Sector:" label-for="input-2">
         <b-form-input
           id="input-2"
           v-model="form.Industry"
           required
-          placeholder="Enter Industry"
+          placeholder="Enter Your Industry Sector"
         ></b-form-input>
       </b-form-group>
       <b-form-group id="input-group-1" label="Your Official Company Link:" label-for="input-1">
         <b-form-input
           id="input-1"
           v-model="form.Website"
-          type="number"
           required
-          placeholder="Enter Your Company Link"
+          placeholder="Enter Your Official Company Link"
         ></b-form-input>
       </b-form-group>
       <b-form-group
@@ -52,20 +53,14 @@
       >
         <b-form-input
           id="input-1"
-          v-model="form.Company_Name"
+          v-model="form.Description"
           required
-          placeholder="Enter Company-Name"
+          placeholder="Enter Description"
         ></b-form-input>
       </b-form-group>
 
       
 
-      <b-form-group id="input-group-4">
-        <b-form-checkbox-group v-model="form.gender" id="checkboxes-4">
-          <b-form-checkbox value="Male">Male</b-form-checkbox>
-          <b-form-checkbox value="Female">Female</b-form-checkbox>
-        </b-form-checkbox-group>
-      </b-form-group>
       <label for="example-datepicker">Choose a date</label>
       <b-form-datepicker
         id="example-datepicker"
@@ -79,6 +74,7 @@
 
     <!-- <pre class="m-0">{{ form }}</pre> -->
   </div>
+  </div>
 </template>
 
 <script>
@@ -90,18 +86,11 @@ export default {
         Company_Name: "",
         Industry: "",
         Website: "",
-        Location: null,
+        Location: "",
         Description: "",
-        Company_Size: ""
+        date: ""
       },
 
-      positions: [
-        { text: "Select One", value: null },
-        "Project_Manager",
-        "SCRUM Master",
-        "Developper",
-        "Designer"
-      ],
       show: true
     };
   },
@@ -109,7 +98,7 @@ export default {
     async onSubmit(evt) {
       evt.preventDefault();
       try {
-        const data = await axios.post("/api/company/add", this.form);
+        const data = await axios.post("/api/companies/add", this.form);
         console.log(data.data);
       } catch (error) {
         console.error(error);
@@ -118,11 +107,11 @@ export default {
     },
     onReset(evt) {
       evt.preventDefault();
-      // Reset our form values
-      this.form.email = "";
-      this.form.name = "";
-      this.form.food = null;
-      this.form.checked = [];
+      this.form.Company_Name = "";
+      this.form.Industry = "";
+      this.form.Website = "";
+      this.form.Location = "";
+      this.form.Description = "";
       this.form.date = "";
       // Trick to reset/clear native browser form validation state
       this.show = false;
@@ -135,7 +124,15 @@ export default {
 </script>
 <style scoped>
 .container {
-  background-color: #8080808c;
+  background-color: grey;
   width: 50%;
+  margin-top: 50px;
+}
+
+.body {
+    background-image: url("https://clinicea.com/App_Themes/Default/images/walk1.png");
+    background-repeat: no-repeat;
+    background-color: black
+
 }
 </style>

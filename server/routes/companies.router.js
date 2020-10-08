@@ -4,7 +4,7 @@ const Company = require("../models/companies.js");
 /**
  * Get all companies of a user
  */
-companyRouter.get("/", async (req, res) => {
+companyRouter.get("/companies", async (req, res) => {
   try {
     const companies = await Company.find();
     res.send(companies);
@@ -14,7 +14,7 @@ companyRouter.get("/", async (req, res) => {
   }
 });
 /**
- * Create new company
+ * Create new company a
  */
 companyRouter.post("/add", async (req, res) => {
   try {
