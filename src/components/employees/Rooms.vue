@@ -21,18 +21,18 @@ export default {
        room: {
           room_id: "",
           room_name: "",
+          room_image:"",
         }
     };
   },
   methods: {
     getRooms () {
-    console.log('getData')
     this.axios.get('/rooms')
     .then(res => this.room.push(res.data))
     .catch(err => console.log('[client side error Room component]',err))
  },
 
-// needs to be fixed 
+// needs to be fixed wrong but i can't delete it no reason 
     async onSubmit(evt) {
       evt.preventDefault();
       try {

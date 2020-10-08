@@ -17,11 +17,16 @@
         label="Your Post:"
         label-for="input-1"
       >
-        <b-form-input
-          id="input-1"
-          required
-          placeholder="Enter your Post Here"
-        ></b-form-input>
+     <div>
+
+  <!-- Using components -->
+  <b-input-group class="mt-3">
+    <b-form-input placeholder="Type Your Post Here"></b-form-input>
+    <b-input-group-append>
+      <b-button variant="outline-success">Button</b-button>
+    </b-input-group-append>
+  </b-input-group>
+</div>
       </b-form-group>
       <div class="container-fluid">
         <router-view />
@@ -50,15 +55,17 @@ export default {
       ]
     };
   },
+
   methods: {
     getEmployees() {
       this.axios
         .get("/employees")
         .then(res => this.employees.push(res.data))
         .catch(err => console.log(err));
-    }
+    },
   }
 };
+
 </script>
 <style scoped>
 .container-fluid {

@@ -1,5 +1,4 @@
 const usersRouter = require("express").Router();
-const { catch } = require("../../database/connect.js");
 const User = require("./../models/users.js");
 
 
