@@ -41,6 +41,4 @@ companyRouter.post("/update/:id", (req, res) => {
   })
 })
 
-
-
 module.exports = companyRouter;

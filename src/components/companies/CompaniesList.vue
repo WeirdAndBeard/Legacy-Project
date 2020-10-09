@@ -2,10 +2,10 @@
   <div class="body">
     <div class="container">
       <b-button @click="Add">Add Company</b-button>
-      <div v-for="company in companies" :key="company.id" class="card">
+      <div v-for="company in companies" :key="company.adminId" class="card">
         <img
           class="card-img-top"
-          src="https://i.ytimg.com/vi/USEfl0-r6iE/maxresdefault.jpg"
+          :src="company.urlImage"
           alt="Card image cap"
         />
         <div class="card-body">
@@ -26,6 +26,7 @@ export default {
     return {
       companies: [
         {
+          adminId: "",
           Company_Name: "",
           Description: "",
           urlImage: ""
@@ -50,6 +51,7 @@ export default {
     }
   }
 };
+
 </script>
 <style scoped>
 .card {

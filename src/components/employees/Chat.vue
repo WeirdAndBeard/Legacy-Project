@@ -1,37 +1,39 @@
 <template>
   <div class="d-flex" id="wrapper">
     <SideBar msg="Welcome to Your Vue.js App" />
-    <div v-for="employee in employees" :key="employee.id" id="page-content-wrapper">
+    <div
+      v-for="employee in employees"
+      :key="employee.employee_name"
+      id="page-content-wrapper"
+    >
       <b-card bg-variant="dark" text-variant="white" title="Employee Name : ">
+        {{ employee.employee_name }}
         <b-card-text>
-          <h5>Text Message : </h5>
+          <h5>Text Message : {{ employee.employee_message }}</h5>
           <img
             class="card-img-top"
-            src="https://i.ytimg.com/vi/USEfl0-r6iE/maxresdefault.jpg"
+            :src="employee.employee_image"
             alt="Card image cap"
           />
         </b-card-text>
       </b-card>
-      <b-form-group
-        id="input-group-1"
-        label="Your Post:"
-        label-for="input-1"
-      >
-     <div>
-
-  <!-- Using components -->
-  <b-input-group class="mt-3">
-    <b-form-input placeholder="Type Your Post Here"></b-form-input>
-    <b-input-group-append>
-      <b-button variant="outline-success">Button</b-button>
-    </b-input-group-append>
-  </b-input-group>
-</div>
-      </b-form-group>
       <div class="container-fluid">
         <router-view />
       </div>
     </div>
+        <b-form-group id="input-group-1" label="Your Post:" label-for="input-1">
+        <div>
+          <!-- Using components -->
+          <b-input-group class="mt-3">
+            <b-form-input placeholder="Type Your Post Here"></b-form-input>
+            <b-input-group-append>
+              <b-button @submit="onSubmit" variant="outline-success"
+                >Post</b-button
+              >
+            </b-input-group-append>
+          </b-input-group>
+        </div>
+      </b-form-group>
   </div>
 </template>
 
@@ -50,7 +52,12 @@ export default {
         {
           employee_name: "",
           employee_image: "",
-          employee_message: "",
+          employee_message: ""
+        },
+            {
+          employee_name: "",
+          employee_image: "",
+          employee_message: ""
         }
       ]
     };
@@ -59,17 +66,28 @@ export default {
   methods: {
     getEmployees() {
       this.axios
-        .get("/employees")
+        .get("/chat")
         .then(res => this.employees.push(res.data))
         .catch(err => console.log(err));
-    },
+    }
+
+    // needs to be fixed to post the messages of the users
+    //     async onSubmit(evt) {
+    //       evt.preventDefault();
+    //       try {
+    //         const data = await axios.post("chat/add", this.employees);
+    //         console.log(data.data);
+    //       } catch (error) {
+    //         console.error(error);
+    //       }
+    //     }
   }
 };
-
 </script>
 <style scoped>
 .container-fluid {
   padding: 20px;
+  position: relative;
 }
 
 #sidebar-wrapper {
@@ -78,6 +96,11 @@ export default {
 }
 
 .card-img-top {
-  width: 100px;
+  width: 120px;
+  position: absolute;
+  margin-left: -285px;
+  margin-top: -67px;
+  border-radius: 50px;
 }
+
 </style>
