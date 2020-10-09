@@ -23,8 +23,5 @@ signUpRouter.post("/", async (req, res) => {
   }
 });
 
-
-
-
 module.exports = signUpRouter;
 // to delete user's data
