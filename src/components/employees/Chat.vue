@@ -6,10 +6,10 @@
       :key="employee.employee_name"
       id="page-content-wrapper"
     >
-      <b-card bg-variant="dark" text-variant="white" title="Employee Name : ">        
-        {{employee.employee_name}}
+      <b-card bg-variant="dark" text-variant="white" title="Employee Name : ">
+        {{ employee.employee_name }}
         <b-card-text>
-          <h5>Text Message : {{employee.employee_message}}</h5>
+          <h5>Text Message : {{ employee.employee_message }}</h5>
           <img
             class="card-img-top"
             :src="employee.employee_image"
@@ -17,7 +17,11 @@
           />
         </b-card-text>
       </b-card>
-      <b-form-group id="input-group-1" label="Your Post:" label-for="input-1">
+      <div class="container-fluid">
+        <router-view />
+      </div>
+    </div>
+        <b-form-group id="input-group-1" label="Your Post:" label-for="input-1">
         <div>
           <!-- Using components -->
           <b-input-group class="mt-3">
@@ -30,10 +34,6 @@
           </b-input-group>
         </div>
       </b-form-group>
-      <div class="container-fluid">
-        <router-view />
-      </div>
-    </div>
   </div>
 </template>
 
@@ -53,6 +53,11 @@ export default {
           employee_name: "",
           employee_image: "",
           employee_message: ""
+        },
+            {
+          employee_name: "",
+          employee_image: "",
+          employee_message: ""
         }
       ]
     };
@@ -67,18 +72,17 @@ export default {
     }
 
     // needs to be fixed to post the messages of the users
-    // async onSubmit(evt) {
-    //   evt.preventDefault();
-    //   try {
-    //     const data = await axios.post("chat/add", this.employees);
-    //     console.log(data.data);
-    //   } catch (error) {
-    //     console.error(error);
-    //   }
-    // }
+    //     async onSubmit(evt) {
+    //       evt.preventDefault();
+    //       try {
+    //         const data = await axios.post("chat/add", this.employees);
+    //         console.log(data.data);
+    //       } catch (error) {
+    //         console.error(error);
+    //       }
+    //     }
   }
 };
-
 </script>
 <style scoped>
 .container-fluid {
@@ -98,4 +102,5 @@ export default {
   margin-top: -67px;
   border-radius: 50px;
 }
+
 </style>
