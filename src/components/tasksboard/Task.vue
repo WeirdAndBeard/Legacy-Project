@@ -1,5 +1,5 @@
 <template>
-  <div id="my-container">
+  <div id="`task-${this.task._id}-container`">
     <div class="my-3">
       <!-- Our triggering (target) element -->
       <b-button id="popover-reactive-1" variant="primary" ref="button">
@@ -24,7 +24,7 @@
       triggers="click"
       :show.sync="popoverShow"
       placement="auto"
-      container="my-container"
+      container="`task-${this.task._id}-container`"
       ref="popover"
       @show="onShow"
       @shown="onShown"
@@ -92,6 +92,13 @@
 export default {
   data() {
     return {
+      task: {
+        _id: "zerzerzerzrzer",
+        description: "this task one",
+        listId: "4654654654654",
+        adminId: "6546546546546546",
+        usersId: []
+      },
       input1: "",
       input1state: null,
       input2: "",

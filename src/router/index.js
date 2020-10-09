@@ -9,13 +9,16 @@ import AddCompany from "@/components/companies/AddCompany.vue";
 import Message from "@/components/companies/Message.vue";
 import Chat from "@/components/employees/Chat.vue";
 import Rooms from "@/components/employees/Rooms.vue";
-
-
-
+import Task from "@/components/tasksboard/Task.vue";
 
 Vue.use(VueRouter);
 
 const routes = [
+  {
+    path: "/task",
+    name: "Task",
+    component: Task
+  },
   {
     path: "/dashboard",
     name: "Dashboard",
