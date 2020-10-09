@@ -12,7 +12,6 @@
         to="/employees"
         class="list-group-item list-group-item-action bg-light"
       >
-      
         Employees
       </router-link>
       <router-link
@@ -27,6 +26,25 @@
       >
         Chat
       </router-link>
+      <router-link
+        to="/SignUp"
+        class="list-group-item list-group-item-action bg-light"
+      >
+        SignUp
+      </router-link>
+      <router-link
+        to="/LogIn"
+        class="list-group-item list-group-item-action bg-light"
+      >
+        LogIn
+      </router-link>
+      <router-link
+        to="/SignUp"
+        @click="logout"
+        class="list-group-item list-group-item-action bg-light"
+      >
+        Logout
+      </router-link>
     </div>
   </div>
 </template>
@@ -36,11 +54,14 @@ export default {
   name: "Sidebar",
   data() {
     return {
-      counter: 1,
+      counter: 1
     };
   },
   props: {
-    msg: String,
+    msg: String
   },
+  logout() {
+    localStorage.clear();
+  }
 };
 </script>

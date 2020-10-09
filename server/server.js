@@ -1,14 +1,24 @@
 const express = require("express");
 const bodyParser = require("body-parser");
+const path = require("path");
 const app = express();
 const PORT = process.env.PORT || 3000;
 const companyRouter = require("./routes/companies.router.js");
+const signUpRouter = require("./routes/auth/signup.router.js");
+const loginRouter = require("./routes/auth/login.router.js");
+const taskRouter = require("./routes/tasks.router.js");
+const tasksListRouter = require("./routes/tasksList.router.js");
+const messagesRouter = require("./routes/messages.router.js");
 
 app.use(express.static(__dirname + "/../dist"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use("/api/companies", companyRouter);
-
+app.use("/api/register", signUpRouter);
+app.use("/api/login", loginRouter);
+app.use("/api/tasks", taskRouter);
+app.use("/api/tasks_list", tasksListRouter);
+app.use("/api/messages", messagesRouter);
 
 app.get("/api/users/getMessages", function(req, res) {
   Chat.find({}, function(error, result) {
@@ -17,9 +27,9 @@ app.get("/api/users/getMessages", function(req, res) {
   });
 });
 // i'm adding this to test it and it's working //
-app.post("/api/employees/add",(req,res)=>{
-  res.send(req.body)
-})
+app.post("/api/employees/add", (req, res) => {
+  res.send(req.body);
+});
 
 app.post("/api/users/sendMessage", (req, res) => {
   console.log(req.body.msg);
@@ -276,6 +286,9 @@ app.post("/signup/company", async (req, res) => {
   }
 });
 
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "/../dist/index.html"));
+});
 
 app.listen(PORT, () => {
   console.log(`listening on port ${PORT}`);
