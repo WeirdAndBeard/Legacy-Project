@@ -9,7 +9,6 @@ usersRouter.post("/add", async (req, res) => {
         res.send(result);
     }
     catch(err){
-        
     }
 })
 

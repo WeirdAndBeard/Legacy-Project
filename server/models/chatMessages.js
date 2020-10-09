@@ -9,7 +9,7 @@ const chatMessagesSchema = new mongoose.Schema({
     employee_message: String,
 });
 
-// Chat Collection
-const Chat = mongoose.model("Chat", chatMessagesSchema);
+// ChatMessage Collection
+const ChatMessage = mongoose.model("ChatMessage", chatMessagesSchema);
 
-module.exports = Chat;
+module.exports = ChatMessage;
