@@ -7,7 +7,10 @@ const CompanySchema = new mongoose.Schema({
   description: String,
   imageUrl: String,
   adminId: String,
-  employee: []
+  employee: [],
+  email:String,
+  adress:String
+
 });
 
 const Company = mongoose.model("Company", CompanySchema);
