@@ -117,6 +117,12 @@ export default {
       }
       this.$router.push("/companies");
     },
+
+    // Handles a change on the file upload
+    handleFileUpload() {
+      this.file = this.$refs.file.files[0];
+    },
+
     onReset(evt) {
       evt.preventDefault();
       // Reset our form values

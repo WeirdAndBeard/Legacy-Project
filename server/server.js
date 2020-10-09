@@ -41,6 +41,11 @@ app.post("/api/messages/add", (req, res) => {
   res.send(req.body);
 });
 
+// i'm adding this to test it and it's working //
+app.post("/api/chat/add", (req, res) => {
+  res.send(req.body);
+});
+
 app.get("/api/companies", (req, res) => {
   res.send(req.body);
 });

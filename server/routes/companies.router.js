@@ -60,4 +60,18 @@ companyRouter.post("/update/:id", (req, res) => {
   });
 });
 
+// Delete Company
+companyRouter.delete("/delete/:id", (req, res) => {
+  Company.deleteOne({ _id: req.params.id }, (err, data) => {
+    err ? console.log(err) : res.send("success");
+  });
+});
+
+// Edit Company
+companyRouter.post("/update/:id", (req, res) => {
+  Company.updateOne({ _id: req.params.id }, { $set: req.body }, (err, data) => {
+    err ? console.log(err) : res.send(data);
+  });
+});
+
 module.exports = companyRouter;

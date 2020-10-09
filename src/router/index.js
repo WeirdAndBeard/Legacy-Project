@@ -8,17 +8,10 @@ import AddEmployee from "@/components/employees/AddEmployee.vue";
 import AddCompany from "@/components/companies/AddCompany.vue";
 import Message from "@/components/companies/Message.vue";
 import Chat from "@/components/employees/Chat.vue";
-import Rooms from "@/components/employees/Rooms.vue";
-import Task from "@/components/tasksboard/Task.vue";
 
 Vue.use(VueRouter);
 
 const routes = [
-  {
-    path: "/task",
-    name: "Task",
-    component: Task
-  },
   {
     path: "/dashboard",
     name: "Dashboard",
@@ -45,9 +38,9 @@ const routes = [
     component: AddEmployee,
   },
   {
-    path:"/employees/update/:id",
-    name:"AddEmployee",
-    component:AddEmployee
+    path: "/employees/update/:id",
+    name: "AddEmployee",
+    component: AddEmployee,
   },
   {
     path: "/companies/add",
@@ -67,12 +60,6 @@ const routes = [
 
   {
     path: "/chat",
-    name: "Rooms",
-    component: Rooms,
-  },
-
-  {
-    path: "/rooms/chat",
     name: "Chat",
     component: Chat,
   },
