@@ -11,19 +11,22 @@
 </template>
 
 <script>
-// @ is an alias to /src
+// @ is an alias to /srcthey
 import Sidebar from "@/components/dashboard/Sidebar.vue";
 import Navbar from "@/components/dashboard/Navbar.vue";
 
 export default {
   name: "Dashboard",
+  created() {
+    if (localStorage.getItem("token") === null) {
+      this.$router.push("/login");
+    }
+  },
   components: {
     Sidebar,
     Navbar,
   },
-  mounted: function(){
-    
-  }
+  mounted: function() {},
 };
 </script>
 <style scoped>

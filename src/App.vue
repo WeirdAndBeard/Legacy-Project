@@ -1,22 +1,27 @@
 <template>
   <div id="app">
-    <Dashboard />
+    <!-- <SignUp /> -->
+    <LogIn />
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import Dashboard from "@/components/Dashboard.vue";
+import LogIn from "@/components/auth/LogIn.vue";
 
 export default {
   name: "App",
   components: {
-    Dashboard
+    LogIn: LogIn
   }
 };
 </script>
 
 <style>
+*{
+  margin: 0px;
+  padding: 0px;
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

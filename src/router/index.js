@@ -8,6 +8,9 @@ import AddEmployee from "@/components/employees/AddEmployee.vue";
 import AddCompany from "@/components/companies/AddCompany.vue";
 import Message from "@/components/companies/Message.vue";
 import Chat from "@/components/employees/Chat.vue";
+import Rooms from "@/components/employees/Rooms.vue";
+import SignUp from "@/components/auth/SignUp.vue";
+import LogIn from "@/components/auth/LogIn.vue";
 
 Vue.use(VueRouter);
 
@@ -15,7 +18,7 @@ const routes = [
   {
     path: "/dashboard",
     name: "Dashboard",
-    component: Dashboard,
+    component: Dashboard
   },
   {
     path: "/messages",
@@ -25,17 +28,17 @@ const routes = [
   {
     path: "/companies",
     name: "CompaniesList",
-    component: CompaniesList,
+    component: CompaniesList
   },
   {
     path: "/employees",
     name: "EmployeesList",
-    component: EmployeesList,
+    component: EmployeesList
   },
   {
     path: "/employees/add",
     name: "AddEmployee",
-    component: AddEmployee,
+    component: AddEmployee
   },
   {
     path: "/employees/update/:id",
@@ -45,7 +48,7 @@ const routes = [
   {
     path: "/companies/add",
     name: "AddCompany",
-    component: AddCompany,
+    component: AddCompany
   },
   {
     path: "/companies/update/:id",
@@ -55,7 +58,7 @@ const routes = [
   {
     path: "/tasksboard",
     name: "Tasksboard",
-    component: Tasksboard,
+    component: Tasksboard
   },
 
   {
@@ -63,12 +66,27 @@ const routes = [
     name: "Chat",
     component: Chat,
   },
+  {
+    path: "/signup",
+    name: "SignUp",
+    component: SignUp
+  },
+  {
+    path: "/login",
+    name: "login",
+    component: LogIn
+  },
+  {
+    path: "/signup",
+    name: "logout",
+    component: SignUp
+  }
 ];
 
 const router = new VueRouter({
   mode: "history",
   base: process.env.BASE_URL,
-  routes,
+  routes
 });
 
 export default router;

@@ -1,11 +1,11 @@
 const mongoose = require("mongoose");
-const db = require("../../database/connect.js");
 mongoose.Promise = global.Promise;
+const Schema = mongoose.Schema;
 
-const MessageSchema = new mongoose.Schema({
-  text:String,
-  senderId:String,
-  RoomId:Number
+const messagesSchema = new Schema({
+  senderId: String,
+  reciverId: String,
+  messageText: String
 });
 
 const Message = mongoose.model("Message", MessageSchema);
