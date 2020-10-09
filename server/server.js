@@ -1,20 +1,23 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-const User = require("../database/user.js");
-const Company = require("../database/company.js");
-const Name = require("../database/name.js");
-const Chat = require("../database/chatschema.js");
-const bcrypt = require("bcryptjs");
-
+const path = require('path');
 const app = express();
-const PORT = 3000;
-const path = require("path");
-const { update } = require("../database/name.js");
-const { dirname } = require("path");
-
+const PORT = process.env.PORT || 3000;
+const companyRouter = require("./routes/companies.router.js");
+const taskRouter=require("./routes/tasks.router.js")
+const tasksListRouter=require("./routes/tasksList.router.js");
+const messagesRouter=require("./routes/messages.router.js");
+const chatRouter=require("./routes/chat.router.js");
+const userRouter=require("./routes/user.router.js");
 app.use(express.static(__dirname + "/../dist"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use("/api/companies", companyRouter);
+app.use("/api/tasks",taskRouter);
+app.use("/api/tasks_list",tasksListRouter);
+app.use("/api/messages",messagesRouter);
+app.use("/api/chat",chatRouter);
+app.use("/api/users",userRouter);
 
 app.get("/api/users/getMessages", function(req, res) {
   Chat.find({}, function(error, result) {
@@ -23,9 +26,9 @@ app.get("/api/users/getMessages", function(req, res) {
   });
 });
 // i'm adding this to test it and it's working //
-app.post("/api/employees/add",(req,res)=>{
-  res.send(req.body)
-})
+app.post("/api/employees/add", (req, res) => {
+  res.send(req.body);
+});
 
 app.post("/api/users/sendMessage", (req, res) => {
   console.log(req.body.msg);
@@ -36,19 +39,19 @@ app.post("/api/users/sendMessage", (req, res) => {
   });
 });
 
-app.post("/api/user/add", (req, res) => {
-  console.log(req.body);
-  Name.findOne({ key: "abc" }, function(err, data) {
-    Company.updateOne(
-      { name: data.hashem },
-      { $push: { employee: req.body.newE } },
-      function(err, result) {
-        if (err) console.log(err);
-        res.send(req.body.newE);
-      }
-    );
-  });
-});
+// app.post("/api/users/add", (req, res) => {
+//   console.log(req.body);
+//   Name.findOne({ key: "abc" }, function(err, data) {
+//     Company.updateOne(
+//       { name: data.hashem },
+//       { $push: { employee: req.body.newE } },
+//       function(err, result) {
+//         if (err) console.log(err);
+//         res.send(req.body.newE);
+//       }
+//     );
+//   });
+// });
 
 app.post("/api/users/giveOrder", (req, res) => {
   console.log(req.body);
@@ -280,6 +283,10 @@ app.post("/signup/company", async (req, res) => {
   } catch (error) {
     res.status(404).send("UNAUTHORIZED");
   }
+});
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "/../dist/index.html"));
 });
 
 app.listen(PORT, () => {

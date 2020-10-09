@@ -1,40 +1,61 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-
+import Dashboard from "@/components/Dashboard.vue";
+import CompaniesList from "@/components/companies/CompaniesList.vue";
+import Tasksboard from "@/components/Tasksboard.vue";
+import EmployeesList from "@/components/employees/EmployeesList.vue";
+import AddEmployee from "@/components/employees/AddEmployee.vue";
+import AddCompany from "@/components/companies/AddCompany.vue";
 
 Vue.use(VueRouter);
 
 const routes = [
   {
-    path: "/",
-    name: "Home",
-    component: ()=>import("../views/Home.vue")
+    path: "/dashboard",
+    name: "Dashboard",
+    component: Dashboard,
   },
   {
-    path: "/about",
-    name: "About",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/About.vue")
+    path: "/companies",
+    name: "CompaniesList",
+    component: CompaniesList,
   },
   {
-    path:"/form",
-    name:"form",
-    component:()=>import("../views/form.vue")
+    path: "/employees",
+    name: "EmployeesList",
+    component: EmployeesList,
   },
   {
-    path:"/employees",
-    name:"employees",
-    component:()=>import("../views/employees.vue")
-  }
+    path: "/employees/add",
+    name: "AddEmployee",
+    component: AddEmployee,
+  },
+  {
+    path:"/employees/update/:id",
+    name:"AddEmployee",
+    component:AddEmployee
+  },
+  {
+    path: "/companies/add",
+    name: "AddCompany",
+    component: AddCompany,
+  },
+  {
+    path: "/companies/update/:id",
+    name: "AddCompany",
+    component: AddCompany,
+  },
+  {
+    path: "/tasksboard",
+    name: "Tasksboard",
+    component: Tasksboard,
+  },
 ];
 
 const router = new VueRouter({
   mode: "history",
   base: process.env.BASE_URL,
-  routes
+  routes,
 });
 
 export default router;
