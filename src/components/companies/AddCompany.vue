@@ -1,80 +1,63 @@
 <template>
   <div class="container">
+    <br />
     <b-form @submit="onSubmit" @reset="onReset" v-if="show">
-      <b-form-group
-        id="input-group-1"
-        label="Your Company-Name:"
-        label-for="input-1"
-      >
-        <b-form-input
-          id="input-1"
-          v-model="form.Company_Name"
-          required
-          placeholder="Enter your Company-Name"
-        ></b-form-input>
-      </b-form-group>
-
-      <b-form-group id="input-group-2" label="Your Sector:" label-for="input-2">
+      <b-form-group id="input-group-2" label-for="input-2">
         <b-form-input
           id="input-2"
-          v-model="form.Industry"
+          v-model="company.companyName"
           required
-          placeholder="Enter Industry"
+          placeholder="Enter company-name"
         ></b-form-input>
       </b-form-group>
-      <b-form-group id="input-group-1" label="Your Official Company Link:" label-for="input-1">
+
+      <b-form-group id="input-group-1" label-for="input-1">
         <b-form-input
           id="input-1"
-          v-model="form.Website"
-          type="number"
-          required
-          placeholder="Enter Your Company Link"
-        ></b-form-input>
-      </b-form-group>
-      <b-form-group
-        id="input-group-1"
-        label="Company address:"
-        label-for="input-1"
-      >
-        <b-form-input
-          id="input-1"
-          v-model="form.Location"
+          v-model="company.description"
           type="text"
           required
-          placeholder="Enter Your Company Location"
+          placeholder="Enter company-description"
         ></b-form-input>
       </b-form-group>
 
-      <b-form-group
-        id="input-group-1"
-        label="Your Company-Description:"
-        label-for="input-1"
-      >
+      <b-form-group id="input-group-1" label-for="input-1">
         <b-form-input
           id="input-1"
-          v-model="form.Company_Name"
+          v-model="company.email"
+          type="text"
           required
-          placeholder="Enter Company-Name"
+          placeholder="Enter offcial company-email"
         ></b-form-input>
       </b-form-group>
 
-      
-
-      <b-form-group id="input-group-4">
-        <b-form-checkbox-group v-model="form.gender" id="checkboxes-4">
-          <b-form-checkbox value="Male">Male</b-form-checkbox>
-          <b-form-checkbox value="Female">Female</b-form-checkbox>
-        </b-form-checkbox-group>
+      <b-form-group id="input-group-1" label-for="input-1">
+        <b-form-input
+          id="input-1"
+          v-model="company.adress"
+          required
+          placeholder="Enter company-adress"
+        ></b-form-input>
       </b-form-group>
-      <label for="example-datepicker">Choose a date</label>
-      <b-form-datepicker
-        id="example-datepicker"
-        v-model="form.date"
-        class="mb-2"
-      ></b-form-datepicker>
 
-      <b-button type="submit" variant="primary">Submit</b-button>
-      <b-button type="reset" variant="primary">Reset</b-button>
+      <b-form-group id="input-group-1" label-for="input-1">
+        <b-form-input
+          id="input-1"
+          v-model="company.imageUrl"
+          type="url"
+          required
+          placeholder="Enter image-Url"
+        ></b-form-input>
+      </b-form-group>
+
+      <b-button class="btn-width" type="submit" variant="success"
+        >Submit</b-button
+      >
+      <b-button class="btn-width" type="reset" variant="primary"
+        >Reset</b-button
+      >
+      <br />
+      <br />
     </b-form>
 
     <!-- <pre class="m-0">{{ form }}</pre> -->
@@ -86,13 +69,15 @@ import axios from "axios";
 export default {
   data() {
     return {
-      form: {
-        Company_Name: "",
-        Industry: "",
-        Website: "",
-        Location: null,
-        Description: "",
-        Company_Size: ""
+      company: {
+        companyName: "",
+        description: "",
+        imageUrl: "",
+        adress:"",
+        email:""
+
+
+        
       },
 
       positions: [
@@ -100,16 +85,33 @@ export default {
         "Project_Manager",
         "SCRUM Master",
         "Developper",
-        "Designer"
+        "Designer",
       ],
-      show: true
+      show: true,
     };
+  },
+  mounted:async function(){
+    if (this.$route.params.id){
+      const result=await axios.get(`/api/companies/${this.$route.params.id}`)
+      console.log(result.data);
+       
+      this.company.companyName = result.data.companyName;
+      this.company.description = result.data.description;
+      this.company.imageUrl = result.data.imageUrl;
+      this.company.adress=result.data.adress;
+      this.company.email=result.data.email;
+    }
+    console.log(this.$route.params.id)
   },
   methods: {
     async onSubmit(evt) {
       evt.preventDefault();
+      var url="/api/companies/add";
+      if (this.$route.params.id){
+        url=`/api/companies/update/${this.$route.params.id}`
+      }
       try {
-        const data = await axios.post("/api/company/add", this.form);
+        const data = await axios.post(url, this.company);
         console.log(data.data);
       } catch (error) {
         console.error(error);
@@ -119,23 +121,28 @@ export default {
     onReset(evt) {
       evt.preventDefault();
       // Reset our form values
-      this.form.email = "";
-      this.form.name = "";
-      this.form.food = null;
-      this.form.checked = [];
-      this.form.date = "";
+      this.company.email = "";
+      this.company.name = "";
+      this.company.description = null;
+      this.company.imgurl = [];
+      this.company.adress = "";
       // Trick to reset/clear native browser form validation state
       this.show = false;
       this.$nextTick(() => {
         this.show = true;
       });
-    }
-  }
+    },
+  },
 };
 </script>
 <style scoped>
 .container {
-  background-color: #8080808c;
+  border: 1px solid black;
+  border-radius: 10px;
   width: 50%;
+}
+.btn-width {
+  width: 100%;
+  margin: 10px;
 }
 </style>
