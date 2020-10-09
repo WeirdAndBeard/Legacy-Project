@@ -25,14 +25,14 @@ chatRouter.post("/chat/add", async (req, res) => {
 });
 
 // Delete Message
-companyRouter.delete("/delete/:id", (req, res) => {
+chatRouter.delete("/delete/:id", (req, res) => {
     Chat.deleteOne({ _id: req.params.id }, (err, data) => {
         err ? console.log(err) : res.send('success');
     })
 })
 
 // Edit Message
-companyRouter.post("/update/:id", (req, res) => {
+chatRouter.post("/update/:id", (req, res) => {
     Chat.updateOne({ _id: req.params.id }, { $set: req.body }, (err, data) => {
         err ? console.log(err) : res.send(data);
     })

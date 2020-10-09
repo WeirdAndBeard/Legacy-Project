@@ -75,24 +75,27 @@
           ></b-form-input>
         </b-form-group>
 
+               <b-form-group
+          id="input-group-1"
+          label="Your Company-Url-Image:"
+          label-for="input-1"
+        >
+          <b-form-input
+            id="input-1"
+            v-model="form.urlImage"
+            required
+            placeholder="Enter Company Image"
+          ></b-form-input>
+        </b-form-group>
+
         <label for="example-datepicker">Choose a date</label>
         <b-form-datepicker
           id="example-datepicker"
           v-model="form.date"
           class="mb-2"
         ></b-form-datepicker>
+
         <div class="container">
-          <div class="large-12 medium-12 small-12 cell">
-            <label
-              >File
-              <input
-                type="file"
-                id="file"
-                ref="file"
-                v-on:change="handleFileUpload()"
-              />
-            </label>
-          </div>
         </div>
 
         <b-button type="submit" variant="primary">Submit</b-button>
@@ -123,22 +126,6 @@ export default {
   },
   methods: {
     async onSubmit(evt) {
-      // Handle Image Upload
-      let formData = new FormData();
-      formData.append("file", this.form.urlImage);
-      axios
-        .post("/single-file", formData, {
-          headers: {
-            "Content-Type": "multipart/form-data"
-          }
-        })
-        .then(function() {
-          console.log("SUCCESS!!");
-        })
-        .catch(function() {
-          console.log("FAILURE!!");
-        });
-
       evt.preventDefault();
       try {
         const data = await axios.post("/api/companies/add", this.form);
@@ -163,6 +150,7 @@ export default {
       this.form.adminId = "";
       this.form.Description = "";
       this.form.date = "";
+      this.form.urlImage = "";
       // Trick to reset/clear native browser form validation state
       this.show = false;
       this.$nextTick(() => {

@@ -21,24 +21,26 @@
         <router-view />
       </div>
     </div>
-        <b-form-group id="input-group-1" label="Your Post:" label-for="input-1">
-        <div>
-          <!-- Using components -->
-          <b-input-group class="mt-3">
-            <b-form-input placeholder="Type Your Post Here"></b-form-input>
-            <b-input-group-append>
-              <b-button @submit="onSubmit" variant="outline-success"
-                >Post</b-button
-              >
-            </b-input-group-append>
-          </b-input-group>
-        </div>
-      </b-form-group>
+    <!-- <div class="new"> -->
+    <b-form-group id="input-group-1" label="Your Post:" label-for="input-1">
+      <div>
+        <!-- Using components -->
+        <b-input-group class="mt-3">
+          <b-form-input placeholder="Type Your Post Here"></b-form-input>
+          <b-input-group-append>
+            <b-button @submit="onSubmit" variant="outline-success"
+              >Post</b-button
+            >
+          </b-input-group-append>
+        </b-input-group>
+      </div>
+    </b-form-group>
+      <!-- </div> -->
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
+import axios from "axios";
 import SideBar from "@/components/sidebar/SideBar.vue";
 
 export default {
@@ -54,11 +56,11 @@ export default {
           employee_image: "",
           employee_message: ""
         },
-            {
+                {
           employee_name: "",
           employee_image: "",
           employee_message: ""
-        }
+        },
       ]
     };
   },
@@ -69,18 +71,19 @@ export default {
         .get("/chat")
         .then(res => this.employees.push(res.data))
         .catch(err => console.log(err));
-    }
+    },
 
     // needs to be fixed to post the messages of the users
-    //     async onSubmit(evt) {
-    //       evt.preventDefault();
-    //       try {
-    //         const data = await axios.post("chat/add", this.employees);
-    //         console.log(data.data);
-    //       } catch (error) {
-    //         console.error(error);
-    //       }
-    //     }
+    async onSubmit(evt) {
+      evt.preventDefault();
+      try {
+        const data = await axios.post("chat/add", this.employees);
+        console.log(data.data);
+      } catch (error) {
+        console.error(error);
+      }
+      this.$router.push("/");
+    }
   }
 };
 </script>
@@ -88,6 +91,8 @@ export default {
 .container-fluid {
   padding: 20px;
   position: relative;
+    display: grid;
+  grid-column: 50px;
 }
 
 #sidebar-wrapper {
@@ -102,5 +107,6 @@ export default {
   margin-top: -67px;
   border-radius: 50px;
 }
+
 
 </style>
