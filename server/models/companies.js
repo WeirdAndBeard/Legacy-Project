@@ -11,8 +11,11 @@ const CompanySchema = new mongoose.Schema({
   adminId: String,
   Description:String,
   date:Date,
-  urlImage: String,
-  employee: [],
+  urlImage: {
+    data: Buffer, 
+    contentType: String 
+  },
+  employee: Array,
 });
 
 // Company Collection
