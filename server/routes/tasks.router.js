@@ -31,14 +31,10 @@ taskRouter.post("/add", async (req, res) => {
  * Update one Task
  */
 
-taskRouter.post("/update/:id", (req, res) => {
-  Task.updateOne(
-    { _id: req.params.id },
-    { $set: { description: req.body.newDescription } },
-    (err, data) => {
-      err ? console.log(err) : res.send(data);
-    }
-  );
+taskRouter.put("/update/:id", (req, res) => {
+  Task.updateOne({ _id: req.params.id }, { $set: req.body }, (err, data) => {
+    err ? console.log(err) : res.send(data);
+  });
 });
 /**
  * Delete One Task
