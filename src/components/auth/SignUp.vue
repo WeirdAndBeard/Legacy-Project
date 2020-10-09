@@ -1,55 +1,50 @@
 <template>
-  <div id="id01">
+  <div id="id01" class="tess">
     <div class="modal-content">
       <div class="container">
         <h1>Sign Up</h1>
         <p>Please fill in this form to create an account.</p>
         <hr />
-        <label><b>First Name</b></label>
         <input
           type="text"
           placeholder="Enter Your  First Name"
           name="First Name"
-          v-model="userSignUp.first_name"
+          v-model="user.first_name"
           required
         />
 
-        <label><b>Last Name </b></label>
+      
         <input
           type="text"
           placeholder="Enter Your Last Name"
           name="Last Name"
-          v-model="userSignUp.last_name"
+          v-model="user.last_name"
           required
         />
 
-        <label><b>User Name</b></label>
         <input
           type="text"
           placeholder="Choose a user_name"
           name="User Name"
-          v-model="userSignUp.user_name"
+          v-model="user.user_name"
           required
         />
-        <label><b>email</b></label>
         <input
           type="text"
           placeholder="Enter Your Email"
           name="Email"
-          v-model="userSignUp.email"
+          v-model="user.email"
           required
         />
 
-        <label><b>Password</b></label>
         <input
           type="password"
           placeholder="Password"
           name="repeat"
-          v-model="userSignUp.password"
+          v-model="user.password"
           required
         />
 
-        <label><b>Repeat Password</b></label>
         <input
           type="password"
           placeholder="Repeat Password"
@@ -58,7 +53,7 @@
           required
         />
 
-        <label>
+        <!-- <label>
           <input
             type="checkbox"
             checked="checked"
@@ -66,12 +61,12 @@
             style="margin-bottom: 15px"
           />
           Remember me
-        </label>
+        </label> -->
 
-        <p>
+        <!-- <p>
           By creating an account you agree to our
           <a href="#" style="color: dodgerblue">Terms & Privacy</a>.
-        </p>
+        </p> -->
 
         <div class="clearfix">
           <span> {{ this.output }} </span>
@@ -97,7 +92,7 @@ export default {
   },
   data() {
     return {
-      userSignUp: {
+      user: {
         first_name: "",
         last_name: "",
         user_name: "",
@@ -111,18 +106,19 @@ export default {
   },
   methods: {
     async register() {
-      console.log("this.userSignUp", this.userSignUp.first_name);
-      if (this.userSignUp.password !== this.RepeatPassword) {
+      console.log("this.user", this.user.first_name);
+      if (this.user.password !== this.RepeatPassword) {
         alert("Check Your Password");
       } else {
         this.check = !this.check;
         try {
-          let res = await axios.post("/api/users/add", this.userSignUp);
+          let res = await axios.post("/api/register", this.user);
           this.output = res.data;
           // if (this.check === true) {
-          //   this.$router.push("/logIn");
+          this.$router.push("/login");
           // }
         } catch (error) {
+          console.log(error);
           console.log("errrooror");
           this.output = error;
         }
@@ -130,7 +126,7 @@ export default {
     }
   },
   watch: {
-    userSignUp: function(val) {
+    user: function(val) {
       console.log(val);
     }
   }
@@ -139,20 +135,18 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 
-<style>
+<style scoped>
+ body {
+  background: #c31432;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #240b36, #c31432);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #240b36, #c31432); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+ }
 .modal-content {
-  height: 50pc;
-}
-.test {
-  margin: auto;
-  height: 20pc;
-  width: 20%;
-}
-.container {
-  background-image: url("https://www.wallpaperflare.com/static/547/541/191/mountains-sunset-landscape-mount-hood-wallpaper.jpg");
+  /* background-color: url("https://www.wallpaperflare.com/static/547/541/191/mountains-sunset-landscape-mount-hood-wallpaper.jpg"); */
   border-radius: 13px;
-  height: 50.9pc;
-  width: 20%;
+  height: 40pc;
+  width: 40%;
   margin: 10px auto;
   padding: 5%;
 }
@@ -196,5 +190,9 @@ button:hover {
 hr {
   border: 1px solid #f1f1f1;
   margin-bottom: 25px;
+}
+h1,
+p {
+  color: white;
 }
 </style>

@@ -11,7 +11,7 @@
 </template>
 
 <script>
-// @ is an alias to /src
+// @ is an alias to /srcthey
 import Sidebar from "@/components/dashboard/Sidebar.vue";
 import Navbar from "@/components/dashboard/Navbar.vue";
 

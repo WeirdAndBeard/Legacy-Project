@@ -62,7 +62,6 @@ export default {
   },
   logout() {
     localStorage.clear();
-    this.$router.push({ name: "logout" });
   }
 };
 </script>
