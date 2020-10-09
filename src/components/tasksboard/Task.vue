@@ -1,8 +1,10 @@
 <template>
-  <b-list-group-item @click="updateTask" href="#" :key="this_task._id">
-    <testpopup :id="this_task._id" />
-    {{ this_task.description }}
-  </b-list-group-item>
+  <div>
+    <b-list-group-item @click="updateTask" href="#" :key="this_task._id">
+      {{ this_task.description }}
+    </b-list-group-item>
+    <testpopup :task="this_task" />
+  </div>
 </template>
 <script>
 import axios from "axios";
@@ -21,6 +23,7 @@ export default {
   },
   methods: {
     updateTask: async function() {
+      console.log("task " + this.task._id + " clicked");
       try {
         await axios.put(`/api/tasks/update/${this.task._id}`, {
           task: this.this_task,
