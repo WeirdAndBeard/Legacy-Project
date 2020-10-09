@@ -8,7 +8,7 @@ import AddEmployee from "@/components/employees/AddEmployee.vue";
 import AddCompany from "@/components/companies/AddCompany.vue";
 import SignUp from "@/components/auth/SignUp.vue";
 import LogIn from "@/components/auth/LogIn.vue";
-
+import Profile from "@/components/auth/Profile.vue";
 Vue.use(VueRouter);
 
 const routes = [
@@ -53,9 +53,9 @@ const routes = [
     component: LogIn
   },
   {
-    path: "/signup",
-    name: "logout",
-    component: SignUp
+    path: "/profile",
+    name: "profile",
+    component: Profile
   }
 ];
 

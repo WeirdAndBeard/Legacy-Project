@@ -5,7 +5,7 @@ mongoose.Promise = global.Promise;
 const nameSchema = new mongoose.Schema(
   {
     hashem: String,
-    key: String,
+    key: String
   },
   {
     timestamps: true

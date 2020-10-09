@@ -88,6 +88,8 @@ export default {
     #240b36,
     #c31432
   ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  margin: 10px auto;
+  padding: 5%;
 }
 .modal-content {
   /* background-color: blur(2); */
@@ -96,12 +98,6 @@ export default {
 
   height: 40pc;
   width: 40%;
-  margin: 10px auto;
-  padding: 5%;
-}
-.test {
-  /* background-image: url("https://www.wallpaperflare.com/static/547/541/191/mountains-sunset-landscape-mount-hood-wallpaper.jpg"); */
-  border-radius: 13px;
   margin: 10px auto;
   padding: 5%;
 }
