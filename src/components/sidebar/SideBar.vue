@@ -6,26 +6,26 @@
         to="/companies"
         class="list-group-item list-group-item-action bg-light"
       >
-        Companies
+        Channel1
       </router-link>
       <router-link
         to="/employees"
         class="list-group-item list-group-item-action bg-light"
       >
       
-        Employees
+        Channel2
       </router-link>
       <router-link
         to="/tasksboard"
         class="list-group-item list-group-item-action bg-light"
       >
-        Tasks
+        Channel3
       </router-link>
       <router-link
         to="/chat"
         class="list-group-item list-group-item-action bg-light"
       >
-        Chat
+        Channel4
       </router-link>
     </div>
   </div>
@@ -33,7 +33,7 @@
 
 <script>
 export default {
-  name: "Sidebar",
+  name: "SideBar",
   data() {
     return {
       counter: 1,
@@ -44,3 +44,9 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+
+
+
+</style>
