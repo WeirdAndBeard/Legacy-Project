@@ -1,6 +1,5 @@
 <template>
   <b-card-group deck class="taskslist-container">
-    <testpopup />
     <b-card :header="list.title">
       <b-list-group>
         <div class="list-header">
