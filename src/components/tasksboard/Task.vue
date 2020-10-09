@@ -93,7 +93,7 @@ export default {
       console.log("task " + this.task._id + " clicked");
       try {
         await axios.put(`/api/tasks/update/${this.task._id}`, {
-          description: this.description
+          description: this.description,
         });
       } catch (err) {
         console.log(err);
@@ -113,12 +113,17 @@ export default {
         // Return our popover form results
         this.descriptionReturn = this.description;
       }
-      
+      console.log(
+        "description: ",
+        this.description,
+        "\ndescriptionReturn: ",
+        this.descriptionReturn
+      );
       this.updateTask();
       axios
         .get(`/api/tasks/${this.this_task._id}`)
         .then((result) => {
-          console.log("data ===>",result.data);
+          console.log("data ===>", result.data);
 
           this.this_task = result.data;
         })
@@ -130,7 +135,7 @@ export default {
       // This is called just before the popover is shown
       // Reset our popover form variables
       this.onClose();
-      this.description = this.task.description;
+      //this.description = this.descriptionReturn;
       this.descriptionState = null;
       this.descriptionReturn = "";
     },
