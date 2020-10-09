@@ -81,12 +81,23 @@
           v-model="form.date"
           class="mb-2"
         ></b-form-datepicker>
+        <div class="container">
+          <div class="large-12 medium-12 small-12 cell">
+            <label
+              >File
+              <input
+                type="file"
+                id="file"
+                ref="file"
+                v-on:change="handleFileUpload()"
+              />
+            </label>
+          </div>
+        </div>
 
         <b-button type="submit" variant="primary">Submit</b-button>
         <b-button type="reset" variant="primary">Reset</b-button>
       </b-form>
-
-      <!-- <pre class="m-0">{{ form }}</pre> -->
     </div>
   </div>
 </template>
@@ -104,6 +115,7 @@ export default {
         adminId: "",
         Description: "",
         date: "",
+        urlImage: "",
         employee: []
       },
       show: true
@@ -111,6 +123,22 @@ export default {
   },
   methods: {
     async onSubmit(evt) {
+      // Handle Image Upload
+      let formData = new FormData();
+      formData.append("file", this.form.urlImage);
+      axios
+        .post("/single-file", formData, {
+          headers: {
+            "Content-Type": "multipart/form-data"
+          }
+        })
+        .then(function() {
+          console.log("SUCCESS!!");
+        })
+        .catch(function() {
+          console.log("FAILURE!!");
+        });
+
       evt.preventDefault();
       try {
         const data = await axios.post("/api/companies/add", this.form);
@@ -119,6 +147,11 @@ export default {
         console.error(error);
       }
       this.$router.push("/companies");
+    },
+
+    // Handles a change on the file upload
+    handleFileUpload() {
+      this.file = this.$refs.file.files[0];
     },
 
     onReset(evt) {
