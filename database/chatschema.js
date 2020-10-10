@@ -1,16 +1,15 @@
-const mongoose = require('mongoose');
-const db = require('./connect.js');
+const mongoose = require("mongoose");
+const db = require("./connect.js");
 mongoose.Promise = global.Promise;
 
 const Chatschema = new mongoose.Schema(
   {
-    msg: String,
+    msg: String
   },
   {
-    timestamps: true,
+    timestamps: true
   }
 );
-
 
 const Chat = mongoose.model("Chat", Chatschema);
 

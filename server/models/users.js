@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const db = require("../../database/connect.js");
 mongoose.Promise = global.Promise;
+mongoose.set("useFindAndModify", false);
 
 const usersSchema = new mongoose.Schema(
   {
