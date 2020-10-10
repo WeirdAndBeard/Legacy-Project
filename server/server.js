@@ -10,45 +10,45 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use("/api/companies", companyRouter);
 
 
-app.get("/api/users/getMessages", function (req, res) {
-  Chat.find({}, function (error, result) {
-    if (error) console.log("this is error ====>", error);
-    res.send(result);
-  });
-});
+// app.get("/api/users/getMessages", function (req, res) {
+//   Chat.find({}, function (error, result) {
+//     if (error) console.log("this is error ====>", error);
+//     res.send(result);
+//   });
+// });
 // i'm adding this to test it and it's working //
 app.post("/api/employees/add", (req, res) => {
   res.send(req.body)
 })
 
 // i'm adding this to test it and it's working //
-app.post("/api/companies/add", (req, res) => {
-  res.send(req.body)
-})
+// app.post("/api/companies/add", (req, res) => {
+//   res.send(req.body)
+// })
 
 // i'm adding this to test it and it's working //
-app.post("/api/messages/add", (req, res) => {
-  res.send(req.body)
-})
+// app.post("/api/messages/add", (req, res) => {
+//   res.send(req.body)
+// })
 
 // i'm adding this to test it and it's working //
-app.post("/api/chat/add", (req, res) => {
-  res.send(req.body)
-})
+// app.post("/api/chat/add", (req, res) => {
+//   res.send(req.body)
+// })
 
 
-app.get("/api/companies", (req,res) => {
-  res.send(req.body)
-  })
+// app.get("/api/companies", (req,res) => {
+//   res.send(req.body)
+//   })
 
-app.post("/api/users/sendMessage", (req, res) => {
-  console.log(req.body.msg);
-  var obj = { msg: req.body.msg };
-  const newM = new Chat(obj);
-  newM.save((err, result) => {
-    res.send(result);
-  });
-});
+// app.post("/api/users/sendMessage", (req, res) => {
+//   console.log(req.body.msg);
+//   var obj = { msg: req.body.msg };
+//   const newM = new Chat(obj);
+//   newM.save((err, result) => {
+//     res.send(result);
+//   });
+// });
 
 app.post("/api/user/add", (req, res) => {
   console.log(req.body);
