@@ -26,16 +26,9 @@
             </button>
           </form>
         </div>
-        <draggable
-          v-model="tasks"
-          group="people"
-          @start="drag = true"
-          @end="drag = false"
-        >
-          <transition-group>
+        
             <Task v-for="task in tasks" :key="task._id" :task="task" />
-          </transition-group>
-        </draggable>
+         
       </b-list-group>
     </b-card>
   </b-card-group>

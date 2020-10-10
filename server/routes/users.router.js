@@ -6,7 +6,7 @@ const User = require("../models/users.js");
  */
 userRouter.get("/", async (req, res) => {
   try {
-    const users = await User.find({});
+    const users = await User.find({}).select('-password');
     res.send(users);
   } catch (error) {
     console.log(error);
@@ -29,12 +29,15 @@ userRouter.get("/:id", async (req, res) => {
  * Add user
  */
 userRouter.post("/add", async (req, res) => {
-  console.log(req.body);
+  console.log("req.body ", req.body);
   try {
     const newUser = new User(req.body);
+    console.log({ newUser });
     let result = await newUser.save();
+    console.log(result);
     res.send(result);
   } catch (error) {
+    console.log(error);
     res.status(404).send(error);
   }
 });

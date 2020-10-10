@@ -10,6 +10,7 @@ const CompanySchema = new mongoose.Schema({
   website: String,
   location:String,
   adminId: String,
+  imageUrl: String,
   employee: [],
   email:String,
   address:String
