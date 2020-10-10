@@ -16,14 +16,6 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-        <li class="nav-item active">
-          <a class="nav-link" href="#"
-            >Home <span class="sr-only">(current)</span></a
-          >
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
-        </li>
         <li class="nav-item dropdown">
           <a
             class="nav-link dropdown-toggle"
@@ -34,16 +26,14 @@
             aria-haspopup="true"
             aria-expanded="false"
           >
-            Dropdown
+            username
           </a>
           <div
             class="dropdown-menu dropdown-menu-right"
             aria-labelledby="navbarDropdown"
           >
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Something else here</a>
+            <a class="dropdown-item" href="#">Profile</a>
+            <a class="dropdown-item" href="#" @click="logout">Logout</a>
           </div>
         </li>
       </ul>
@@ -56,11 +46,18 @@ export default {
   name: "HelloWorld",
   data() {
     return {
-      counter: 1
+      counter: 1,
     };
   },
   props: {
-    msg: String
-  }
+    msg: String,
+  },
+  methods: {
+    logout() {
+      console.log("logout");
+      localStorage.clear();
+      this.$router.push("/login");
+    },
+  },
 };
 </script>

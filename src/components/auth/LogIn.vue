@@ -5,12 +5,12 @@
         <h1>Log In</h1>
         <p>Please fill in this form to Log In To Your account.</p>
         <hr />
- 
+
         <input
           type="text"
           placeholder="Enter Your email"
           name="email"
-          v-model="userLogIn.email"
+          v-model="credentials.email"
           required
         />
 
@@ -18,7 +18,7 @@
           type="password"
           placeholder="Password"
           name="repeat"
-          v-model="userLogIn.password"
+          v-model="credentials.password"
           required
         />
 
@@ -36,6 +36,7 @@
 
 <script>
 import axios from "axios";
+
 export default {
   name: "logIn",
   props: {
@@ -43,20 +44,23 @@ export default {
   },
   data() {
     return {
-      userLogIn: {
+      credentials: {
         email: "",
         password: ""
-      },
-      outputLogIn: "",
-      error: false
-      // token_auth: "",
-      // id_auth: ""
+      }
     };
+  },
+  mounted: function() {
+    if (localStorage.getItem("token")) {
+      this.$router.push("dashboard");
+    } else {
+      this.$router.push("login");
+    }
   },
   methods: {
     login() {
       axios
-        .post("/api/login", this.userLogIn)
+        .post("/api/login", this.credentials)
         .then(res => {
           if (res.status === 200) {
             console.log("still cooking jwt", res);
@@ -65,6 +69,7 @@ export default {
           // this.id_auth = res.data.id;
           localStorage.setItem("token", res.data.token);
           localStorage.setItem("id", res.data.id);
+          this.$router.push("/dashboard");
         })
         .catch(err => {
           console.log(err.response);

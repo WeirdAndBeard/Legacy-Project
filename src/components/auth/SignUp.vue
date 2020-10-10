@@ -23,9 +23,9 @@
 
         <input
           type="text"
-          placeholder="Choose a user_name"
+          placeholder="Choose a username"
           name="User Name"
-          v-model="user.user_name"
+          v-model="user.username"
           required
         />
         <input
@@ -94,7 +94,7 @@ export default {
       user: {
         first_name: "",
         last_name: "",
-        user_name: "",
+        username: "",
         email: "",
         password: ""
       },
@@ -103,9 +103,16 @@ export default {
       check: false
     };
   },
+  mounted: function() {
+    if (localStorage.getItem("token")) {
+      this.$router.push("dashboard");
+    } else {
+      this.$router.push("login");
+    }
+  },
   methods: {
     async register() {
-      console.log("this.user", this.user.first_name);
+      console.log("this.user", this.user);
       if (this.user.password !== this.RepeatPassword) {
         alert("Check Your Password");
       } else {
@@ -114,6 +121,7 @@ export default {
           let res = await axios.post("/api/register", this.user);
           this.output = res.data;
           // if (this.check === true) {
+          console.log("redirect");
           this.$router.push("/login");
           // }
         } catch (error) {

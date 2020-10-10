@@ -2,12 +2,14 @@ const mongoose = require("mongoose");
 const db = require("../../database/connect.js");
 mongoose.Promise = global.Promise;
 
-const MSGSchema = new mongoose.Schema({
-  text:String,
-  senderId:String,
-  RoomId:Number
+// Chat Messages Schema
+const chatMessagesSchema = new mongoose.Schema({
+  employee_name: String,
+  employee_image: String,
+  employee_message: String,
 });
 
-const MSG = mongoose.model("MSG", MSGSchema);
+// ChatMessage Collection
+const ChatMessage = mongoose.model("ChatMessage", chatMessagesSchema);
 
-module.exports = MSG;
+module.exports = ChatMessage;
