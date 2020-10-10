@@ -1,7 +1,7 @@
 <template>
   <div class="modal-content">
     <div class="container">
-      <h1>Sign Up</h1
+      <h1>Sign Up</h1>
       <hr />
       <input
         type="text"
