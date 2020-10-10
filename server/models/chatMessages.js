@@ -5,7 +5,10 @@ mongoose.Promise = global.Promise;
 // Chat Messages Schema
 const chatMessagesSchema = new mongoose.Schema({
   user_id:String,
-  user_message: String,
+  message: String,
+},
+{
+  timestamps: true
 });
 
 // ChatMessage Collection

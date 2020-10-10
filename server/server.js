@@ -9,7 +9,7 @@ const loginRouter = require("./routes/auth/login.router.js");
 const taskRouter = require("./routes/tasks.router.js");
 const tasksListRouter = require("./routes/tasksList.router.js");
 const messagesRouter = require("./routes/messages.router.js");
-// const chatRouter = require("./routes/chat.router.js");
+const chatRouter = require("./routes/chatMessages.router.js");
 const userRouter = require("./routes/users.router.js");
 
 app.use(express.static(__dirname + "/../dist"));
@@ -21,7 +21,7 @@ app.use("/api/login", loginRouter);
 app.use("/api/tasks", taskRouter);
 app.use("/api/tasks_list", tasksListRouter);
 app.use("/api/messages", messagesRouter);
-// app.use("/api/chat", chatRouter);
+app.use("/api/chat", chatRouter);
 app.use("/api/users", userRouter);
 
 // app.get("/api/users/getMessages", function(req, res) {
