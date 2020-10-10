@@ -3,7 +3,6 @@
     <div class="modal-content">
       <div class="container">
         <h1>Sign Up</h1>
-        <p>Please fill in this form to create an account.</p>
         <hr />
         <input
           type="text"
@@ -23,9 +22,9 @@
 
         <input
           type="text"
-          placeholder="Choose a user_name"
+          placeholder="Choose a username"
           name="User Name"
-          v-model="user.user_name"
+          v-model="user.username"
           required
         />
         <input
@@ -74,6 +73,10 @@
             Sign Up
           </button>
         </div>
+        You already have an account?
+        <router-link to="/login">
+          Login.
+        </router-link>
       </div>
     </div>
   </div>
@@ -94,7 +97,7 @@ export default {
       user: {
         first_name: "",
         last_name: "",
-        user_name: "",
+        username: "",
         email: "",
         password: ""
       },
@@ -105,7 +108,7 @@ export default {
   },
   methods: {
     async register() {
-      console.log("this.user", this.user.first_name);
+      console.log("this.user", this.user);
       if (this.user.password !== this.RepeatPassword) {
         alert("Check Your Password");
       } else {
@@ -114,6 +117,7 @@ export default {
           let res = await axios.post("/api/register", this.user);
           this.output = res.data;
           // if (this.check === true) {
+          console.log("redirect");
           this.$router.push("/login");
           // }
         } catch (error) {
@@ -136,7 +140,7 @@ export default {
 
 <style scoped>
 .test {
-  margin: 10px auto;
+  margin: 0px;
   padding: 5%;
   background: #c31432; /* fallback for old browsers */
   background: -webkit-linear-gradient(

@@ -1,5 +1,4 @@
 const taskRouter = require("express").Router();
-const db = require("../../database/connect.js");
 const Task = require("../models/tasks.js");
 
 /**
@@ -12,6 +11,18 @@ taskRouter.get("/", async (req, res) => {
   } catch (error) {
     console.log(error);
     res.status(500).json(error);
+  }
+});
+
+/**
+ * Get one task by id
+ */
+taskRouter.get("/:id", async (req, res) => {
+  try {
+    const task = await Task.findById(req.params.id);
+    res.send(task);
+  } catch (err) {
+    res.status(500).send(err);
   }
 });
 /**

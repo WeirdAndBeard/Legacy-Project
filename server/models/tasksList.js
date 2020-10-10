@@ -4,7 +4,7 @@ mongoose.Promise = global.Promise;
 
 const tasksListSchema = new mongoose.Schema({
   title: String,
-  userId: String,
+  adminId: String,
   tasksId: [],
 });
 

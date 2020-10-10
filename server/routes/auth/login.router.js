@@ -8,7 +8,7 @@ var bcrypt = require("bcryptjs");
  */
 logInRouter.post("/", async (req, res) => {
   console.log(req.body);
-  User.findOne({ email: req.body.email }, (err, user) => {
+  User.findOne({ username: req.body.username }, (err, user) => {
     console.log("log in", user);
     if (err) res.status(500).json({ title: "server side error", error: err });
 
@@ -35,7 +35,7 @@ logInRouter.post("/", async (req, res) => {
 logInRouter.post("/getuser", async (req, res) => {
   try {
     console.log("req.booody NiGGA Pleease Work !!", req.body);
-    const result = await User.findOne({ _id: req.body._id });
+    const result = await User.findOne({ _id: req.body.id });
     res.send(result);
   } catch (err) {
     console.log("[server side error retirieve up]", err);
