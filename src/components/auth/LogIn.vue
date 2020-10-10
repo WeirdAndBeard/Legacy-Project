@@ -52,6 +52,8 @@ export default {
       },
       outputLogIn: "",
       error: false
+      // token_auth: "",
+      // id_auth: ""
     };
   },
   methods: {
@@ -62,8 +64,10 @@ export default {
           if (res.status === 200) {
             console.log("still cooking jwt", res);
           }
+          // this.token_auth = res.data.token;
+          // this.id_auth = res.data.id;
           localStorage.setItem("token", res.data.token);
-          this.$router.push("/login");
+          localStorage.setItem("id", res.data.id);
         })
         .catch(err => {
           console.log(err.response);

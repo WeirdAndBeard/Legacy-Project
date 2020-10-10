@@ -178,25 +178,17 @@
 
 <script>
 import axios from "axios";
+import store from "../../store/index.js";
 export default {
   name: "Profile",
   data() {
     return {
       selectedFile: null,
-      imgSrc: "",
-      usersData: []
+      imgSrc: ""
     };
   },
   mounted() {
-    axios
-      .get("/")
-      .then(res => {
-        // this.usersData = res.data;
-        console.log("users", res.data);
-      })
-      .catch(err => {
-        console.log(err);
-      });
+    store.dispatch("getData");
   },
   methods: {
     onFileSelect() {
@@ -211,12 +203,12 @@ export default {
         const reader = new FileReader();
         reader.onload = e => {
           this.imgSrc = e.target.result;
-          console.log("imgSrc", this.imgSrc);
+          console.log("imgSrc", e.target.result);
         };
         reader.readAsDataURL(this.selectedFile);
-        console.log("reader", reader);
-        // await axios.put("/avatar/:id", reader);
-        // console.log("[client side] res");
+        console.log("reader", reader.result);
+        await axios.put("/avatar/:id", reader);
+        console.log("[client side] res");
       } catch (err) {
         console.log(err);
       }

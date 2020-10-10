@@ -26,8 +26,20 @@ logInRouter.post("/", async (req, res) => {
     let token = jwt.sign({ userId: user._id }, "Between Us Nigga");
     return res.status(200).json({
       title: "Authentication successful",
-      token: token
+      token: token,
+      id: user.id
     });
   });
+});
+
+logInRouter.post("/getuser", async (req, res) => {
+  try {
+    const result = await User.findOne({ _id: "5f81049842e3024d148ddd2c" });
+    console.log("test");
+    res.send(result);
+  } catch (err) {
+    console.log("[server side error retirieve up]", err);
+    res.send(err);
+  }
 });
 module.exports = logInRouter;
