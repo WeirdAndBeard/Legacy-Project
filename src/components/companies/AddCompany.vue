@@ -35,9 +35,9 @@
         <b-form-group id="input-group-1" label-for="input-1">
           <b-form-input
             id="input-1"
-            v-model="company.adress"
+            v-model="company.address"
             required
-            placeholder="Enter company-adress"
+            placeholder="Enter company-address"
           ></b-form-input>
         </b-form-group>
 
@@ -75,7 +75,7 @@ export default {
         companyName: "",
         description: "",
         imageUrl: "",
-        adress: "",
+        address: "",
         email: "",
       },
 
@@ -89,7 +89,7 @@ export default {
       this.company.companyName = result.data.companyName;
       this.company.description = result.data.description;
       this.company.imageUrl = result.data.imageUrl;
-      this.company.adress = result.data.adress;
+      this.company.address = result.data.address;
       this.company.email = result.data.email;
     }
     console.log(this.$route.params.id);
@@ -114,10 +114,10 @@ export default {
       evt.preventDefault();
       // Reset our form values
       this.company.email = "";
-      this.company.name = "";
+      this.company.companyName = "";
       this.company.description = "";
-      this.company.imgUrl = "";
-      this.company.adress = "";
+      this.company.imageUrl = "";
+      this.company.address = "";
       // Trick to reset/clear native browser form validation state
       this.show = false;
       this.$nextTick(() => {

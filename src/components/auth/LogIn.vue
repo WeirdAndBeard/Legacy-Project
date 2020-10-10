@@ -1,34 +1,36 @@
 <template>
-  <div id="id01" class="test">
-    <div class="modal-content">
-      <div class="container">
-        <h1>Log In</h1>
-        <p>Please fill in this form to Log In To Your account.</p>
-        <hr />
+  <div class="modal-content">
+    <div class="container">
+      <h1>Login</h1>
+      <hr />
+      <div class="alert alert-danger" role="alert" v-show="!!errorMessage">
+        {{ errorMessage }}
+      </div>
+      <input
+        type="text"
+        placeholder="Username"
+        name="username"
+        v-model="credentials.username"
+        required
+      />
 
-        <input
-          type="text"
-          placeholder="Enter Your email"
-          name="email"
-          v-model="credentials.email"
-          required
-        />
+      <input
+        type="password"
+        placeholder="Password"
+        name="repeat"
+        v-model="credentials.password"
+        required
+      />
 
-        <input
-          type="password"
-          placeholder="Password"
-          name="repeat"
-          v-model="credentials.password"
-          required
-        />
-
-        <div class="clearfix">
-          <span> {{ outputLogIn }} </span>
-          <button type="button" class="cancelbtn">Cancel</button>
-          <button type="submit" @click="login" class="signupbtn">
-            Sign Up
-          </button>
-        </div>
+      <div class="clearfix">
+        <button type="button" class="cancelbtn">Cancel</button>
+        <button type="submit" @click="login" class="signupbtn">
+          Login
+        </button>
+        You don't have an account?
+        <router-link to="/signup">
+          Sign up.
+        </router-link>
       </div>
     </div>
   </div>
@@ -45,14 +47,20 @@ export default {
   data() {
     return {
       credentials: {
-        email: "",
+        username: "",
         password: ""
       },
-      outputLogIn: "",
-      error: false
-      // token_auth: "",
-      // id_auth: ""
+      errorMessage: ""
     };
+  },
+  watch: {
+    errorMessage: function() {
+      if (this.errorMessage) {
+        setTimeout(() => {
+          this.errorMessage = "";
+        }, 3000);
+      }
+    }
   },
   mounted: function() {
     if (localStorage.getItem("token")) {
@@ -75,13 +83,15 @@ export default {
           localStorage.setItem("id", res.data.id);
         })
         .catch(err => {
+          this.errorMessage = err;
+          this.$router.push("dashboard");
           console.log(err.response);
-          this.outputLogIn = err;
         });
     }
   }
 };
 </script>
+<style></style>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
@@ -101,13 +111,11 @@ export default {
   padding: 5%;
 }
 .modal-content {
-  /* background-color: blur(2); */
-  /* background-image: url("https://www.wallpaperflare.com/static/547/541/191/mountains-sunset-landscape-mount-hood-wallpaper.jpg"); */
+  /* background-color: rgba(95, 94, 94, 0.164); */
   border-radius: 13px;
-
   height: 40pc;
   width: 40%;
-  margin: 10px auto;
+  margin: 20px auto;
   padding: 5%;
 }
 input[type="text"],
