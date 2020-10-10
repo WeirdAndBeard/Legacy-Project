@@ -22,7 +22,7 @@
         Tasks
       </router-link>
       <router-link
-        to="/chat"
+        to="/chatMessages"
         class="list-group-item list-group-item-action bg-light"
       >
         Chat

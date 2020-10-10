@@ -7,8 +7,7 @@ import EmployeesList from "@/components/employees/EmployeesList.vue";
 import AddEmployee from "@/components/employees/AddEmployee.vue";
 import AddCompany from "@/components/companies/AddCompany.vue";
 import Message from "@/components/companies/Message.vue";
-import Chat from "@/components/employees/Chat.vue";
-
+import ChatMessages from "@/components/employees/ChatMessages.vue";
 
 
 
@@ -54,9 +53,9 @@ const routes = [
   },
 
   {
-    path: "/chat",
-    name: "Chat",
-    component: Chat,
+    path: "/chatMessages",
+    name: "ChatMessages",
+    component: ChatMessages,
   },
 ];
 
