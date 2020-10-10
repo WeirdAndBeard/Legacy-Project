@@ -26,16 +26,14 @@
             aria-haspopup="true"
             aria-expanded="false"
           >
-            Dropdown
+            username
           </a>
           <div
             class="dropdown-menu dropdown-menu-right"
             aria-labelledby="navbarDropdown"
           >
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Something else here</a>
+            <a class="dropdown-item" href="#">Profile</a>
+            <a class="dropdown-item" href="#" @click="logout">Logout</a>
           </div>
         </li>
       </ul>
@@ -53,6 +51,13 @@ export default {
   },
   props: {
     msg: String,
+  },
+  methods: {
+    logout() {
+      console.log("logout");
+      localStorage.clear();
+      this.$router.push("/login");
+    },
   },
 };
 </script>

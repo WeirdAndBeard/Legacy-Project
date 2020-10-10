@@ -8,6 +8,6 @@ const messagesSchema = new Schema({
   messageText: String
 });
 
-const Message = mongoose.model("Message", MessageSchema);
+const Message = mongoose.model("Message", messagesSchema);
 
 module.exports = Message;

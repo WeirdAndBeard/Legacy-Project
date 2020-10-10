@@ -19,7 +19,7 @@ export default {
   name: "Dashboard",
   created() {
     if (localStorage.getItem("token") === null) {
-      this.$router.push("/login");
+      this.$router.push("/signup");
     }
   },
   components: {

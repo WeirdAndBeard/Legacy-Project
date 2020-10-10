@@ -13,7 +13,7 @@
           type="text"
           placeholder="Enter Your email"
           name="email"
-          v-model="userLogIn.email"
+          v-model="credentials.email"
           required
         />
 
@@ -21,7 +21,7 @@
           type="password"
           placeholder="Password"
           name="repeat"
-          v-model="userLogIn.password"
+          v-model="credentials.password"
           required
         />
 
@@ -39,49 +39,61 @@
 
 <script>
 import axios from "axios";
+
 export default {
   name: "logIn",
   props: {
-    msg: String
+    msg: String,
   },
   data() {
     return {
-      userLogIn: {
+      credentials: {
         email: "",
-        password: ""
+        password: "",
       },
-      outputLogIn: "",
-      error: false
     };
+  },
+  mounted: function(){
+    if (localStorage.getItem("token")) {
+      this.$router.push("dashboard");
+    } else {
+      this.$router.push("login");
+    }
   },
   methods: {
     login() {
       axios
-        .post("/api/login", this.userLogIn)
-        .then(res => {
+        .post("/api/login", this.credentials)
+        .then((res) => {
           if (res.status === 200) {
             console.log("still cooking jwt", res);
           }
           localStorage.setItem("token", res.data.token);
-          this.$router.push("/login");
+          this.$router.push("/dashboard");
         })
-        .catch(err => {
+        .catch((err) => {
           console.log(err.response);
           this.outputLogIn = err;
         });
-    }
-  }
+    },
+  },
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
 .test {
-background: #c31432;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to right, #240b36, #c31432);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to right, #240b36, #c31432); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
+  background: #c31432; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #240b36,
+    #c31432
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #240b36,
+    #c31432
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 .modal-content {
   /* background-color: blur(2); */

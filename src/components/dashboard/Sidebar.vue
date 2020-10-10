@@ -1,6 +1,10 @@
 <template>
   <div class="bg-light border-right" id="sidebar-wrapper">
-    <div class="sidebar-heading"></div>
+    <div class="sidebar-heading">
+      <router-link to="/dashboard">
+        <img src="https://f4.bcbits.com/img/0019989185_10.jpg" />
+      </router-link>
+    </div>
     <div class="list-group list-group-flush">
       <router-link
         to="/companies"
@@ -26,25 +30,6 @@
       >
         Chat
       </router-link>
-      <router-link
-        to="/SignUp"
-        class="list-group-item list-group-item-action bg-light"
-      >
-        SignUp
-      </router-link>
-      <router-link
-        to="/LogIn"
-        class="list-group-item list-group-item-action bg-light"
-      >
-        LogIn
-      </router-link>
-      <router-link
-        to="/SignUp"
-        @click="logout"
-        class="list-group-item list-group-item-action bg-light"
-      >
-        Logout
-      </router-link>
     </div>
   </div>
 </template>
@@ -54,14 +39,17 @@ export default {
   name: "Sidebar",
   data() {
     return {
-      counter: 1
+      counter: 1,
     };
   },
   props: {
-    msg: String
+    msg: String,
   },
-  logout() {
-    localStorage.clear();
-  }
 };
 </script>
+<style scoped>
+img {
+  width: 50px;
+  height: 50px;
+}
+</style>

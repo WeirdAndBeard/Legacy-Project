@@ -198,7 +198,7 @@
             </div>
           </div>
           <div class="row gutters-sm">
-              <!-- FAKE SKILLS PROGRESS BAR               -->
+            <!-- FAKE SKILLS PROGRESS BAR               -->
             <div class="col-sm-6 mb-3">
               <div class="card h-100">
                 <div class="card-body">
@@ -316,8 +316,8 @@
                     ></div>
                   </div>
                   <small>Backend API</small>
-                    <div class="progress mb-3" style="height: 5px">
-                     <div
+                  <div class="progress mb-3" style="height: 5px">
+                    <div
                       class="progress-bar bg-primary"
                       role="progressbar"
                       style="width: 66%"
@@ -330,7 +330,6 @@
               </div>
             </div>
           </div>
-
         </div>
       </div>
     </div>
@@ -339,29 +338,30 @@
 
 <script>
 export default {
-    name: 'EmployeeProfile',
-    props: {
+  name: "EmployeeProfile",
+  props: {
     msg: String,
-},
-data () {
+  },
+  data() {
     return {
-        UserData : []
-
-    }
-},
-methods: {
-getData () {
-    console.log('getData')
-    this.axios.get('/user')
-    .then(res => this.UserData.push(res.data))
-    .catch(err => console.log('[client side error profile component]',err))
- }
-},
-mounted () {
-    
-    this.getData()
- }
-}
+      UserData: [],
+    };
+  },
+  methods: {
+    getData() {
+      console.log("getData");
+      this.axios
+        .get("/user")
+        .then((res) => this.UserData.push(res.data))
+        .catch((err) =>
+          console.log("[client side error profile component]", err)
+        );
+    },
+  },
+  mounted() {
+    this.getData();
+  },
+};
 </script>
 
 <style scoped>

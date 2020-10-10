@@ -1,24 +1,36 @@
 <template>
   <div id="app">
+    <router-view></router-view>
     <!-- <SignUp /> -->
-    <LogIn />
+    <!-- <LogIn /> -->
+    <!-- <Dashboard /> -->
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import LogIn from "@/components/auth/LogIn.vue";
+// import SignUp from "@/components/auth/SignUp.vue";
+// import LogIn from "@/components/auth/LogIn.vue";
+// import Dashboard from "@/components/Dashboard.vue";
 
 export default {
   name: "App",
   components: {
-    LogIn: LogIn
-  }
+    // SignUp: SignUp,
+    //Dashboard: Dashboard
+  },
+  mounted: function() {
+    if (localStorage.getItem("token")) {
+      this.$router.push("dashboard");
+    } else {
+      this.$router.push("login");
+    }
+  },
 };
 </script>
 
 <style>
-*{
+* {
   margin: 0px;
   padding: 0px;
 }
