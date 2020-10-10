@@ -9,6 +9,8 @@ const loginRouter = require("./routes/auth/login.router.js");
 const taskRouter = require("./routes/tasks.router.js");
 const tasksListRouter = require("./routes/tasksList.router.js");
 const messagesRouter = require("./routes/messages.router.js");
+const chatRouter = require("./routes/chat.router.js");
+const userRouter = require("./routes/users.router.js");
 
 app.use(express.static(__dirname + "/../dist"));
 app.use(bodyParser.json());
@@ -19,6 +21,8 @@ app.use("/api/login", loginRouter);
 app.use("/api/tasks", taskRouter);
 app.use("/api/tasks_list", tasksListRouter);
 app.use("/api/messages", messagesRouter);
+app.use("/api/chat", chatRouter);
+app.use("/api/users", userRouter);
 
 app.get("/api/users/getMessages", function(req, res) {
   Chat.find({}, function(error, result) {
@@ -31,6 +35,25 @@ app.post("/api/employees/add", (req, res) => {
   res.send(req.body);
 });
 
+// i'm adding this to test it and it's working //
+app.post("/api/companies/add", (req, res) => {
+  res.send(req.body);
+});
+
+// i'm adding this to test it and it's working //
+app.post("/api/messages/add", (req, res) => {
+  res.send(req.body);
+});
+
+// i'm adding this to test it and it's working //
+app.post("/api/chat/add", (req, res) => {
+  res.send(req.body);
+});
+
+app.get("/api/companies", (req, res) => {
+  res.send(req.body);
+});
+
 app.post("/api/users/sendMessage", (req, res) => {
   console.log(req.body.msg);
   var obj = { msg: req.body.msg };
@@ -40,19 +63,19 @@ app.post("/api/users/sendMessage", (req, res) => {
   });
 });
 
-app.post("/api/user/add", (req, res) => {
-  console.log(req.body);
-  Name.findOne({ key: "abc" }, function(err, data) {
-    Company.updateOne(
-      { name: data.hashem },
-      { $push: { employee: req.body.newE } },
-      function(err, result) {
-        if (err) console.log(err);
-        res.send(req.body.newE);
-      }
-    );
-  });
-});
+// app.post("/api/users/add", (req, res) => {
+//   console.log(req.body);
+//   Name.findOne({ key: "abc" }, function(err, data) {
+//     Company.updateOne(
+//       { name: data.hashem },
+//       { $push: { employee: req.body.newE } },
+//       function(err, result) {
+//         if (err) console.log(err);
+//         res.send(req.body.newE);
+//       }
+//     );
+//   });
+// });
 
 app.post("/api/users/giveOrder", (req, res) => {
   console.log(req.body);

@@ -207,12 +207,17 @@ export default {
           console.log("imgSrc", e.target.result);
         };
         reader.readAsDataURL(this.selectedFile);
-        console.log("reader", reader.result);
-        await axios.put("/avatar/:id", reader);
+        // console.log("reader", reader);
+        await axios.put("/avatar/:id", this.imgSrc);
         console.log("[client side] res");
       } catch (err) {
         console.log(err);
       }
+    }
+  },
+  computed: {
+    mounted() {
+      return this.$tore.state.usersData;
     }
   }
 };

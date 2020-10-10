@@ -7,7 +7,6 @@ const tasksSchema = new mongoose.Schema({
   listId: String,
   adminId: String,
   usersId:[]
- 
 });
 
 const Task = mongoose.model("Task", tasksSchema);

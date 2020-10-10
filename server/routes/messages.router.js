@@ -1,61 +1,53 @@
 const messagesRouter = require("express").Router();
-const Messages = require("../models/messages.js");
+const Message = require("../models/messages.js");
 
-messagesRouter.post("/add", async (req, res) => {
-  try {
-    const messages = Messages(req.body);
-    const result = await messages.save({});
-    res.send(result);
-  } catch (err) {
-    res.send("[server side error]", err);
-  }
-});
-
+/**
+ * Get all messages
+ */
 messagesRouter.get("/", async (req, res) => {
   try {
-    const result = await Messages.find({});
-    res.send(result);
-  } catch (err) {
-    res.send("[server side error]", err);
+    const messages = await Message.find();
+    res.send(messages);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json(error);
   }
 });
 
-messagesRouter.put("/update/:id", async (req, res) => {
+/**
+ * add Message
+ */
+messagesRouter.post("/add", async (req, res) => {
   try {
-    var result = await Messages.updateOne(
-      {
-        _id: req.params.id,
-      },
-      req.body
-    );
-    res.send(result);
-  } catch (err) {
-    res.send(err);
+    let { text, senderId, RoomId } = req.body;
+    const newMessage = new Message({ text, senderId, RoomId });
+    await newMessage.save();
+    res.send(newMessage);
+  } catch (error) {
+    res.status(404).send(error);
   }
 });
 
-messagesRouter.delete("/delete/:id", async (req, res) => {
-  try {
-    Messages.deleteOne(
-      {
-        _id: req.params.id
-      },
-      err => {
-        if (err) {
-          console.log(err);
-        }
-        res.send("deleted");
-      }
-    );
-  } catch (err) {
-    res.send("[server side error]", err);
-  }
+/**
+ * delete Message
+ */
+messagesRouter.delete("/delete/:id", (req, res) => {
+  Message.deleteOne({ _id: req.params.id }, (err, data) => {
+    err ? console.log({ err }) : res.send("success");
+  });
+});
+
+/**
+ * Update one Message
+ */
+messagesRouter.post("/update/:id", (req, res) => {
+  Message.updateOne(
+    { _id: req.params.id },
+    { $set: { text: req.body.newText } },
+    (err, data) => {
+      err ? console.log(err) : res.send(data);
+    }
+  );
 });
 
 module.exports = messagesRouter;
-/* 
-post /add
-get /
-delete /delete/:id
-put /updqte/:id 
-*/

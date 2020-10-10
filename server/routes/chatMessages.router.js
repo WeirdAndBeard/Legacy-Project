@@ -1,54 +1,45 @@
-const messagesRouter = require("express").Router();
-const db = require("../../database/connect.js");
-const MSG = require("../models/companies.js");
+const chatRouter = require("express").Router();
+const ChatMessage = require("../models/chatMessages.js");
 
-/**
- * Get all messages
- */
-messagesRouter.get("/", async (req, res) => {
+// Get Chat messages
+chatRouter.get("/", async (req, res) => {
   try {
-    const messages = await MSG.find();
-    res.send(messages);
+    const chat = await ChatMessage.find();
+    res.send(chat);
   } catch (error) {
     console.log(error);
     res.status(500).json(error);
   }
 });
 
-/**
- * add Message
- */
-messagesRouter.post("/add", async (req, res) => {
+// Add new message
+chatRouter.post("/add", async (req, res) => {
   try {
-    let { text, senderId, RoomId } = req.body;
-    const newMSG = new MSG({ text, senderId, RoomId });
-    await newMSG.save();
-    res.send(newMSG);
+    const chat = new ChatMessage(req.body);
+    const result = await chat.save();
+    console.log(req.body);
+    res.send(result);
   } catch (error) {
-    res.status(404).send(error);
+    res.status(500).send(error);
   }
 });
 
-/**
- * delete Message
- */
-messagesRouter.delete("/delete/:id", (req, res) => {
-  MSG.deleteOne({ _id: req.params.id }, (err, data) => {
-    err ? console.log({ err }) : res.send("success");
+// Delete Message
+chatRouter.delete("/delete/:id", (req, res) => {
+  ChatMessage.deleteOne({ _id: req.params.id }, (err, data) => {
+    err ? console.log(err) : res.send("success");
   });
 });
 
-/**
- * Update one Message
- */
-messagesRouter.post("/update/:id", (req, res) => {
-  MSG.updateOne(
+// Edit Message
+chatRouter.post("/update/:id", (req, res) => {
+  ChatMessage.updateOne(
     { _id: req.params.id },
-    { $set: { text: req.body.newText } },
+    { $set: req.body },
     (err, data) => {
       err ? console.log(err) : res.send(data);
     }
   );
 });
 
-module.exports = messagesRouter;
+module.exports = chatRouter;

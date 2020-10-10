@@ -22,9 +22,10 @@
     "express": "^4.15.4",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.10.5",
+    "nodemon": "^2.0.4",
     "underscore": "^1.8.3",
     "vue": "^2.6.12",
-    "vue-cli": "^2.9.6",
+    "vue-quick-chat": "^1.2.6",
     "vue-router": "^3.2.0",
     "vuedraggable": "^2.24.1",
     "vuex": "^3.4.0"

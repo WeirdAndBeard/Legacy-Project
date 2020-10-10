@@ -10,13 +10,14 @@ signUpRouter.post("/", async (req, res) => {
     const user = new User({
       first_name: req.body.first_name,
       last_name: req.body.last_name,
-      user_name: req.body.user_name,
+      username: req.body.username,
       email: req.body.email,
       password: bcrypt.hashSync(req.body.password, 10),
       avatar: req.body.avatar
     });
     console.log("user back-end", user);
-    const result = await user.save({});
+    user.roles.push("admin", "user");
+    const result = await user.save();
     res.send(result);
   } catch (err) {
     // console.log("[server side error signing up]", err);

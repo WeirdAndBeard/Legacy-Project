@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const db = mongoose.connect("mongodb://localhost/legacyproject", {
+const db = mongoose.connect("mongodb://localhost/legacy_project", {
   useNewUrlParser: true,
   useUnifiedTopology: true
 });

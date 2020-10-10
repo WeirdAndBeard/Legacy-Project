@@ -13,10 +13,10 @@ export default new Vuex.Store({
       const userId = localStorage.getItem("id");
       console.log("userId -", userId);
       axios
-        .post("http://127.0.0.1:3000/api/login/getuser", userId)
+        .post("http://127.0.0.1:3000/api/login/getuser", { id: userId })
         .then(res => {
           this.state.usersData = res.data;
-          console.log("users", res.data);
+          console.log("userLogInData", res.data);
         })
         .catch(err => {
           console.log(err);
