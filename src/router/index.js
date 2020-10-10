@@ -64,6 +64,11 @@ const routes = [
         path: "/messages",
         name: "Message",
         component: Message
+      },
+      {
+        path: "/profile",
+        name: "profile",
+        component: Profile
       }
     ]
   },
@@ -78,11 +83,7 @@ const routes = [
     name: "login",
     component: LogIn
   },
-  {
-    path: "/profile",
-    name: "profile",
-    component: Profile
-  },
+
   {
     path: "/logout",
     name: "logout",

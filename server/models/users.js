@@ -15,6 +15,7 @@ const usersSchema = new mongoose.Schema(
     job_position: String,
     gender: String,
     created_at: Date,
+    token: String,
     company_id: String,
     roles: []
   },
