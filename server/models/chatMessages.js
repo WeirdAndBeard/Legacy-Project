@@ -4,9 +4,9 @@ mongoose.Promise = global.Promise;
 
 // Chat Messages Schema
 const chatMessagesSchema = new mongoose.Schema({
-    employee_name: String,
-    employee_image: String,
-    employee_message: String,
+  employee_name: String,
+  employee_image: String,
+  employee_message: String,
 });
 
 // ChatMessage Collection

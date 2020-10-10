@@ -1,5 +1,5 @@
 const userRouter = require("express").Router();
-const User = require("../models/user.js");
+const User = require("../models/users.js");
 
 /**
  * get users
@@ -29,29 +29,13 @@ userRouter.get("/:id", async (req, res) => {
  * Add user
  */
 userRouter.post("/add", async (req, res) => {
+  console.log(req.body);
   try {
-    let {
-      email,
-      first_name,
-      last_name,
-      username,
-      position,
-      gender,
-      age,
-    } = req.body;
-    const newUser = new User({
-      email,
-      first_name,
-      last_name,
-      username,
-      position,
-      gender,
-      age,
-    });
-    await newUser.save();
-    res.send(newUser);
+    const newUser = new User(req.body);
+    let result = await newUser.save();
+    res.send(result);
   } catch (error) {
-    res.status(404).send({ error });
+    res.status(404).send(error);
   }
 });
 /**

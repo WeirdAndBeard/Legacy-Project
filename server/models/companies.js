@@ -4,14 +4,15 @@ mongoose.Promise = global.Promise;
 
 // Company Schema
 const CompanySchema = new mongoose.Schema({
-  Company_Name: String,
-  Industry: String,
-  Website: String,
-  Location:String,
+  companyName: String,
+  description: String,
+  industry: String,
+  website: String,
+  location:String,
   adminId: String,
   employee: [],
   email:String,
-  adress:String
+  address:String
 
 });
 

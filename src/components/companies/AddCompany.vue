@@ -35,9 +35,9 @@
         <b-form-group id="input-group-1" label-for="input-1">
           <b-form-input
             id="input-1"
-            v-model="company.adress"
+            v-model="company.address"
             required
-            placeholder="Enter company-adress"
+            placeholder="Enter company-address"
           ></b-form-input>
         </b-form-group>
 
@@ -75,17 +75,10 @@ export default {
         companyName: "",
         description: "",
         imageUrl: "",
-        adress: "",
+        address: "",
         email: "",
       },
 
-      positions: [
-        { text: "Select One", value: null },
-        "Project_Manager",
-        "SCRUM Master",
-        "Developper",
-        "Designer",
-      ],
       show: true,
     };
   },
@@ -93,11 +86,10 @@ export default {
     if (this.$route.params.id) {
       const result = await axios.get(`/api/companies/${this.$route.params.id}`);
       console.log(result.data);
-
       this.company.companyName = result.data.companyName;
       this.company.description = result.data.description;
       this.company.imageUrl = result.data.imageUrl;
-      this.company.adress = result.data.adress;
+      this.company.address = result.data.address;
       this.company.email = result.data.email;
     }
     console.log(this.$route.params.id);
@@ -118,19 +110,14 @@ export default {
       this.$router.push("/companies");
     },
 
-    // Handles a change on the file upload
-    handleFileUpload() {
-      this.file = this.$refs.file.files[0];
-    },
-
     onReset(evt) {
       evt.preventDefault();
       // Reset our form values
       this.company.email = "";
-      this.company.name = "";
-      this.company.description = null;
-      this.company.imgurl = [];
-      this.company.adress = "";
+      this.company.companyName = "";
+      this.company.description = "";
+      this.company.imageUrl = "";
+      this.company.address = "";
       // Trick to reset/clear native browser form validation state
       this.show = false;
       this.$nextTick(() => {
@@ -152,3 +139,5 @@ export default {
   margin: 10px;
 }
 </style>
+
+

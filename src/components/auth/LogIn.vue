@@ -1,40 +1,44 @@
 <template>
-  <div id="id01" class="modal">
-    <div class="modal-content">
-      <div class="container">
-        <h1>Log In</h1>
-        <p>Please fill in this form to Log In  To Your account.</p>
-        <hr />
-       
-        <label><b>Email</b></label>
-        <input
-          type="text"
-          placeholder="Enter Your Email"
-          name="Email"
-          v-model="userLogIn.Email"
-          required
-        />
+  <div class="modal-content">
+    <div class="container">
+      <h1>Login</h1>
+      <hr />
+      <div class="alert alert-danger" role="alert" v-show="!!errorMessage">
+        {{ errorMessage }}
+      </div>
+      <input
+        type="text"
+        placeholder="Username"
+        name="username"
+        v-model="credentials.username"
+        required
+      />
 
-        <label ><b>Password</b></label>
-        <input
-          type="password"
-          placeholder="Password"
-          name="repeat"
-          v-model="userLogIn.Password"
-          required
-        />
+      <input
+        type="password"
+        placeholder="Password"
+        name="repeat"
+        v-model="credentials.password"
+        required
+      />
 
-        <div class="clearfix">
-          <span> {{ outputLogIn }} </span>
-          <button type="button" class="cancelbtn">Cancel</button>
-          <button type="submit" @click="register" class="signupbtn">Sign Up</button>
-        </div>
+      <div class="clearfix">
+        <button type="button" class="cancelbtn">Cancel</button>
+        <button type="submit" @click="login" class="signupbtn">
+          Login
+        </button>
+        You don't have an account?
+        <router-link to="/signup">
+          Sign up.
+        </router-link>
       </div>
     </div>
-  </div> 
+  </div>
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   name: "logIn",
   props: {
@@ -42,31 +46,59 @@ export default {
   },
   data() {
     return {
-      userLogIn: {
-        Email: "",
-        Password: ""
+      credentials: {
+        username: "",
+        password: "",
       },
-      outputLogIn : ''
+      errorMessage: "",
     };
   },
-  methods: {
-    register() {
-      console.log("test", this.userLogIn)
-      this.axios.post('/logIn', {userLogIn : this.userLogIn})
-      .then(res => this.outputLogIn = res.data)
-      .catch(err => this.outputLogIn = err)
+  watch: {
+    errorMessage: function() {
+      if (this.errorMessage) {
+        setTimeout(() => {
+          this.errorMessage = "";
+        }, 3000);
+      }
+    },
+  },
+  mounted: function() {
+    if (localStorage.getItem("token")) {
+      this.$router.push("dashboard");
+    } else {
+      this.$router.push("login");
     }
+  },
+  methods: {
+    login() {
+      axios
+        .post("/api/login", this.credentials)
+        .then((res) => {
+          if (res.status === 200) {
+            console.log("still cooking jwt", res);
+          }
+          localStorage.setItem("token", res.data.token);
+          this.$router.push("dashboard");
+        })
+        .catch((err) => {
+          this.errorMessage = err;
+          console.log(err.response);
+        });
+    },
   },
 };
 </script>
+<style></style>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.modal {
-  background-image: url("https://www.wallpaperflare.com/static/547/541/191/mountains-sunset-landscape-mount-hood-wallpaper.jpg");
+body {
+  background-color: #f44336 !important;
+}
+
+.test {
+  /* background-image: url("https://www.wallpaperflare.com/static/547/541/191/mountains-sunset-landscape-mount-hood-wallpaper.jpg"); */
   border-radius: 13px;
-  height: 30pc;
-  width: 20%;
   margin: 10px auto;
   padding: 5%;
 }

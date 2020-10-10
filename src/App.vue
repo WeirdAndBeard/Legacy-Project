@@ -1,22 +1,48 @@
 <template>
   <div id="app">
-    <Dashboard />
+    <router-view></router-view>
+    <!-- <SignUp /> -->
+    <!-- <LogIn /> -->
+    <!-- <Dashboard /> -->
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import Dashboard from "@/components/Dashboard.vue";
+// import SignUp from "@/components/auth/SignUp.vue";
+// import LogIn from "@/components/auth/LogIn.vue";
+// import Dashboard from "@/components/Dashboard.vue";
 
 export default {
   name: "App",
   components: {
-    Dashboard
-  }
+    // SignUp: SignUp,
+    //Dashboard: Dashboard
+  },
+  mounted: function() {
+    if (localStorage.getItem("token")) {
+      this.$router.push("dashboard");
+    } else {
+      this.$router.push("login");
+    }
+  },
 };
 </script>
 
-<style>
+<style scoped>
+* {
+  margin: 0px;
+  padding: 0px;
+}
+.modal-content {
+  /* background-color: blur(2); */
+  /* background-image: url("https://www.wallpaperflare.com/static/547/541/191/mountains-sunset-landscape-mount-hood-wallpaper.jpg"); */
+  border-radius: 13px;
+  width: 40%;
+  margin: 10px auto;
+  padding: 5%;
+}
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
