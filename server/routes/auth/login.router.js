@@ -31,11 +31,11 @@ logInRouter.post("/", async (req, res) => {
     });
   });
 });
-
+// TO GET THE DATA OF THE SPECIFIC USER THA LOGEN IN  AND GOT TOKEN GENERATED FOR UNTIL THE SESSION IS OVER SO THIS FUNCTIN WILL PRIVIDE THE  SPECIFIC USER THAT IS LOGGED IN LIVE TIME THE CLIENT SIDE FUNCTION IS IN THE STORE FOLDER
 logInRouter.post("/getuser", async (req, res) => {
   try {
-    const result = await User.findOne({ _id: "5f81049842e3024d148ddd2c" });
-    console.log("test");
+    console.log("req.booody NiGGA Pleease Work !!", req.body);
+    const result = await User.findOne({ _id: req.body._id });
     res.send(result);
   } catch (err) {
     console.log("[server side error retirieve up]", err);

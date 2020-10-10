@@ -183,12 +183,13 @@ export default {
   name: "Profile",
   data() {
     return {
-      selectedFile: null,
-      imgSrc: ""
+      selectedFile: null
     };
   },
   mounted() {
-    store.dispatch("getData");
+    store.dispatch("getData", () => {
+      console.log("this.store.state ===>", store.state);
+    });
   },
   methods: {
     onFileSelect() {
