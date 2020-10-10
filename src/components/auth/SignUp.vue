@@ -3,7 +3,6 @@
     <div class="modal-content">
       <div class="container">
         <h1>Sign Up</h1>
-        <p>Please fill in this form to create an account.</p>
         <hr />
         <input
           type="text"
@@ -74,6 +73,10 @@
             Sign Up
           </button>
         </div>
+        You already have an account?
+        <router-link to="/login">
+          Login.
+        </router-link>
       </div>
     </div>
   </div>
@@ -102,13 +105,6 @@ export default {
       output: "",
       check: false
     };
-  },
-  mounted: function() {
-    if (localStorage.getItem("token")) {
-      this.$router.push("dashboard");
-    } else {
-      this.$router.push("login");
-    }
   },
   methods: {
     async register() {
@@ -144,7 +140,7 @@ export default {
 
 <style scoped>
 .test {
-  margin: 10px auto;
+  margin: 0px;
   padding: 5%;
   background: #c31432; /* fallback for old browsers */
   background: -webkit-linear-gradient(

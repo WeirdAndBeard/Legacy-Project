@@ -8,7 +8,7 @@ var bcrypt = require("bcryptjs");
  */
 logInRouter.post("/", async (req, res) => {
   console.log(req.body);
-  User.findOne({ email: req.body.email }, (err, user) => {
+  User.findOne({ username: req.body.username }, (err, user) => {
     console.log("log in", user);
     if (err) res.status(500).json({ title: "server side error", error: err });
 
