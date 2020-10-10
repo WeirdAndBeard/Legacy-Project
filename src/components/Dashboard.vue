@@ -24,9 +24,9 @@ export default {
   },
   components: {
     Sidebar,
-    Navbar,
+    Navbar
   },
-  mounted: function() {},
+  mounted: function() {}
 };
 </script>
 <style scoped>

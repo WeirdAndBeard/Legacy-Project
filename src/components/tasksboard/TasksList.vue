@@ -26,23 +26,15 @@
             </button>
           </form>
         </div>
-        <draggable
-          v-model="tasks"
-          group="people"
-          @start="drag = true"
-          @end="drag = false"
-        >
-          <transition-group>
-            <Task v-for="task in tasks" :key="task._id" :task="task" />
-          </transition-group>
-        </draggable>
+
+        <Task v-for="task in tasks" :key="task._id" :task="task" />
       </b-list-group>
     </b-card>
   </b-card-group>
 </template>
 <script>
 import Task from "./Task.vue";
-import draggable from "vuedraggable";
+//import draggable from "vuedraggable";
 import axios from "axios";
 
 export default {
@@ -58,7 +50,7 @@ export default {
   },
   components: {
     Task,
-    draggable,
+    //draggable,
   },
   mounted: function() {
     this.getTasks();

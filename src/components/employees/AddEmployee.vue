@@ -38,7 +38,7 @@
       <label>Select birthday:</label>
       <b-form-datepicker
         id="example-datepicker"
-        v-model="employee.age"
+        v-model="employee.birthday"
         class="mb-2"
       ></b-form-datepicker>
 
@@ -49,7 +49,7 @@
       >
         <b-form-select
           id="input-3"
-          v-model="employee.position"
+          v-model="employee.job_position"
           :options="positions"
           required
         ></b-form-select>
@@ -84,6 +84,14 @@
 
 <script>
 import axios from "axios";
+// import { SMTPClient } from "emailjs";
+
+// const client = new SMTPClient({
+//   user: "user",
+//   password: "password",
+//   host: "smtp.your-email.com",
+//   ssl: true,
+// });
 
 export default {
   data() {
@@ -93,9 +101,9 @@ export default {
         first_name: "",
         last_name: "",
         username: "",
-        position: "",
+        job_position: "",
         gender: "",
-        age: "",
+        birthday: "",
       },
 
       positions: [
@@ -110,11 +118,13 @@ export default {
     };
   },
   mounted: async function() {
-    console.log(this.$route)
-    const result = await axios.get(`/api/users/${this.$route.params.id}`);
-    console.log("data ====> ", result.data);
-    this.employee = result.data;
-    console.log(this.employee);
+    console.log(this.$route);
+    if (this.$route.params.id) {
+      const result = await axios.get(`/api/users/${this.$route.params.id}`);
+      console.log("data ====> ", result.data);
+      this.employee = result.data;
+      console.log(this.employee);
+    }
   },
   methods: {
     async onSubmit(evt) {
@@ -125,7 +135,20 @@ export default {
         url = "/api/users/update/" + this.$route.params.id;
       }
       try {
+        console.log(url);
         const data = await axios.post(url, this.employee);
+        // `${this.employee.email}`,
+        // client.send(
+        //   {
+        //     text: `Hello ${this.employee.first_name} ${this.employee.last_name} this your default credientilals "Username: ${this.employee.username}, password: ${this.employee.password}`,
+        //     from: "bjeoui.saber@gmail.com",
+        //     to: "bjsaber@gmail.com",
+        //     subject: "Your default credientials",
+        //   },
+        //   (err, message) => {
+        //     console.log(err || message);
+        //   }
+        // );
         console.log(data.data);
       } catch (error) {
         console.error(error);
