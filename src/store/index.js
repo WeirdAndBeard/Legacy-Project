@@ -7,20 +7,20 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: { usersData: [] },
-  mutations: {},
-  actions: {
-    getData() {
+  mutations: {
+    getData(state) {
       const userId = localStorage.getItem("id");
       console.log("userId -", userId);
       axios
         .post("http://127.0.0.1:3000/api/login/getuser", { id: userId })
         .then(res => {
-          this.state.usersData = res.data;
+          state.usersData = res.data;
           console.log("userLogInData", res.data);
         })
         .catch(err => {
           console.log(err);
         });
+      console.log("store data======>", state.usersData);
     }
   },
   modules: {}

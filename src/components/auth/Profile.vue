@@ -20,18 +20,15 @@
             <button @click="uploadImage">uploadImage</button>
           </div>
         </div>
-        <!-- <div class="col-md-6">
+        <div class="col-md-6">
           <div class="profile-head">
-            <h5>
-              data.Name
-            </h5>
+            <h5>{{ users.last_name }} , {{ users.first_name }}</h5>
             <h6>
-              Job Random
+              job
             </h6>
             <p class="proile-rating">RANKINGS : <span>8/10</span></p>
 
             <ul class="nav nav-tabs" id="myTab" role="tablist">
-
               <li class="nav-item">
                 <a
                   class="nav-link active"
@@ -58,18 +55,18 @@
               </li>
             </ul>
           </div>
-        </div> -->
-        <!-- <div class="col-md-2">
+        </div>
+        <div class="col-md-2">
           <input
             type="submit"
             class="profile-edit-btn"
             name="btnAddMore"
             value="Edit Profile"
           />
-        </div> -->
+        </div>
       </div>
       <div class="row">
-        <!-- <div class="col-md-4">
+        <div class="col-md-4">
           <div class="profile-work">
             <p>WORK LINK</p>
             <a href="">Website Link</a><br />
@@ -82,7 +79,7 @@
             <a href="">WooCommerce</a><br />
             <a href="">PHP, .Net</a><br />
           </div>
-        </div> -->
+        </div>
         <div class="col-md-8">
           <div class="tab-content profile-tab" id="myTabContent">
             <div
@@ -94,9 +91,10 @@
               <div class="row">
                 <div class="col-md-6">
                   <label>User Id</label>
+                  <span>users-{{ users.id }}</span>
                 </div>
                 <div class="col-md-6">
-                  <p>Kshiti123</p>
+                  <p>{{ users.last_name }}</p>
                 </div>
               </div>
               <div class="row">
@@ -104,7 +102,7 @@
                   <label>Name</label>
                 </div>
                 <div class="col-md-6">
-                  <p>data.first name</p>
+                  <p>{{ users.first_name }}</p>
                 </div>
               </div>
               <div class="row">
@@ -112,7 +110,7 @@
                   <label>Email</label>
                 </div>
                 <div class="col-md-6">
-                  <p>data.email</p>
+                  <p>{{ users.email }}</p>
                 </div>
               </div>
             </div>
@@ -177,19 +175,22 @@
 </template>
 
 <script>
-import axios from "axios";
-import store from "../../store/index.js";
+// import axios from "axios";
 export default {
   name: "Profile",
   data() {
     return {
-      selectedFile: null
+      selectedFile: null,
+      res: null
     };
   },
   mounted() {
-    store.dispatch("getData", () => {
-      console.log("this.store.state ===>", store.state);
-    });
+    this.$store.commit("getData");
+  },
+  computed: {
+    users: function() {
+      return this.$store.state.usersData;
+    }
   },
   methods: {
     onFileSelect() {
@@ -197,27 +198,23 @@ export default {
       console.log("test", this.$refs.file.files["0"]);
     },
     async uploadImage() {
-      try {
-        // const fd = new FormData();
-        // fd.append("img", this.selectedFile);
-        // console.log("fd", fd);
-        const reader = new FileReader();
-        reader.onload = e => {
-          this.imgSrc = e.target.result;
-          console.log("imgSrc", e.target.result);
-        };
-        reader.readAsDataURL(this.selectedFile);
-        // console.log("reader", reader);
-        await axios.put("/avatar/:id", this.imgSrc);
-        console.log("[client side] res");
-      } catch (err) {
-        console.log(err);
-      }
-    }
-  },
-  computed: {
-    mounted() {
-      return this.$tore.state.usersData;
+      console.log("uploadImage Clicked");
+      // try {
+      //   // const fd = new FormData();
+      //   // fd.append("img", this.selectedFile);
+      //   // console.log("fd", fd);
+      //   const reader = new FileReader();
+      //   reader.onload = e => {
+      //     this.imgSrc = e.target.result;
+      //     console.log("imgSrc", e.target.result);
+      //   };
+      //   reader.readAsDataURL(this.selectedFile);
+      //   // console.log("reader", reader);
+      //   await axios.put("/avatar/:id", reader);
+      //   console.log("[client side] res");
+      // } catch (err) {
+      //   console.log(err);
+      // }
     }
   }
 };
