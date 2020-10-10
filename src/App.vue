@@ -25,24 +25,11 @@ export default {
     } else {
       this.$router.push("login");
     }
-  },
+  }
 };
 </script>
 
-<style scoped>
-* {
-  margin: 0px;
-  padding: 0px;
-}
-.modal-content {
-  /* background-color: blur(2); */
-  /* background-image: url("https://www.wallpaperflare.com/static/547/541/191/mountains-sunset-landscape-mount-hood-wallpaper.jpg"); */
-  border-radius: 13px;
-  width: 40%;
-  margin: 10px auto;
-  padding: 5%;
-}
-
+<style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

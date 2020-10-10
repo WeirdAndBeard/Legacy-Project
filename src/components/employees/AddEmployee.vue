@@ -104,10 +104,10 @@ export default {
         "Director",
         "Cleaner",
         "Developper",
-        "Designer",
+        "Designer"
       ],
       genders: [{ text: "Select One", value: null }, "Male", "Female"],
-      show: true,
+      show: true
     };
   },
   mounted: async function() {
@@ -166,8 +166,8 @@ export default {
       this.$nextTick(() => {
         this.show = true;
       });
-    },
-  },
+    }
+  }
 };
 </script>
 <style scoped>

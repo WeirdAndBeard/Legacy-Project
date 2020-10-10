@@ -1,56 +1,57 @@
 <template>
-  <div class="modal-content">
-    <div class="container">
-      <h1>Sign Up</h1>
-      <hr />
-      <input
-        type="text"
-        placeholder="Enter Your  First Name"
-        name="First Name"
-        v-model="user.first_name"
-        required
-      />
+  <div id="id01" class="test">
+    <div class="modal-content">
+      <div class="container">
+        <h1>Sign Up</h1>
+        <hr />
+        <input
+          type="text"
+          placeholder="Enter Your  First Name"
+          name="First Name"
+          v-model="user.first_name"
+          required
+        />
 
-      <input
-        type="text"
-        placeholder="Enter Your Last Name"
-        name="Last Name"
-        v-model="user.last_name"
-        required
-      />
+        <input
+          type="text"
+          placeholder="Enter Your Last Name"
+          name="Last Name"
+          v-model="user.last_name"
+          required
+        />
 
-      <input
-        type="text"
-        placeholder="Choose a username"
-        name="User Name"
-        v-model="user.username"
-        required
-      />
-      <input
-        type="text"
-        placeholder="Enter Your Email"
-        name="Email"
-        v-model="user.email"
-        required
-      />
+        <input
+          type="text"
+          placeholder="Choose a username"
+          name="User Name"
+          v-model="user.username"
+          required
+        />
+        <input
+          type="text"
+          placeholder="Enter Your Email"
+          name="Email"
+          v-model="user.email"
+          required
+        />
 
-      <input
-        type="password"
-        placeholder="Password"
-        name="repeat"
-        v-model="user.password"
-        required
-      />
+        <input
+          type="password"
+          placeholder="Password"
+          name="repeat"
+          v-model="user.password"
+          required
+        />
 
-      <input
-        type="password"
-        placeholder="Repeat Password"
-        name="psw-repeat"
-        v-model="RepeatPassword"
-        required
-      />
+        <input
+          type="password"
+          placeholder="Repeat Password"
+          name="psw-repeat"
+          v-model="RepeatPassword"
+          required
+        />
 
-      <!-- <label>
+        <!-- <label>
           <input
             type="checkbox"
             checked="checked"
@@ -60,22 +61,23 @@
           Remember me
         </label> -->
 
-      <!-- <p>
+        <!-- <p>
           By creating an account you agree to our
           <a href="#" style="color: dodgerblue">Terms & Privacy</a>.
         </p> -->
 
-      <div class="clearfix">
-        <span> {{ this.output }} </span>
-        <button type="button" class="cancelbtn">Cancel</button>
-        <button type="submit" @click="register" class="signupbtn">
-          Sign Up
-        </button>
+        <div class="clearfix">
+          <span> {{ this.output }} </span>
+          <button type="button" class="cancelbtn">Cancel</button>
+          <button type="submit" @click="register" class="signupbtn">
+            Sign Up
+          </button>
+        </div>
+        You already have an account?
+        <router-link to="/login">
+          Login.
+        </router-link>
       </div>
-      You already have an account?
-      <router-link to="/login">
-        Login.
-      </router-link>
     </div>
   </div>
 </template>
@@ -88,7 +90,7 @@ import axios from "axios";
 export default {
   name: "SignUp",
   props: {
-    msg: String,
+    msg: String
   },
   data() {
     return {
@@ -97,14 +99,13 @@ export default {
         last_name: "",
         username: "",
         email: "",
-        password: "",
+        password: ""
       },
       RepeatPassword: "",
       output: "",
-      check: false,
+      check: false
     };
   },
-
   methods: {
     async register() {
       console.log("this.user", this.user);
@@ -125,33 +126,39 @@ export default {
           this.output = error;
         }
       }
-    },
+    }
   },
   watch: {
     user: function(val) {
       console.log(val);
-    },
-  },
+    }
+  }
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 
 <style scoped>
-body {
+.test {
+  margin: 0px;
+  padding: 5%;
   background: #c31432; /* fallback for old browsers */
   background: -webkit-linear-gradient(
     to right,
     #240b36,
     #c31432
   ); /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(
-    to right,
-    #240b36,
-    #c31432
-  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: linear-gradient(to right, #240b36, #c31432);
+  /* background-image: url("https://www.wallpaperflare.com/static/547/541/191/mountains-sunset-landscape-mount-hood-wallpaper.jpg"); */
 }
-
+.modal-content {
+  /* background-color: rgba(95, 94, 94, 0.164); */
+  border-radius: 13px;
+  height: 40pc;
+  width: 40%;
+  margin: 20px auto;
+  padding: 5%;
+}
 input[type="text"],
 input[type="password"] {
   width: 100%;
@@ -193,8 +200,8 @@ hr {
   border: 1px solid #f1f1f1;
   margin-bottom: 25px;
 }
-h1,
+/* h1,
 p {
-  color: white;
-}
+  color: rgb(158, 152, 152);
+} */
 </style>
