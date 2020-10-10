@@ -25,6 +25,7 @@ signUpRouter.post("/", async (req, res) => {
   }
 });
 
+
 signUpRouter.put("/avatar/:id", async (req, res) => {
   console.log("====>", req.params.id);
   try {
