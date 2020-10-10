@@ -1,36 +1,38 @@
 <template>
-  <div class="modal-content">
-    <div class="container">
-      <h1>Login</h1>
-      <hr />
-      <div class="alert alert-danger" role="alert" v-show="!!errorMessage">
-        {{ errorMessage }}
-      </div>
-      <input
-        type="text"
-        placeholder="Username"
-        name="username"
-        v-model="credentials.username"
-        required
-      />
+  <div id="id01" class="test">
+    <div class="modal-content">
+      <div class="container">
+        <h1>Login</h1>
+        <hr />
+        <div class="alert alert-danger" role="alert" v-show="!!errorMessage">
+          {{ errorMessage }}
+        </div>
+        <input
+          type="text"
+          placeholder="Username"
+          name="username"
+          v-model="credentials.username"
+          required
+        />
 
-      <input
-        type="password"
-        placeholder="Password"
-        name="repeat"
-        v-model="credentials.password"
-        required
-      />
+        <input
+          type="password"
+          placeholder="Password"
+          name="repeat"
+          v-model="credentials.password"
+          required
+        />
 
-      <div class="clearfix">
-        <button type="button" class="cancelbtn">Cancel</button>
-        <button type="submit" @click="login" class="signupbtn">
-          Login
-        </button>
-        You don't have an account?
-        <router-link to="/signup">
-          Sign up.
-        </router-link>
+        <div class="clearfix">
+          <button type="button" class="cancelbtn">Cancel</button>
+          <button type="submit" @click="login" class="signupbtn">
+            Login
+          </button>
+          You don't have an account?
+          <router-link to="/signup">
+            Sign up.
+          </router-link>
+        </div>
       </div>
     </div>
   </div>
@@ -65,8 +67,6 @@ export default {
   mounted: function() {
     if (localStorage.getItem("token")) {
       this.$router.push("dashboard");
-    } else {
-      this.$router.push("login");
     }
   },
   methods: {
@@ -81,10 +81,10 @@ export default {
           // this.id_auth = res.data.id;
           localStorage.setItem("token", res.data.token);
           localStorage.setItem("id", res.data.id);
+          this.$router.push("dashboard");
         })
         .catch(err => {
           this.errorMessage = err;
-          this.$router.push("dashboard");
           console.log(err.response);
         });
     }
@@ -95,6 +95,9 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+* {
+  margin: 0px;
+}
 .test {
   background: #c31432; /* fallback for old browsers */
   background: -webkit-linear-gradient(
@@ -107,15 +110,17 @@ export default {
     #240b36,
     #c31432
   ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  margin: 10px auto;
+  /* margin: 10px auto; */
   padding: 5%;
 }
+
 .modal-content {
-  /* background-color: rgba(95, 94, 94, 0.164); */
+  /* background-color: blur(2); */
+  /* background-image: url("https://www.wallpaperflare.com/static/547/541/191/mountains-sunset-landscape-mount-hood-wallpaper.jpg"); */
   border-radius: 13px;
   height: 40pc;
   width: 40%;
-  margin: 20px auto;
+  margin: 10px auto;
   padding: 5%;
 }
 input[type="text"],

@@ -140,7 +140,7 @@ export default {
 
 <style scoped>
 .test {
-  margin: 10px auto;
+  margin: 0px;
   padding: 5%;
   background: #c31432; /* fallback for old browsers */
   background: -webkit-linear-gradient(
