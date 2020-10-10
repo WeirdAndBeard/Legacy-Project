@@ -54,6 +54,20 @@
               size="sm"
             ></b-form-input>
           </b-form-group>
+          <b-form-group
+            :state="input2state"
+            class="mb-1"
+            description="Pick a color"
+            invalid-feedback="This field is required"
+          >
+            <b-form-select
+              id="popover-input-2"
+              v-model="selectUser"
+              :state="selectUserState"
+              :options="options"
+              size="sm"
+            ></b-form-select>
+          </b-form-group>
 
           <b-alert show class="small">
             <strong>Current Values:</strong><br />
@@ -79,6 +93,9 @@ export default {
       descriptionState: null,
       descriptionReturn: "",
       popoverShow: false,
+      selectUser: "",
+      selectUserState: null,
+      userOptions: [],
     };
   },
   watch: {
@@ -88,7 +105,21 @@ export default {
       }
     },
   },
+
+  mounted: function() {
+    this.getAllUsers();
+  },
   methods: {
+    async getAllUsers() {
+      const result = await axios.get("/api/users/");
+      var userNames = [];
+      for (var i = 0; i < result.data.length; i++) {
+        var fullname = result.data[i].first_name + " " + result.data[i].last_name;
+        userNames.push({ id: result.data[i]._id, fullname });
+      }
+      this.userOptions = result.data;
+      console.log(this.users);
+    },
     updateTask: async function() {
       console.log("task " + this.task._id + " clicked");
       try {
