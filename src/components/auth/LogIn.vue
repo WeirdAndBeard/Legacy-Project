@@ -52,6 +52,8 @@ export default {
       },
       outputLogIn: "",
       error: false
+      // token_auth: "",
+      // id_auth: ""
     };
   },
   methods: {
@@ -62,8 +64,10 @@ export default {
           if (res.status === 200) {
             console.log("still cooking jwt", res);
           }
+          // this.token_auth = res.data.token;
+          // this.id_auth = res.data.id;
           localStorage.setItem("token", res.data.token);
-          this.$router.push("/login");
+          localStorage.setItem("id", res.data.id);
         })
         .catch(err => {
           console.log(err.response);
@@ -76,12 +80,20 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
 .test {
-background: #c31432;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to right, #240b36, #c31432);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to right, #240b36, #c31432); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
+  background: #c31432; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #240b36,
+    #c31432
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #240b36,
+    #c31432
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  margin: 10px auto;
+  padding: 5%;
 }
 .modal-content {
   /* background-color: blur(2); */
@@ -90,12 +102,6 @@ background: linear-gradient(to right, #240b36, #c31432); /* W3C, IE 10+/ Edge, F
 
   height: 40pc;
   width: 40%;
-  margin: 10px auto;
-  padding: 5%;
-}
-.test {
-  /* background-image: url("https://www.wallpaperflare.com/static/547/541/191/mountains-sunset-landscape-mount-hood-wallpaper.jpg"); */
-  border-radius: 13px;
   margin: 10px auto;
   padding: 5%;
 }

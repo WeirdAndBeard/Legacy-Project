@@ -43,7 +43,13 @@
         @click="logout"
         class="list-group-item list-group-item-action bg-light"
       >
-        Logout
+        logout
+      </router-link>
+      <router-link
+        to="/profile"
+        class="list-group-item list-group-item-action bg-light"
+      >
+        Profile
       </router-link>
     </div>
   </div>

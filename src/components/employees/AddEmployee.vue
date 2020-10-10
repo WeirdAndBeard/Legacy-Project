@@ -95,7 +95,7 @@ export default {
         position: null,
         gender: [],
         date: "",
-        age: "",
+        age: ""
       },
 
       positions: [
@@ -103,9 +103,9 @@ export default {
         "Director",
         "Cleaner",
         "Developper",
-        "Designer",
+        "Designer"
       ],
-      show: true,
+      show: true
     };
   },
   methods: {
@@ -133,8 +133,8 @@ export default {
       this.$nextTick(() => {
         this.show = true;
       });
-    },
-  },
+    }
+  }
 };
 </script>
 <style scoped>
