@@ -30,10 +30,11 @@ companyRouter.get("/:id", async (req, res) => {
  * Create new company
  */
 companyRouter.post("/add", async (req, res) => {
+  console.log("Im here");
   try {
     const company = new Company(req.body);
     const result = await company.save();
-    console.log(req.body);
+    console.log(result);
     res.send(result);
   } catch (error) {
     console.log(error);

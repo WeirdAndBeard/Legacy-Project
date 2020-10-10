@@ -1,25 +1,25 @@
 const mongoose = require("mongoose");
 const db = require("../../database/connect.js");
 mongoose.Promise = global.Promise;
+mongoose.set("useFindAndModify", false);
 
 const usersSchema = new mongoose.Schema(
   {
     first_name: String,
     last_name: String,
-    username: { type: String, unique: true },
+    username: String,
     password: String,
     imageUrl: String,
     email: String,
-    age: Number,
-    position: String,
+    birthday: Date,
+    job_position: String,
     gender: String,
     created_at: Date,
-    token: { type: String, unique: true },
-    company_id: { type: String, unique: true },
+    company_id: String,
     roles: []
   },
   {
-    timestamps: true,
+    timestamps: true
   }
 );
 

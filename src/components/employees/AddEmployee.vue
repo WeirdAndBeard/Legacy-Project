@@ -38,7 +38,7 @@
       <label>Select birthday:</label>
       <b-form-datepicker
         id="example-datepicker"
-        v-model="employee.age"
+        v-model="employee.birthday"
         class="mb-2"
       ></b-form-datepicker>
 
@@ -49,7 +49,7 @@
       >
         <b-form-select
           id="input-3"
-          v-model="employee.position"
+          v-model="employee.job_position"
           :options="positions"
           required
         ></b-form-select>
@@ -84,6 +84,7 @@
 
 <script>
 import axios from "axios";
+import emailjs from "emailjs-com";
 
 export default {
   data() {
@@ -93,9 +94,9 @@ export default {
         first_name: "",
         last_name: "",
         username: "",
-        position: "",
+        job_position: "",
         gender: "",
-        age: "",
+        birthday: "",
       },
 
       positions: [
@@ -103,20 +104,39 @@ export default {
         "Director",
         "Cleaner",
         "Developper",
-        "Designer",
+        "Designer"
       ],
       genders: [{ text: "Select One", value: null }, "Male", "Female"],
-      show: true,
+      show: true
     };
   },
   mounted: async function() {
-    console.log(this.$route)
-    const result = await axios.get(`/api/users/${this.$route.params.id}`);
-    console.log("data ====> ", result.data);
-    this.employee = result.data;
-    console.log(this.employee);
+    console.log(this.$route);
+    if (this.$route.params.id) {
+      const result = await axios.get(`/api/users/${this.$route.params.id}`);
+      console.log("data ====> ", result.data);
+      this.employee = result.data;
+      console.log(this.employee);
+    }
   },
   methods: {
+    sendEmail: (e) => {
+      emailjs
+        .sendForm(
+          "YOUR_SERVICE_ID",
+          "YOUR_TEMPLATE_ID",
+          e.target,
+          "YOUR_USER_ID"
+        )
+        .then(
+          (result) => {
+            console.log("SUCCESS!", result.status, result.text);
+          },
+          (error) => {
+            console.log("FAILED...", error);
+          }
+        );
+    },
     async onSubmit(evt) {
       evt.preventDefault();
       // alert(JSON.stringify(this.form));
@@ -125,6 +145,7 @@ export default {
         url = "/api/users/update/" + this.$route.params.id;
       }
       try {
+        console.log(url);
         const data = await axios.post(url, this.employee);
         console.log(data.data);
       } catch (error) {
@@ -145,8 +166,8 @@ export default {
       this.$nextTick(() => {
         this.show = true;
       });
-    },
-  },
+    }
+  }
 };
 </script>
 <style scoped>

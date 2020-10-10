@@ -39,12 +39,12 @@ export default {
   name: "Sidebar",
   data() {
     return {
-      counter: 1,
+      counter: 1
     };
   },
   props: {
-    msg: String,
-  },
+    msg: String
+  }
 };
 </script>
 <style scoped>

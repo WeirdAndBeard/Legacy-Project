@@ -1,16 +1,16 @@
 <template>
   <div>
-    <b-button @click="Add" class="btn-width">Add employee</b-button>
+    <b-button @click="Add" class="btn-width" variant="success">Add employee</b-button>
 
     <b-table striped hover :fields="fields" :items="users">
       <template v-slot:cell(actions)="row">
         <!-- As `row.showDetails` is one-way, we call the toggleDetails function on @change -->
         <!-- {{row}} -->
-        <b-button @click="() => deleteEmployee(row.item._id)" class="btn-width"
-          >Delete employee</b-button
+        <b-button @click="() => deleteEmployee(row.item._id)" class="btn-width " variant="danger"
+          >Delete</b-button
         >
-        <b-button @click="() => updateEmployee(row.item._id)" class="btn-width"
-          >Update employee</b-button
+        <b-button @click="() => updateEmployee(row.item._id)" class="btn-width" variant="primary"
+          >Update</b-button
         >
       </template>
     </b-table>
