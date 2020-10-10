@@ -35,7 +35,7 @@
 </template>
 <script>
 import Task from "./Task.vue";
-import draggable from "vuedraggable";
+//import draggable from "vuedraggable";
 import axios from "axios";
 
 export default {
@@ -51,7 +51,7 @@ export default {
   },
   components: {
     Task,
-    draggable,
+    //draggable,
   },
   mounted: function() {
     this.getTasks();
