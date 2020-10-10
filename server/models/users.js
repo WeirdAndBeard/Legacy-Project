@@ -11,7 +11,7 @@ const usersSchema = new mongoose.Schema(
     imageUrl: String,
     email: String,
     age: Number,
-    job_position: String,
+    position: String,
     gender: String,
     created_at: Date,
     token: { type: String, unique: true },
