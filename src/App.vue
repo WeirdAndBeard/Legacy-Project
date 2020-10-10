@@ -1,22 +1,39 @@
 <template>
   <div id="app">
-    <Dashboard />
+    <router-view></router-view>
+    <!-- <SignUp /> -->
+    <!-- <LogIn /> -->
+    <!-- <Dashboard /> -->
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import Dashboard from "@/components/Dashboard.vue";
+// import SignUp from "@/components/auth/SignUp.vue";
+// import LogIn from "@/components/auth/LogIn.vue";
+// import Dashboard from "@/components/Dashboard.vue";
 
 export default {
   name: "App",
   components: {
-    Dashboard
-  }
+    // SignUp: SignUp,
+    //Dashboard: Dashboard
+  },
+  mounted: function() {
+    if (localStorage.getItem("token")) {
+      this.$router.push("dashboard");
+    } else {
+      this.$router.push("login");
+    }
+  },
 };
 </script>
 
 <style>
+* {
+  margin: 0px;
+  padding: 0px;
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
