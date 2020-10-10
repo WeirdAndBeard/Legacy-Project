@@ -1,58 +1,56 @@
 <template>
-  <div id="id01" class="tess">
-    <div class="modal-content">
-      <div class="container">
-        <h1>Sign Up</h1>
-        <p>Please fill in this form to create an account.</p>
-        <hr />
-        <input
-          type="text"
-          placeholder="Enter Your  First Name"
-          name="First Name"
-          v-model="user.first_name"
-          required
-        />
+  <div class="modal-content">
+    <div class="container">
+      <h1>Sign Up</h1>
+      <hr />
+      <input
+        type="text"
+        placeholder="Enter Your  First Name"
+        name="First Name"
+        v-model="user.first_name"
+        required
+      />
 
-        <input
-          type="text"
-          placeholder="Enter Your Last Name"
-          name="Last Name"
-          v-model="user.last_name"
-          required
-        />
+      <input
+        type="text"
+        placeholder="Enter Your Last Name"
+        name="Last Name"
+        v-model="user.last_name"
+        required
+      />
 
-        <input
-          type="text"
-          placeholder="Choose a username"
-          name="User Name"
-          v-model="user.username"
-          required
-        />
-        <input
-          type="text"
-          placeholder="Enter Your Email"
-          name="Email"
-          v-model="user.email"
-          required
-        />
+      <input
+        type="text"
+        placeholder="Choose a username"
+        name="User Name"
+        v-model="user.username"
+        required
+      />
+      <input
+        type="text"
+        placeholder="Enter Your Email"
+        name="Email"
+        v-model="user.email"
+        required
+      />
 
-        <input
-          type="password"
-          placeholder="Password"
-          name="repeat"
-          v-model="user.password"
-          required
-        />
+      <input
+        type="password"
+        placeholder="Password"
+        name="repeat"
+        v-model="user.password"
+        required
+      />
 
-        <input
-          type="password"
-          placeholder="Repeat Password"
-          name="psw-repeat"
-          v-model="RepeatPassword"
-          required
-        />
+      <input
+        type="password"
+        placeholder="Repeat Password"
+        name="psw-repeat"
+        v-model="RepeatPassword"
+        required
+      />
 
-        <!-- <label>
+      <!-- <label>
           <input
             type="checkbox"
             checked="checked"
@@ -62,19 +60,22 @@
           Remember me
         </label> -->
 
-        <!-- <p>
+      <!-- <p>
           By creating an account you agree to our
           <a href="#" style="color: dodgerblue">Terms & Privacy</a>.
         </p> -->
 
-        <div class="clearfix">
-          <span> {{ this.output }} </span>
-          <button type="button" class="cancelbtn">Cancel</button>
-          <button type="submit" @click="register" class="signupbtn">
-            Sign Up
-          </button>
-        </div>
+      <div class="clearfix">
+        <span> {{ this.output }} </span>
+        <button type="button" class="cancelbtn">Cancel</button>
+        <button type="submit" @click="register" class="signupbtn">
+          Sign Up
+        </button>
       </div>
+      You already have an account?
+      <router-link to="/login">
+        Login.
+      </router-link>
     </div>
   </div>
 </template>
@@ -103,13 +104,7 @@ export default {
       check: false,
     };
   },
-  mounted: function(){
-    if (localStorage.getItem("token")) {
-      this.$router.push("dashboard");
-    } else {
-      this.$router.push("login");
-    }
-  },
+
   methods: {
     async register() {
       console.log("this.user", this.user);
@@ -121,7 +116,7 @@ export default {
           let res = await axios.post("/api/register", this.user);
           this.output = res.data;
           // if (this.check === true) {
-            console.log("redirect");
+          console.log("redirect");
           this.$router.push("/login");
           // }
         } catch (error) {
@@ -156,14 +151,7 @@ body {
     #c31432
   ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
-.modal-content {
-  /* background-color: url("https://www.wallpaperflare.com/static/547/541/191/mountains-sunset-landscape-mount-hood-wallpaper.jpg"); */
-  border-radius: 13px;
-  height: 40pc;
-  width: 40%;
-  margin: 10px auto;
-  padding: 5%;
-}
+
 input[type="text"],
 input[type="password"] {
   width: 100%;
