@@ -47,7 +47,11 @@ export default {
       credentials: {
         email: "",
         password: ""
-      }
+      },
+      outputLogIn: "",
+      error: false
+      // token_auth: "",
+      // id_auth: ""
     };
   },
   mounted: function() {
@@ -69,7 +73,6 @@ export default {
           // this.id_auth = res.data.id;
           localStorage.setItem("token", res.data.token);
           localStorage.setItem("id", res.data.id);
-          this.$router.push("/dashboard");
         })
         .catch(err => {
           console.log(err.response);
