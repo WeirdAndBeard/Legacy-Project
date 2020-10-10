@@ -17,13 +17,14 @@ signUpRouter.post("/", async (req, res) => {
     });
     console.log("user back-end", user);
     user.roles.push("admin", "user");
-    const result = await user.save();
+    const result = await user.save({});
     res.send(result);
   } catch (err) {
     // console.log("[server side error signing up]", err);
     res.send(err);
   }
 });
+
 
 signUpRouter.put("/avatar/:id", async (req, res) => {
   console.log("====>", req.params.id);

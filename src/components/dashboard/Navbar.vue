@@ -32,7 +32,12 @@
             class="dropdown-menu dropdown-menu-right"
             aria-labelledby="navbarDropdown"
           >
-            <a class="dropdown-item" href="#">Profile</a>
+            <router-link
+              to="/profile"
+              class="list-group-item list-group-item-action bg-light"
+            >
+              Profile
+            </router-link>
             <a class="dropdown-item" href="#" @click="logout">Logout</a>
           </div>
         </li>
@@ -46,18 +51,18 @@ export default {
   name: "HelloWorld",
   data() {
     return {
-      counter: 1,
+      counter: 1
     };
   },
   props: {
-    msg: String,
+    msg: String
   },
   methods: {
     logout() {
       console.log("logout");
       localStorage.clear();
       this.$router.push("/login");
-    },
-  },
+    }
+  }
 };
 </script>
