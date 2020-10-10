@@ -79,13 +79,6 @@ export default {
         email: "",
       },
 
-      positions: [
-        { text: "Select One", value: null },
-        "Project_Manager",
-        "SCRUM Master",
-        "Developper",
-        "Designer",
-      ],
       show: true,
     };
   },
@@ -93,7 +86,6 @@ export default {
     if (this.$route.params.id) {
       const result = await axios.get(`/api/companies/${this.$route.params.id}`);
       console.log(result.data);
-
       this.company.companyName = result.data.companyName;
       this.company.description = result.data.description;
       this.company.imageUrl = result.data.imageUrl;
@@ -118,18 +110,13 @@ export default {
       this.$router.push("/companies");
     },
 
-    // Handles a change on the file upload
-    handleFileUpload() {
-      this.file = this.$refs.file.files[0];
-    },
-
     onReset(evt) {
       evt.preventDefault();
       // Reset our form values
       this.company.email = "";
       this.company.name = "";
-      this.company.description = null;
-      this.company.imgurl = [];
+      this.company.description = "";
+      this.company.imgUrl = "";
       this.company.adress = "";
       // Trick to reset/clear native browser form validation state
       this.show = false;
@@ -152,3 +139,5 @@ export default {
   margin: 10px;
 }
 </style>
+
+

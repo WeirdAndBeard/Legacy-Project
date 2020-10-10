@@ -6,7 +6,7 @@
       :key="employee.employee_name"
       id="page-content-wrapper"
     >
-      <b-card bg-variant="dark" text-variant="white" title="Employee Name : ">
+      <b-card  bg-variant="dark" text-variant="white" title="Employee Name : ">
         {{ employee.employee_name }}
         <b-card-text>
           <h5>Text Message : {{ employee.employee_message }}</h5>
@@ -22,13 +22,13 @@
       </div>
     </div>
     <!-- <div class="new"> -->
-    <b-form-group id="input-group-1" label="Your Post:" label-for="input-1">
+    <b-form-group  id="input-group-1" label="Your Post:" label-for="input-1">
       <div>
         <!-- Using components -->
         <b-input-group class="mt-3">
           <b-form-input placeholder="Type Your Post Here"></b-form-input>
           <b-input-group-append>
-            <b-button @submit="onSubmit" variant="outline-success"
+            <b-button  variant="outline-success"
               >Post</b-button
             >
           </b-input-group-append>
@@ -54,37 +54,38 @@ export default {
         {
           employee_name: "",
           employee_image: "",
-          employee_message: ""
-        },
-                {
-          employee_name: "",
-          employee_image: "",
-          employee_message: ""
+          employee_message: "",
         },
       ]
     };
   },
 
   methods: {
-    getEmployees() {
-      this.axios
-        .get("/chat")
-        .then(res => this.employees.push(res.data))
-        .catch(err => console.log(err));
-    },
-
-    // needs to be fixed to post the messages of the users
     async onSubmit(evt) {
       evt.preventDefault();
+      var url = "/api/chatMessages/add";
+      if (this.$route.params.id) {
+        url = `/api/chatMessages/update/${this.$route.params.id}`;
+      }
       try {
-        const data = await axios.post("chat/add", this.employees);
+        const data = await axios.post(url, this.employees);
         console.log(data.data);
       } catch (error) {
         console.error(error);
       }
-      this.$router.push("/");
+      this.$router.push("/chatMessages");
     }
-  }
+  },
+
+  mounted: async function() {
+    if (this.$route.params.id) {
+      const result = await axios.get(`/api/chatMessages/${this.$route.params.id}`);
+      console.log(result.data);
+      this.employees.employee_name = result.data.employee_name;
+      this.employees.employee_image = result.data.employee_image;
+      this.employees.employee_message = result.data.employee_message;
+    }
+  },
 };
 </script>
 <style scoped>
