@@ -2,7 +2,7 @@ const chatRouter = require("express").Router();
 const ChatMessage = require("../models/chatMessages.js");
 
 // Get Chat messages
-chatRouter.get("/chat", async (req, res) => {
+chatRouter.get("/", async (req, res) => {
   try {
     const chat = await ChatMessage.find();
     res.send(chat);
@@ -13,7 +13,7 @@ chatRouter.get("/chat", async (req, res) => {
 });
 
 // Add new message
-chatRouter.post("/chat/add", async (req, res) => {
+chatRouter.post("/add", async (req, res) => {
   try {
     const chat = new ChatMessage(req.body);
     const result = await chat.save();

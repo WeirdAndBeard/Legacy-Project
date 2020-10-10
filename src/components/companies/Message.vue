@@ -1,6 +1,5 @@
 <template>
   <div class="container">
-
     <b-form @submit="onSubmit" @reset="onReset" v-if="show">
       <b-form-group
         id="input-group-1"
@@ -16,14 +15,10 @@
       </b-form-group>
 
       <b-button type="submit" variant="primary">Submit</b-button>
-      
+
       <b-button type="reset" variant="primary">Reset</b-button>
-        <img 
-        class="card-img-top" 
-        :src="form.imageUrl" alt="Card image cap">
-
+      <img class="card-img-top" :src="form.imageUrl" alt="Card image cap" />
     </b-form>
-
   </div>
 </template>
 
@@ -32,10 +27,10 @@ import axios from "axios";
 export default {
   data() {
     return {
+      message: "",
       form: {
-        message: "",
-        adminId:"",
-        imageUrl:"",
+        adminId: "",
+        imageUrl: ""
       },
 
       show: true
@@ -44,18 +39,23 @@ export default {
   methods: {
     async onSubmit(evt) {
       evt.preventDefault();
+      var url = "/api/messages/add";
+      if (this.$route.params.id) {
+        url = `/api/messages/update/${this.$route.params.id}`;
+      }
       try {
-        const data = await axios.post("/api/messages/add", this.form);
+        const data = await axios.post(url, this.form.message);
         console.log(data.data);
       } catch (error) {
         console.error(error);
       }
       this.$router.push("/messages");
     },
+
     onReset(evt) {
       evt.preventDefault();
       this.form.message = "";
-      
+
       // Trick to reset/clear native browser form validation state
       this.show = false;
       this.$nextTick(() => {
