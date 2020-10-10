@@ -3,7 +3,8 @@
     <router-view></router-view>
     <!-- <SignUp /> -->
     <!-- <LogIn /> -->
-    <!-- <Dashboard /> -->
+   
+ 
   </div>
 </template>
 
@@ -17,7 +18,7 @@ export default {
   name: "App",
   components: {
     // SignUp: SignUp,
-    //Dashboard: Dashboard
+    // Dashboard: Dashboard
   },
   mounted: function() {
     if (localStorage.getItem("token")) {
