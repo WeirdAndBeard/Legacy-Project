@@ -26,9 +26,8 @@
             </button>
           </form>
         </div>
-        
-            <Task v-for="task in tasks" :key="task._id" :task="task" />
-         
+
+        <Task v-for="task in tasks" :key="task._id" :task="task" />
       </b-list-group>
     </b-card>
   </b-card-group>

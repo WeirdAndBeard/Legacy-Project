@@ -84,7 +84,14 @@
 
 <script>
 import axios from "axios";
-import emailjs from "emailjs-com";
+// import { SMTPClient } from "emailjs";
+
+// const client = new SMTPClient({
+//   user: "user",
+//   password: "password",
+//   host: "smtp.your-email.com",
+//   ssl: true,
+// });
 
 export default {
   data() {
@@ -104,10 +111,10 @@ export default {
         "Director",
         "Cleaner",
         "Developper",
-        "Designer"
+        "Designer",
       ],
       genders: [{ text: "Select One", value: null }, "Male", "Female"],
-      show: true
+      show: true,
     };
   },
   mounted: async function() {
@@ -120,23 +127,6 @@ export default {
     }
   },
   methods: {
-    sendEmail: (e) => {
-      emailjs
-        .sendForm(
-          "YOUR_SERVICE_ID",
-          "YOUR_TEMPLATE_ID",
-          e.target,
-          "YOUR_USER_ID"
-        )
-        .then(
-          (result) => {
-            console.log("SUCCESS!", result.status, result.text);
-          },
-          (error) => {
-            console.log("FAILED...", error);
-          }
-        );
-    },
     async onSubmit(evt) {
       evt.preventDefault();
       // alert(JSON.stringify(this.form));
@@ -147,6 +137,18 @@ export default {
       try {
         console.log(url);
         const data = await axios.post(url, this.employee);
+        // `${this.employee.email}`,
+        // client.send(
+        //   {
+        //     text: `Hello ${this.employee.first_name} ${this.employee.last_name} this your default credientilals "Username: ${this.employee.username}, password: ${this.employee.password}`,
+        //     from: "bjeoui.saber@gmail.com",
+        //     to: "bjsaber@gmail.com",
+        //     subject: "Your default credientials",
+        //   },
+        //   (err, message) => {
+        //     console.log(err || message);
+        //   }
+        // );
         console.log(data.data);
       } catch (error) {
         console.error(error);
@@ -166,8 +168,8 @@ export default {
       this.$nextTick(() => {
         this.show = true;
       });
-    }
-  }
+    },
+  },
 };
 </script>
 <style scoped>
