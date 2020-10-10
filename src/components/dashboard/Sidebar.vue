@@ -38,13 +38,7 @@
       >
         LogIn
       </router-link>
-      <router-link
-        to="/SignUp"
-        @click="logout"
-        class="list-group-item list-group-item-action bg-light"
-      >
-        logout
-      </router-link>
+
       <router-link
         to="/profile"
         class="list-group-item list-group-item-action bg-light"
@@ -65,9 +59,6 @@ export default {
   },
   props: {
     msg: String
-  },
-  logout() {
-    localStorage.clear();
   }
 };
 </script>

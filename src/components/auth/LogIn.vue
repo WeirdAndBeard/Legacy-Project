@@ -5,10 +5,7 @@
         <h1>Log In</h1>
         <p>Please fill in this form to Log In To Your account.</p>
         <hr />
-        <v-alert color="error" :value="error" icon="close">
-          test
-        </v-alert>
-
+ 
         <input
           type="text"
           placeholder="Enter Your email"
