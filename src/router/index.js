@@ -22,22 +22,22 @@ const routes = [
       {
         path: "/companies",
         name: "CompaniesList",
-        component: CompaniesList,
+        component: CompaniesList
       },
       {
         path: "/employees",
         name: "EmployeesList",
-        component: EmployeesList,
+        component: EmployeesList
       },
       {
         path: "/employees/add",
         name: "AddEmployee",
-        component: AddEmployee,
+        component: AddEmployee
       },
       {
         path: "/employees/update/:id",
         name: "AddEmployee",
-        component: AddEmployee,
+        component: AddEmployee
       },
       {
         path: "/companies/add",
